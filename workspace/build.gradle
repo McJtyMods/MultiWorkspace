@@ -59,6 +59,9 @@ minecraft {
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
             }
         }
 
@@ -80,6 +83,9 @@ minecraft {
                 }
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
+                }
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
                 }
             }
         }
