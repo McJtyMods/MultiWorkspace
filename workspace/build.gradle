@@ -18,6 +18,9 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
+    maven { // JEI
+        url "http://dvs1.progwml6.com/files/maven"
+    }
 }
 
 version = '1.0'
@@ -98,9 +101,13 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:1.14.2-${forge_version}"
 
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
     compile project(':RFToolsBase')
+    compile project(':Restrictions')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
