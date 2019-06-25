@@ -62,6 +62,9 @@ minecraft {
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
+                RFToolsPower {
+                    source project(':RFToolsPower').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -87,6 +90,9 @@ minecraft {
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
+                RFToolsPower {
+                    source project(':RFToolsPower').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -107,6 +113,7 @@ dependencies {
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
     compile project(':RFToolsBase')
+    compile project(':RFToolsPower')
     compile project(':Restrictions')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
