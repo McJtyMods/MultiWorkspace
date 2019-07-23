@@ -3,6 +3,7 @@ include 'TheOneProbe'
 include 'McJtyLib'
 include 'RFToolsBase'
 include 'RFToolsPower'
+include 'RFToolsStorage'
 include 'Restrictions'
 
 include 'workspace'
