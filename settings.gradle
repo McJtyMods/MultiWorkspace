@@ -1,9 +1,9 @@
 rootProject.name = '1.14'
 include 'TheOneProbe'
 include 'McJtyLib'
+include 'RFToolsStorage'
 include 'RFToolsBase'
 include 'RFToolsPower'
-include 'RFToolsStorage'
 include 'Restrictions'
 
 include 'workspace'
