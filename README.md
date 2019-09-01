@@ -5,7 +5,7 @@ Individual mods should be 'git cloned' inside subfolders of this project.
 Modify settings.gradle as well as workspace/build.gradle for all your mods.
 Inside the mods/build.gradle you should have the following construct to make sure the mods are still compilable standalone as well as inside the multi-project:
 
-    if (project(':McJtyLib') != null) {
+    if (findProject(':McJtyLib') != null) {
         compile project(':McJtyLib')
     } else {
         compile fg.deobf (project.dependencies.create("com.github.mcjty:mcjtylib:${mcjtylib_version}") {
