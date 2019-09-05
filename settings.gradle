@@ -5,6 +5,8 @@ include 'RFTools'
 include 'RFToolsStorage'
 include 'RFToolsBase'
 include 'RFToolsPower'
+include 'RFToolsUtility'
+include 'RFToolsBuilder'
 include 'Restrictions'
 
 include 'workspace'
