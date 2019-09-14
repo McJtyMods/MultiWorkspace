@@ -122,6 +122,47 @@ minecraft {
                 }
             }
         }
+
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            // property 'forge.logging.console.level', 'debug'
+            args '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                TheOneProbe {
+                    source project(':TheOneProbe').sourceSets.main
+                }
+                McJtyLib {
+                    source project(':McJtyLib').sourceSets.main
+                }
+                RFTools {
+                    source project(':RFTools').sourceSets.main
+                }
+                RFToolsStorage {
+                    source project(':RFToolsStorage').sourceSets.main
+                }
+                RFToolsBase {
+                    source project(':RFToolsBase').sourceSets.main
+                }
+                RFToolsPower {
+                    source project(':RFToolsPower').sourceSets.main
+                }
+                RFToolsBuilder {
+                    source project(':RFToolsBuilder').sourceSets.main
+                }
+                RFToolsUtility {
+                    source project(':RFToolsUtility').sourceSets.main
+                }
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+            }
+        }
     }
 }
 
