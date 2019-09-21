@@ -59,9 +59,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                RFTools {
-                    source project(':RFTools').sourceSets.main
-                }
+//                RFTools {
+//                    source project(':RFTools').sourceSets.main
+//                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -99,9 +99,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                RFTools {
-                    source project(':RFTools').sourceSets.main
-                }
+//                RFTools {
+//                    source project(':RFTools').sourceSets.main
+//                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -140,9 +140,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                RFTools {
-                    source project(':RFTools').sourceSets.main
-                }
+//                RFTools {
+//                    source project(':RFTools').sourceSets.main
+//                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -177,7 +177,7 @@ dependencies {
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
-    compile project(':RFTools')
+//    compile project(':RFTools')
     compile project(':RFToolsStorage')
     compile project(':RFToolsBase')
     compile project(':RFToolsPower')
