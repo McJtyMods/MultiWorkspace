@@ -80,6 +80,9 @@ minecraft {
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
+                ModXNet {
+                    source project(':ModXNet').sourceSets.main
+                }
             }
         }
 
@@ -119,6 +122,9 @@ minecraft {
                 }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
+                }
+                ModXNet {
+                    source project(':ModXNet').sourceSets.main
                 }
             }
         }
@@ -161,6 +167,9 @@ minecraft {
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
+                ModXNet {
+                    source project(':ModXNet').sourceSets.main
+                }
             }
         }
     }
@@ -184,6 +193,7 @@ dependencies {
     compile project(':RFToolsBuilder')
     compile project(':RFToolsUtility')
     compile project(':Restrictions')
+    compile project(':ModXNet')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
