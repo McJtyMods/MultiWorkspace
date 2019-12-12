@@ -21,6 +21,9 @@ repositories {
     maven { // JEI
         url "http://dvs1.progwml6.com/files/maven"
     }
+    maven { // Patchouli
+        url "https://maven.blamejared.com"
+    }
 }
 
 version = '1.0'
@@ -183,6 +186,7 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+    compile "vazkii.patchouli:Patchouli:${patchouli_version}"
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
