@@ -186,7 +186,9 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    compile "vazkii.patchouli:Patchouli:${patchouli_version}"
+    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
+        transitive = false
+    }
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
