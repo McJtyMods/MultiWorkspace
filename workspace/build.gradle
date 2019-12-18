@@ -83,6 +83,9 @@ minecraft {
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
+                LostCities {
+                    source project(':LostCities').sourceSets.main
+                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -125,6 +128,9 @@ minecraft {
                 }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
+                }
+                LostCities {
+                    source project(':LostCities').sourceSets.main
                 }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
@@ -170,6 +176,9 @@ minecraft {
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
+                LostCities {
+                    source project(':LostCities').sourceSets.main
+                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -192,6 +201,7 @@ dependencies {
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
+    compile project(':LostCities')
 //    compile project(':RFTools')
     compile project(':RFToolsStorage')
     compile project(':RFToolsBase')
