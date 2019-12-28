@@ -1,17 +1,23 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
+
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: "com.wynprice.cursemaven"
 
 repositories {
     maven { // TOP
@@ -23,6 +29,10 @@ repositories {
     }
     maven { // Patchouli
         url "https://maven.blamejared.com"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
     }
 }
 
@@ -198,6 +208,8 @@ dependencies {
     compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
         transitive = false
     }
+
+    compile fg.deobf("curse.maven:wildnature:2837635")
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
