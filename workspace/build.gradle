@@ -210,6 +210,9 @@ dependencies {
     }
 
     compile fg.deobf("curse.maven:wildnature:2837635")
+//    compile fg.deobf("curse.maven:voxelmap:2765032")
+//    compile fg.deobf("curse.maven:minimap:2849263")
+//    compile fg.deobf("curse.maven:xaero:2836597")
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
