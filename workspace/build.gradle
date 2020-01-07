@@ -24,6 +24,9 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
+    maven {
+        url = "https://modmaven.k-4u.nl"
+    }
     maven { // JEI
         url "http://dvs1.progwml6.com/files/maven"
     }
@@ -90,6 +93,9 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -135,6 +141,9 @@ minecraft {
                 }
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
+                }
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
                 }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
@@ -183,6 +192,9 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -205,9 +217,8 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
-        transitive = false
-    }
+    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    compile fg.deobf("nl.elec332.core:ElecCore:${minecraft_version}-${eleccore_version}")
 
 //    compile fg.deobf("curse.maven:wildnature:2837635")
 //    compile fg.deobf("curse.maven:voxelmap:2765032")
@@ -223,6 +234,7 @@ dependencies {
     compile project(':RFToolsPower')
     compile project(':RFToolsBuilder')
     compile project(':RFToolsUtility')
+    compile project(':DeepResonance')
     compile project(':Restrictions')
     compile project(':ModXNet')
 

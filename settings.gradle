@@ -8,6 +8,7 @@ include 'RFToolsBase'
 include 'RFToolsPower'
 include 'RFToolsUtility'
 include 'RFToolsBuilder'
+include 'DeepResonance'
 include 'Restrictions'
 include 'ModXNet'
 
