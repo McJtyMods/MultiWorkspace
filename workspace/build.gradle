@@ -75,6 +75,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
+                HoloGui {
+                    source project(':HoloGui').sourceSets.main
+                }
 //                RFTools {
 //                    source project(':RFTools').sourceSets.main
 //                }
@@ -123,6 +126,9 @@ minecraft {
                 }
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
+                }
+                HoloGui {
+                    source project(':HoloGui').sourceSets.main
                 }
 //                RFTools {
 //                    source project(':RFTools').sourceSets.main
@@ -173,6 +179,9 @@ minecraft {
                 }
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
+                }
+                HoloGui {
+                    source project(':HoloGui').sourceSets.main
                 }
 //                RFTools {
 //                    source project(':RFTools').sourceSets.main
@@ -227,6 +236,7 @@ dependencies {
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
+    compile project(':HoloGui')
     compile project(':LostCities')
 //    compile project(':RFTools')
     compile project(':RFToolsStorage')

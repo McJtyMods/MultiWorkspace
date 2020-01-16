@@ -1,5 +1,6 @@
 rootProject.name = '1.14'
 include 'TheOneProbe'
+include 'HoloGui'
 include 'LostCities'
 include 'McJtyLib'
 //include 'RFTools'
