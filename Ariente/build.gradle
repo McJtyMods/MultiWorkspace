@@ -1,0 +1,217 @@
+
+// For those who want the bleeding edge
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+
+//plugins {
+    //id 'com.matthewprenger.cursegradle' version '1.1.0'
+//}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+repositories {
+    maven { // The repo from which to get waila
+        name "Mobius Repo"
+        url "http://tehnut.info/maven"
+        //url "http://mobiusstrip.eu/maven"
+    }
+    maven { // JEI
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+    maven { // Patchouli
+        url "https://maven.blamejared.com"
+    }
+    maven {
+        name 'OC Repo'
+        url "http://maven.cil.li/"
+    }
+    maven { // TOP
+        name 'tterrag maven'
+        url "http://maven.tterrag.com/"
+    }
+    maven { // McJtyLib
+        url "http://maven.k-4u.nl"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+    maven {
+        name = "TESLA"
+        url = "https://maven.mcmoddev.com"
+    }
+}
+
+
+group= "com.github.mcjty"
+archivesBaseName = "ariente"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    mappings channel: 'snapshot', version: "${mcp_mappings}"
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client = {
+            // recommended logging data for a userdev environment
+            properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
+            // recommended logging level for the console
+            properties 'forge.logging.console.level': 'debug'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+        server = {
+            // recommended logging data for a userdev environment
+            properties 'forge.logging.markers': 'SCAN,REGISTRIES,REGISTRYDUMP'
+            // recommended logging level for the console
+            properties 'forge.logging.console.level': 'debug'
+            workingDirectory project.file('run').canonicalPath
+            source sourceSets.main
+        }
+        data = {
+            workingDirectory project.file('run').canonicalPath
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            args '--mod', 'ariente', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
+            source sourceSets.main
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes 'FMLAT': 'accesstransformer.cfg',
+        "Specification-Title": "ariente",
+        "Specification-Vendor": "McJty",
+        "Specification-Version": "1",
+        "Implementation-Title": project.name,
+        "Implementation-Version": "${version}",
+        "Implementation-Vendor" :"McJty",
+        "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
+        transitive = false
+    }
+
+    if (findProject(':TheOneProbe') != null) {
+        compile project(':TheOneProbe')
+    } else {
+        compile fg.deobf(project.dependencies.create("mcjty.theoneprobe:TheOneProbe-${top_version}") {
+            transitive = false
+        })
+    }
+    if (findProject(':McJtyLib') != null) {
+        compile project(':McJtyLib')
+    } else {
+        compile fg.deobf (project.dependencies.create("com.github.mcjty:mcjtylib:${mcjtylib_version}") {
+            transitive = false
+        })
+    }
+    if (findProject(':HoloGui') != null) {
+        compile project(':HoloGui')
+    } else {
+        compile fg.deobf (project.dependencies.create("com.github.mcjty:hologui:${hologui_version}") {
+            transitive = false
+        })
+    }
+}
+
+task apiJar(type: Jar) {
+    classifier = "api"
+    from(sourceSets.main.output) {
+        include "mcjty/mcjtylib/api/**"
+    }
+}
+
+artifacts {
+    archives apiJar
+}
+
+publishing {
+    tasks.publish.dependsOn 'build'
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact apiJar
+        }
+    }
+
+    repositories {
+        if (project.hasProperty('mavendir')) {
+            maven { url mavendir }
+        } else {
+            mavenLocal()
+        }
+    }
+}
+
+
+task("uploadJars", dependsOn: "reobf") {
+    description = "uploads JARs"
+    if (System.getenv("local_maven") != null) {
+        apply plugin: 'maven'
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    repository(url: "file://" + System.getenv("local_maven"))
+                    pom {
+                        groupId = project.group
+                        version = project.version
+                        artifactId = project.archivesBaseName
+                        project {
+                            name project.archivesBaseName
+                            packaging 'jar'
+                            description 'Ariente'
+                            scm {
+                                url 'https://github.com/McJtyMods/Ariente'
+                                connection 'scm:git:git@github.com:McJtyMods/Ariente.git'
+                                developerConnection 'scm:git:git@github.com:McJtyMods/Ariente.git'
+                            }
+                            issueManagement {
+                                system 'github'
+                                url 'https://github.com/McJtyMods/Ariente/issues'
+                            }
+                            licenses {
+                                license {
+                                    name 'MIT'
+                                    distribution 'repo'
+                                }
+                            }
+                            developers {
+                                developer {
+                                    id 'McJty'
+                                    name 'McJty'
+                                    roles { role 'developer' }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
