@@ -1,6 +1,6 @@
 rootProject.name = '1.15'
 include 'TheOneProbe'
-//include 'Ariente'
+include 'Ariente'
 include 'HoloGui'
 include 'LostCities'
 include 'McJtyLib'

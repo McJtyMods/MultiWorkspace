@@ -75,9 +75,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                //Ariente {
-                    //source project(':Ariente').sourceSets.main
-                //}
+                Ariente {
+                    source project(':Ariente').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -130,9 +130,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                //Ariente {
-                    //source project(':Ariente').sourceSets.main
-                //}
+                Ariente {
+                    source project(':Ariente').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -186,9 +186,9 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                //Ariente {
-                    //source project(':Ariente').sourceSets.main
-                //}
+                Ariente {
+                    source project(':Ariente').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -245,7 +245,7 @@ dependencies {
 
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
-    //compile project(':Ariente')
+    compile project(':Ariente')
     compile project(':HoloGui')
     compile project(':LostCities')
 //    compile project(':RFTools')
