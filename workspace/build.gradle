@@ -81,6 +81,15 @@ minecraft {
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
+                McJtyTools {
+                    source project(':McJtyTools').sourceSets.main
+                }
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
 //                RFTools {
 //                    source project(':RFTools').sourceSets.main
 //                }
@@ -135,6 +144,15 @@ minecraft {
                 }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
+                }
+                McJtyTools {
+                    source project(':McJtyTools').sourceSets.main
+                }
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
                 }
 //                RFTools {
 //                    source project(':RFTools').sourceSets.main
@@ -192,6 +210,15 @@ minecraft {
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
+                McJtyTools {
+                    source project(':McJtyTools').sourceSets.main
+                }
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
 //                RFTools {
 //                    source project(':RFTools').sourceSets.main
 //                }
@@ -247,6 +274,9 @@ dependencies {
     compile project(':McJtyLib')
     compile project(':Ariente')
     compile project(':HoloGui')
+    compile project(':McJtyTools')
+    compile project(':InControl')
+    compile project(':FxControl')
     compile project(':LostCities')
 //    compile project(':RFTools')
     compile project(':RFToolsStorage')
