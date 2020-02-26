@@ -81,9 +81,6 @@ minecraft {
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
-                McJtyTools {
-                    source project(':McJtyTools').sourceSets.main
-                }
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
@@ -144,9 +141,6 @@ minecraft {
                 }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
-                }
-                McJtyTools {
-                    source project(':McJtyTools').sourceSets.main
                 }
                 InControl {
                     source project(':InControl').sourceSets.main
@@ -210,9 +204,6 @@ minecraft {
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
-                McJtyTools {
-                    source project(':McJtyTools').sourceSets.main
-                }
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
@@ -274,7 +265,6 @@ dependencies {
     compile project(':McJtyLib')
     compile project(':Ariente')
     compile project(':HoloGui')
-    compile project(':McJtyTools')
     compile project(':InControl')
     compile project(':FxControl')
     compile project(':LostCities')
