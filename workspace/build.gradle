@@ -78,6 +78,9 @@ minecraft {
                 Ariente {
                     source project(':Ariente').sourceSets.main
                 }
+                ArienteWorld {
+                    source project(':ArienteWorld').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -138,6 +141,9 @@ minecraft {
                 }
                 Ariente {
                     source project(':Ariente').sourceSets.main
+                }
+                ArienteWorld {
+                    source project(':ArienteWorld').sourceSets.main
                 }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
@@ -200,6 +206,9 @@ minecraft {
                 }
                 Ariente {
                     source project(':Ariente').sourceSets.main
+                }
+                ArienteWorld {
+                    source project(':ArienteWorld').sourceSets.main
                 }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
@@ -264,6 +273,7 @@ dependencies {
     compile project(':TheOneProbe')
     compile project(':McJtyLib')
     compile project(':Ariente')
+    compile project(':ArienteWorld')
     compile project(':HoloGui')
     compile project(':InControl')
     compile project(':FxControl')
