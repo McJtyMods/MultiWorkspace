@@ -99,6 +99,9 @@ minecraft {
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
+                RFToolsControl {
+                    source project(':RFToolsControl').sourceSets.main
+                }
                 RFToolsPower {
                     source project(':RFToolsPower').sourceSets.main
                 }
@@ -162,6 +165,9 @@ minecraft {
                 }
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
+                }
+                RFToolsControl {
+                    source project(':RFToolsControl').sourceSets.main
                 }
                 RFToolsPower {
                     source project(':RFToolsPower').sourceSets.main
@@ -228,6 +234,9 @@ minecraft {
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
+                RFToolsControl {
+                    source project(':RFToolsControl').sourceSets.main
+                }
                 RFToolsPower {
                     source project(':RFToolsPower').sourceSets.main
                 }
@@ -281,6 +290,7 @@ dependencies {
 //    compile project(':RFTools')
     compile project(':RFToolsStorage')
     compile project(':RFToolsBase')
+    compile project(':RFToolsControl')
     compile project(':RFToolsPower')
     compile project(':RFToolsBuilder')
     compile project(':RFToolsUtility')
