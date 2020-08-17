@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: nl.elec332.core:eleccore:1.15.2-2.1.47-Beta_mapped_snapshot_20200624-1.15.1">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Could not resolve nl.elec332.core:eleccore:1.15.2-2.1.47-Beta_mapped_snapshot_20200624-1.15.1." />
+      <root url="jar://$USER_HOME$/.gradle/caches/forge_gradle/deobf_dependencies/nl/elec332/core/eleccore/1.15.2-2.1.47-Beta_mapped_snapshot_20200624-1.15.1/eleccore-1.15.2-2.1.47-Beta_mapped_snapshot_20200624-1.15.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
