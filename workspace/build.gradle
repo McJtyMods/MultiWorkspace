@@ -61,6 +61,7 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
+            properties 'mixin.env.disableRefMap': 'true'
 
             // Recommended logging data for a userdev environment
             // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
@@ -128,6 +129,7 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
+            properties 'mixin.env.disableRefMap': 'true'
 
             // Recommended logging data for a userdev environment
             // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
@@ -195,6 +197,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
+            properties 'mixin.env.disableRefMap': 'true'
 
             // Recommended logging data for a userdev environment
             // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
@@ -271,9 +274,9 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-//    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
-//        transitive = false
-//    }
+    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
+        transitive = false
+    }
 
     //compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.47-Beta")
 
