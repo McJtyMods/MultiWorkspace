@@ -20,6 +20,7 @@ apply plugin: 'maven-publish'
 apply plugin: "com.wynprice.cursemaven"
 
 repositories {
+    maven { url 'https://www.dogforce-games.com/maven/' }
     maven { // TOP
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
