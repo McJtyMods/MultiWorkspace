@@ -34,10 +34,6 @@ repositories {
     maven { // Patchouli
         url "https://maven.blamejared.com"
     }
-    maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
 }
 
 version = '1.0'
