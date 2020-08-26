@@ -112,9 +112,9 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
@@ -180,9 +180,9 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
@@ -249,9 +249,9 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
@@ -300,7 +300,7 @@ dependencies {
     compile project(':RFToolsPower')
     compile project(':RFToolsBuilder')
     compile project(':RFToolsUtility')
-    //compile project(':Restrictions')
+    compile project(':Restrictions')
     compile project(':ModXNet')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
