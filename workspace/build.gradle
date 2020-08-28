@@ -81,9 +81,9 @@ minecraft {
                 ArienteWorld {
                     source project(':ArienteWorld').sourceSets.main
                 }
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -148,9 +148,9 @@ minecraft {
                 ArienteWorld {
                     source project(':ArienteWorld').sourceSets.main
                 }
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -216,9 +216,9 @@ minecraft {
                 ArienteWorld {
                     source project(':ArienteWorld').sourceSets.main
                 }
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
@@ -275,7 +275,7 @@ dependencies {
         transitive = false
     }
 
-    compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.48-Beta")
+    compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.49-Beta")
 
 //    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 //    compile fg.deobf("nl.elec332.core:ElecCore:${minecraft_version}-${eleccore_version}")
@@ -289,7 +289,7 @@ dependencies {
     compile project(':McJtyLib')
     compile project(':Ariente')
     compile project(':ArienteWorld')
-//    compile project(':DeepResonance')
+    compile project(':DeepResonance')
     compile project(':HoloGui')
     compile project(':InControl')
     compile project(':FxControl')
