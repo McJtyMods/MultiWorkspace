@@ -275,7 +275,7 @@ dependencies {
         transitive = false
     }
 
-    compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.49-Beta")
+    compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.50-Beta")
 
 //    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
 //    compile fg.deobf("nl.elec332.core:ElecCore:${minecraft_version}-${eleccore_version}")
