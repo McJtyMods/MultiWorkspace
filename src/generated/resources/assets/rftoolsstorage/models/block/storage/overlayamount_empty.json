@@ -1,0 +1,31 @@
+{
+  "textures": {
+    "overlaya": "rftoolsstorage:block/overlayamount"
+  },
+  "elements": [
+    {
+      "from": [
+        12,
+        5,
+        -0.2
+      ],
+      "to": [
+        13,
+        13,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#overlaya",
+          "uv": [
+            0.0,
+            0.0,
+            1.0,
+            8.0
+          ],
+          "cullface": "north"
+        }
+      }
+    }
+  ]
+}
