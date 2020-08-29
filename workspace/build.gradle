@@ -294,7 +294,6 @@ dependencies {
     compile project(':InControl')
     compile project(':FxControl')
     compile project(':LostCities')
-//    compile project(':RFTools')
     compile project(':RFToolsStorage')
     compile project(':RFToolsBase')
     compile project(':RFToolsControl')
