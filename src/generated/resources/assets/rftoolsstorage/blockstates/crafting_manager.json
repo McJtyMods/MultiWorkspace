@@ -1,9 +1,0 @@
-{
-  "multipart": [
-    {
-      "apply": {
-        "model": "rftoolsstorage:block/crafting_manager"
-      }
-    }
-  ]
-}
