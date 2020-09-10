@@ -81,6 +81,9 @@ minecraft {
                 ArienteWorld {
                     source project(':ArienteWorld').sourceSets.main
                 }
+                BurnNGrind {
+                    source project(':BurnNGrind').sourceSets.main
+                }
                 DeepResonance {
                     source project(':DeepResonance').sourceSets.main
                 }
@@ -147,6 +150,9 @@ minecraft {
                 }
                 ArienteWorld {
                     source project(':ArienteWorld').sourceSets.main
+                }
+                BurnNGrind {
+                    source project(':BurnNGrind').sourceSets.main
                 }
                 DeepResonance {
                     source project(':DeepResonance').sourceSets.main
@@ -215,6 +221,9 @@ minecraft {
                 }
                 ArienteWorld {
                     source project(':ArienteWorld').sourceSets.main
+                }
+                BurnNGrind {
+                    source project(':BurnNGrind').sourceSets.main
                 }
                 DeepResonance {
                     source project(':DeepResonance').sourceSets.main
@@ -289,6 +298,7 @@ dependencies {
     compile project(':McJtyLib')
     compile project(':Ariente')
     compile project(':ArienteWorld')
+    compile project(':BurnNGrind')
     compile project(':DeepResonance')
     compile project(':HoloGui')
     compile project(':InControl')
