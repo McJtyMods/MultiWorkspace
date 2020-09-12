@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i  ",
+    " i ",
+    "  z"
+  ],
+  "key": {
+    "z": {
+      "item": "minecraft:glass_bottle"
+    },
+    "i": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "rftoolsutility:syringe"
+  }
+}
