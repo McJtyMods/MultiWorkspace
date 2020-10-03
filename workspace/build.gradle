@@ -85,12 +85,12 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -153,12 +153,12 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -222,12 +222,12 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -290,8 +290,8 @@ dependencies {
     //compile project(':ArienteWorld')
     //compile project(':DeepResonance')
     //compile project(':HoloGui')
-    //compile project(':InControl')
-    //compile project(':FxControl')
+    compile project(':InControl')
+    compile project(':FxControl')
     //compile project(':LostCities')
     compile project(':RFToolsStorage')
     compile project(':RFToolsBase')
