@@ -67,12 +67,12 @@ minecraft {
             // property 'forge.logging.console.level', 'debug'
 
             mods {
-                TheOneProbe {
-                    source project(':TheOneProbe').sourceSets.main
-                }
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
+                //TheOneProbe {
+                    //source project(':TheOneProbe').sourceSets.main
+                //}
+                //McJtyLib {
+                    //source project(':McJtyLib').sourceSets.main
+                //}
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -91,36 +91,36 @@ minecraft {
                 FxControl {
                     source project(':FxControl').sourceSets.main
                 }
-                RFToolsStorage {
-                    source project(':RFToolsStorage').sourceSets.main
-                }
-                RFToolsBase {
-                    source project(':RFToolsBase').sourceSets.main
-                }
-                RFToolsControl {
-                    source project(':RFToolsControl').sourceSets.main
-                }
+                //RFToolsStorage {
+                    //source project(':RFToolsStorage').sourceSets.main
+                //}
+                //RFToolsBase {
+                    //source project(':RFToolsBase').sourceSets.main
+                //}
+                //RFToolsControl {
+                    //source project(':RFToolsControl').sourceSets.main
+                //}
                 //RFToolsDimensions {
                     //source project(':RFToolsDimensions').sourceSets.main
                 //}
-                RFToolsPower {
-                    source project(':RFToolsPower').sourceSets.main
-                }
-                RFToolsBuilder {
-                    source project(':RFToolsBuilder').sourceSets.main
-                }
-                RFToolsUtility {
-                    source project(':RFToolsUtility').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
+                //RFToolsPower {
+                    //source project(':RFToolsPower').sourceSets.main
+                //}
+                //RFToolsBuilder {
+                    //source project(':RFToolsBuilder').sourceSets.main
+                //}
+                //RFToolsUtility {
+                    //source project(':RFToolsUtility').sourceSets.main
+                //}
+                //Restrictions {
+                    //source project(':Restrictions').sourceSets.main
+                //}
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
-                ModXNet {
-                    source project(':ModXNet').sourceSets.main
-                }
+                //ModXNet {
+                    //source project(':ModXNet').sourceSets.main
+                //}
             }
         }
 
@@ -135,12 +135,12 @@ minecraft {
             // property 'forge.logging.console.level', 'debug'
 
             mods {
-                TheOneProbe {
-                    source project(':TheOneProbe').sourceSets.main
-                }
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
+                //TheOneProbe {
+                    //source project(':TheOneProbe').sourceSets.main
+                //}
+                //McJtyLib {
+                    //source project(':McJtyLib').sourceSets.main
+                //}
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -159,36 +159,36 @@ minecraft {
                 FxControl {
                     source project(':FxControl').sourceSets.main
                 }
-                RFToolsStorage {
-                    source project(':RFToolsStorage').sourceSets.main
-                }
-                RFToolsBase {
-                    source project(':RFToolsBase').sourceSets.main
-                }
-                RFToolsControl {
-                    source project(':RFToolsControl').sourceSets.main
-                }
+                //RFToolsStorage {
+                    //source project(':RFToolsStorage').sourceSets.main
+                //}
+                //RFToolsBase {
+                    //source project(':RFToolsBase').sourceSets.main
+                //}
+                //RFToolsControl {
+                    //source project(':RFToolsControl').sourceSets.main
+                //}
                 //RFToolsDimensions {
                     //source project(':RFToolsDimensions').sourceSets.main
                 //}
-                RFToolsPower {
-                    source project(':RFToolsPower').sourceSets.main
-                }
-                RFToolsBuilder {
-                    source project(':RFToolsBuilder').sourceSets.main
-                }
-                RFToolsUtility {
-                    source project(':RFToolsUtility').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
+                //RFToolsPower {
+                    //source project(':RFToolsPower').sourceSets.main
+                //}
+                //RFToolsBuilder {
+                    //source project(':RFToolsBuilder').sourceSets.main
+                //}
+                //RFToolsUtility {
+                    //source project(':RFToolsUtility').sourceSets.main
+                //}
+                //Restrictions {
+                    //source project(':Restrictions').sourceSets.main
+                //}
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
-                ModXNet {
-                    source project(':ModXNet').sourceSets.main
-                }
+                //ModXNet {
+                    //source project(':ModXNet').sourceSets.main
+                //}
             }
         }
 
@@ -204,12 +204,12 @@ minecraft {
             args '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
-                TheOneProbe {
-                    source project(':TheOneProbe').sourceSets.main
-                }
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
+                //TheOneProbe {
+                    //source project(':TheOneProbe').sourceSets.main
+                //}
+                //McJtyLib {
+                    //source project(':McJtyLib').sourceSets.main
+                //}
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -228,36 +228,36 @@ minecraft {
                 FxControl {
                     source project(':FxControl').sourceSets.main
                 }
-                RFToolsStorage {
-                    source project(':RFToolsStorage').sourceSets.main
-                }
-                RFToolsBase {
-                    source project(':RFToolsBase').sourceSets.main
-                }
-                RFToolsControl {
-                    source project(':RFToolsControl').sourceSets.main
-                }
+                //RFToolsStorage {
+                    //source project(':RFToolsStorage').sourceSets.main
+                //}
+                //RFToolsBase {
+                    //source project(':RFToolsBase').sourceSets.main
+                //}
+                //RFToolsControl {
+                    //source project(':RFToolsControl').sourceSets.main
+                //}
                 //RFToolsDimensions {
                     //source project(':RFToolsDimensions').sourceSets.main
                 //}
-                RFToolsPower {
-                    source project(':RFToolsPower').sourceSets.main
-                }
-                RFToolsBuilder {
-                    source project(':RFToolsBuilder').sourceSets.main
-                }
-                RFToolsUtility {
-                    source project(':RFToolsUtility').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
+                //RFToolsPower {
+                    //source project(':RFToolsPower').sourceSets.main
+                //}
+                //RFToolsBuilder {
+                    //source project(':RFToolsBuilder').sourceSets.main
+                //}
+                //RFToolsUtility {
+                    //source project(':RFToolsUtility').sourceSets.main
+                //}
+                //Restrictions {
+                    //source project(':Restrictions').sourceSets.main
+                //}
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
-                ModXNet {
-                    source project(':ModXNet').sourceSets.main
-                }
+                //ModXNet {
+                    //source project(':ModXNet').sourceSets.main
+                //}
             }
         }
     }
@@ -284,8 +284,8 @@ dependencies {
 //    compile fg.deobf("curse.maven:minimap:2849263")
 //    compile fg.deobf("curse.maven:xaero:2836597")
 
-    compile project(':TheOneProbe')
-    compile project(':McJtyLib')
+    //compile project(':TheOneProbe')
+    //compile project(':McJtyLib')
     //compile project(':Ariente')
     //compile project(':ArienteWorld')
     //compile project(':DeepResonance')
@@ -293,15 +293,15 @@ dependencies {
     compile project(':InControl')
     compile project(':FxControl')
     //compile project(':LostCities')
-    compile project(':RFToolsStorage')
-    compile project(':RFToolsBase')
-    compile project(':RFToolsControl')
+    //compile project(':RFToolsStorage')
+    //compile project(':RFToolsBase')
+    //compile project(':RFToolsControl')
     //compile project(':RFToolsDimensions')
-    compile project(':RFToolsPower')
-    compile project(':RFToolsBuilder')
-    compile project(':RFToolsUtility')
-    compile project(':Restrictions')
-    compile project(':ModXNet')
+    //compile project(':RFToolsPower')
+    //compile project(':RFToolsBuilder')
+    //compile project(':RFToolsUtility')
+    //compile project(':Restrictions')
+    //compile project(':ModXNet')
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
