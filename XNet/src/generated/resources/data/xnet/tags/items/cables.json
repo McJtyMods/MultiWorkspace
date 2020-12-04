@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "xnet:netcable_blue",
+    "xnet:netcable_yellow",
+    "xnet:netcable_green",
+    "xnet:netcable_red",
+    "xnet:netcable_routing"
+  ]
+}

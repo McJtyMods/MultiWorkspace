@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "po",
+    "dr"
+  ],
+  "key": {
+    "p": {
+      "item": "minecraft:paper"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "o": {
+      "tag": "forge:ender_pearls"
+    }
+  },
+  "result": {
+    "item": "xnet:connector_upgrade"
+  }
+}
