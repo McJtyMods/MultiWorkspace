@@ -34,6 +34,9 @@ repositories {
     maven { // Patchouli
         url "https://maven.blamejared.com"
     }
+    maven {
+        url = "https://maven.mcmoddev.com"
+    }
 }
 
 version = '1.0'
@@ -274,6 +277,8 @@ dependencies {
     compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
         transitive = false
     }
+    compile fg.deobf("net.darkhax.bookshelf:Bookshelf-1.16.4:9.3.18")
+    compile fg.deobf("net.darkhax.gamestages:GameStages-1.16.4:6.0.1")
 
     //compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.47-Beta")
 
