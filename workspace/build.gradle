@@ -89,6 +89,9 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
+                HarshDeath {
+                    source project(':HarshDeath').sourceSets.main
+                }
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
@@ -157,6 +160,9 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
+                HarshDeath {
+                    source project(':HarshDeath').sourceSets.main
+                }
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
@@ -226,6 +232,9 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
+                HarshDeath {
+                    source project(':HarshDeath').sourceSets.main
+                }
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
@@ -299,6 +308,7 @@ dependencies {
     //compile project(':ArienteWorld')
     //compile project(':DeepResonance')
     //compile project(':HoloGui')
+    compile project(':HarshDeath')
     compile project(':InControl')
     compile project(':FxControl')
     //compile project(':LostCities')
