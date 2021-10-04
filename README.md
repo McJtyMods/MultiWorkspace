@@ -6,9 +6,9 @@ Modify settings.gradle as well as workspace/build.gradle for all your mods.
 Inside the mods/build.gradle you should have the following construct to make sure the mods are still compilable standalone as well as inside the multi-project:
 
     if (findProject(':McJtyLib') != null) {
-        compile project(':McJtyLib')
+        implementation project(':McJtyLib')
     } else {
-        compile fg.deobf (project.dependencies.create("com.github.mcjty:mcjtylib:${mcjtylib_version}") {
+        implementation fg.deobf (project.dependencies.create("com.github.mcjty:mcjtylib:${mcjtylib_version}") {
             transitive = false
         })
     }

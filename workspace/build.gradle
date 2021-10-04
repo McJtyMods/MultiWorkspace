@@ -8,8 +8,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
-        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
     }
 }
 
@@ -17,7 +17,7 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: "com.wynprice.cursemaven"
+apply plugin: 'com.matthewprenger.cursegradle'
 
 repositories {
     maven { url 'https://www.dogforce-games.com/maven/' }
@@ -277,56 +277,33 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    compile fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
+    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
         transitive = false
     }
 
-    //compile fg.deobf("nl.elec332.core:eleccore:${minecraft_version}-2.1.47-Beta")
+//    implementation fg.deobf("curse.maven:wildnature:2837635")
+//    implementation fg.deobf("curse.maven:voxelmap:2765032")
+//    implementation fg.deobf("curse.maven:minimap:2849263")
+//    implementation fg.deobf("curse.maven:xaero:2836597")
 
-//    compile fg.deobf("nl.elec332.core:ElecCore:${minecraft_version}-${eleccore_version}")
-
-//    compile fg.deobf("curse.maven:wildnature:2837635")
-//    compile fg.deobf("curse.maven:voxelmap:2765032")
-//    compile fg.deobf("curse.maven:minimap:2849263")
-//    compile fg.deobf("curse.maven:xaero:2836597")
-
-    //compile project(':TheOneProbe')
-    compile project(':McJtyLib')
-    //compile project(':Ariente')
-    //compile project(':ArienteWorld')
-    compile project(':DeepResonance')
-    //compile project(':HoloGui')
-    //compile project(':InControl')
-    //compile project(':FxControl')
-    //compile project(':LostCities')
-    compile project(':RFToolsStorage')
-    compile project(':RFToolsBase')
-    compile project(':RFToolsControl')
-    compile project(':RFToolsDimensions')
-    compile project(':RFToolsPower')
-    compile project(':RFToolsBuilder')
-    compile project(':RFToolsUtility')
-    //compile project(':Restrictions')
-    compile project(':ModXNet')
-
-    // You may put jars on which you depend on in ./libs or you may define them like so..
-    // compile "some.group:artifact:version:classifier"
-    // compile "some.group:artifact:version"
-
-    // Real examples
-    // compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    // compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // The 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    // provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // These dependencies get remapped to your current MCP mappings
-    // deobf 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // For more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    //implementation project(':TheOneProbe')
+    implementation project(':McJtyLib')
+    //implementation project(':Ariente')
+    //implementation project(':ArienteWorld')
+    implementation project(':DeepResonance')
+    //implementation project(':HoloGui')
+    //implementation project(':InControl')
+    //implementation project(':FxControl')
+    //implementation project(':LostCities')
+    implementation project(':RFToolsStorage')
+    implementation project(':RFToolsBase')
+    implementation project(':RFToolsControl')
+    implementation project(':RFToolsDimensions')
+    implementation project(':RFToolsPower')
+    implementation project(':RFToolsBuilder')
+    implementation project(':RFToolsUtility')
+    //implementation project(':Restrictions')
+    implementation project(':ModXNet')
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
