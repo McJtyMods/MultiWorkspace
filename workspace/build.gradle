@@ -34,9 +34,6 @@ repositories {
     maven { // Patchouli
         url "https://maven.blamejared.com"
     }
-    maven {
-        url = "https://maven.mcmoddev.com"
-    }
 }
 
 version = '1.0'
