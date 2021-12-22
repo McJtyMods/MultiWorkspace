@@ -1,4 +1,4 @@
-rootProject.name = '1.16_ariente'
+rootProject.name = '1.18_ariente'
 //include 'TheOneProbe'
 include 'Ariente'
 //include 'ArienteWorld'
