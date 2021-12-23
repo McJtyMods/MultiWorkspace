@@ -40,7 +40,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     mappings channel: 'official', version: '1.18.1'
-    // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
+//    accessTransformer = file('workspace/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -278,9 +278,9 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
-        transitive = false
-    }
+//    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
+//        transitive = false
+//    }
 
 //    implementation fg.deobf("curse.maven:wildnature:2837635")
 //    implementation fg.deobf("curse.maven:voxelmap:2765032")
