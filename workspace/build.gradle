@@ -39,7 +39,7 @@ archivesBaseName = 'modid'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'parchment' , version: '2021.12.19-1.18.1'
 //    accessTransformer = file('workspace/accesstransformer.cfg')
 
     // Default run configurations.
@@ -64,18 +64,18 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                Ariente {
-                    source project(':Ariente').sourceSets.main
-                }
+                //Ariente {
+                    //source project(':Ariente').sourceSets.main
+                //}
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
                 //DeepResonance {
                     //source project(':DeepResonance').sourceSets.main
                 //}
-                HoloGui {
-                    source project(':HoloGui').sourceSets.main
-                }
+                //HoloGui {
+                    //source project(':HoloGui').sourceSets.main
+                //}
                 //InControl {
                     //source project(':InControl').sourceSets.main
                 //}
@@ -85,9 +85,9 @@ minecraft {
                 //RFToolsStorage {
                     //source project(':RFToolsStorage').sourceSets.main
                 //}
-                //RFToolsBase {
-                    //source project(':RFToolsBase').sourceSets.main
-                //}
+                RFToolsBase {
+                    source project(':RFToolsBase').sourceSets.main
+                }
                 //RFToolsControl {
                     //source project(':RFToolsControl').sourceSets.main
                 //}
@@ -100,9 +100,9 @@ minecraft {
                 //RFToolsBuilder {
                     //source project(':RFToolsBuilder').sourceSets.main
                 //}
-                //RFToolsUtility {
-                    //source project(':RFToolsUtility').sourceSets.main
-                //}
+                RFToolsUtility {
+                    source project(':RFToolsUtility').sourceSets.main
+                }
                 //Restrictions {
                     //source project(':Restrictions').sourceSets.main
                 //}
@@ -134,18 +134,18 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                Ariente {
-                    source project(':Ariente').sourceSets.main
-                }
+                //Ariente {
+                    //source project(':Ariente').sourceSets.main
+                //}
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
                 //DeepResonance {
                     //source project(':DeepResonance').sourceSets.main
                 //}
-                HoloGui {
-                    source project(':HoloGui').sourceSets.main
-                }
+                //HoloGui {
+                    //source project(':HoloGui').sourceSets.main
+                //}
                 //InControl {
                     //source project(':InControl').sourceSets.main
                 //}
@@ -155,9 +155,9 @@ minecraft {
                 //RFToolsStorage {
                     //source project(':RFToolsStorage').sourceSets.main
                 //}
-                //RFToolsBase {
-                    //source project(':RFToolsBase').sourceSets.main
-                //}
+                RFToolsBase {
+                    source project(':RFToolsBase').sourceSets.main
+                }
                 //RFToolsControl {
                     //source project(':RFToolsControl').sourceSets.main
                 //}
@@ -170,9 +170,9 @@ minecraft {
                 //RFToolsBuilder {
                     //source project(':RFToolsBuilder').sourceSets.main
                 //}
-                //RFToolsUtility {
-                    //source project(':RFToolsUtility').sourceSets.main
-                //}
+                RFToolsUtility {
+                    source project(':RFToolsUtility').sourceSets.main
+                }
                 //Restrictions {
                     //source project(':Restrictions').sourceSets.main
                 //}
@@ -205,18 +205,18 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                Ariente {
-                    source project(':Ariente').sourceSets.main
-                }
+                //Ariente {
+                    //source project(':Ariente').sourceSets.main
+                //}
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
                 //DeepResonance {
                     //source project(':DeepResonance').sourceSets.main
                 //}
-                HoloGui {
-                    source project(':HoloGui').sourceSets.main
-                }
+                //HoloGui {
+                    //source project(':HoloGui').sourceSets.main
+                //}
                 //InControl {
                     //source project(':InControl').sourceSets.main
                 //}
@@ -226,9 +226,9 @@ minecraft {
                 //RFToolsStorage {
                     //source project(':RFToolsStorage').sourceSets.main
                 //}
-                //RFToolsBase {
-                    //source project(':RFToolsBase').sourceSets.main
-                //}
+                RFToolsBase {
+                    source project(':RFToolsBase').sourceSets.main
+                }
                 //RFToolsControl {
                     //source project(':RFToolsControl').sourceSets.main
                 //}
@@ -241,9 +241,9 @@ minecraft {
                 //RFToolsBuilder {
                     //source project(':RFToolsBuilder').sourceSets.main
                 //}
-                //RFToolsUtility {
-                    //source project(':RFToolsUtility').sourceSets.main
-                //}
+                RFToolsUtility {
+                    source project(':RFToolsUtility').sourceSets.main
+                }
                 //Restrictions {
                     //source project(':Restrictions').sourceSets.main
                 //}
@@ -289,20 +289,20 @@ dependencies {
 
     //implementation project(':TheOneProbe')
     implementation project(':McJtyLib')
-    implementation project(':Ariente')
+    //implementation project(':Ariente')
     //implementation project(':ArienteWorld')
     //implementation project(':DeepResonance')
-    implementation project(':HoloGui')
+    //implementation project(':HoloGui')
     //implementation project(':InControl')
     //implementation project(':FxControl')
     //implementation project(':LostCities')
     //implementation project(':RFToolsStorage')
-    //implementation project(':RFToolsBase')
+    implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')
     //implementation project(':RFToolsDimensions')
     //implementation project(':RFToolsPower')
     //implementation project(':RFToolsBuilder')
-    //implementation project(':RFToolsUtility')
+    implementation project(':RFToolsUtility')
     //implementation project(':Restrictions')
     //implementation project(':ModXNet')
 }
