@@ -94,9 +94,9 @@ minecraft {
                 //RFToolsDimensions {
                     //source project(':RFToolsDimensions').sourceSets.main
                 //}
-                //RFToolsPower {
-                    //source project(':RFToolsPower').sourceSets.main
-                //}
+                RFToolsPower {
+                    source project(':RFToolsPower').sourceSets.main
+                }
                 //RFToolsBuilder {
                     //source project(':RFToolsBuilder').sourceSets.main
                 //}
@@ -164,9 +164,9 @@ minecraft {
                 //RFToolsDimensions {
                     //source project(':RFToolsDimensions').sourceSets.main
                 //}
-                //RFToolsPower {
-                    //source project(':RFToolsPower').sourceSets.main
-                //}
+                RFToolsPower {
+                    source project(':RFToolsPower').sourceSets.main
+                }
                 //RFToolsBuilder {
                     //source project(':RFToolsBuilder').sourceSets.main
                 //}
@@ -235,9 +235,9 @@ minecraft {
                 //RFToolsDimensions {
                     //source project(':RFToolsDimensions').sourceSets.main
                 //}
-                //RFToolsPower {
-                    //source project(':RFToolsPower').sourceSets.main
-                //}
+                RFToolsPower {
+                    source project(':RFToolsPower').sourceSets.main
+                }
                 //RFToolsBuilder {
                     //source project(':RFToolsBuilder').sourceSets.main
                 //}
@@ -300,7 +300,7 @@ dependencies {
     implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')
     //implementation project(':RFToolsDimensions')
-    //implementation project(':RFToolsPower')
+    implementation project(':RFToolsPower')
     //implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
     //implementation project(':Restrictions')
