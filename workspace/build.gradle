@@ -82,9 +82,9 @@ minecraft {
                 //FxControl {
                     //source project(':FxControl').sourceSets.main
                 //}
-                //RFToolsStorage {
-                    //source project(':RFToolsStorage').sourceSets.main
-                //}
+                RFToolsStorage {
+                    source project(':RFToolsStorage').sourceSets.main
+                }
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
@@ -152,9 +152,9 @@ minecraft {
                 //FxControl {
                     //source project(':FxControl').sourceSets.main
                 //}
-                //RFToolsStorage {
-                    //source project(':RFToolsStorage').sourceSets.main
-                //}
+                RFToolsStorage {
+                    source project(':RFToolsStorage').sourceSets.main
+                }
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
@@ -223,9 +223,9 @@ minecraft {
                 //FxControl {
                     //source project(':FxControl').sourceSets.main
                 //}
-                //RFToolsStorage {
-                    //source project(':RFToolsStorage').sourceSets.main
-                //}
+                RFToolsStorage {
+                    source project(':RFToolsStorage').sourceSets.main
+                }
                 RFToolsBase {
                     source project(':RFToolsBase').sourceSets.main
                 }
@@ -296,7 +296,7 @@ dependencies {
     //implementation project(':InControl')
     //implementation project(':FxControl')
     //implementation project(':LostCities')
-    //implementation project(':RFToolsStorage')
+    implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')
     //implementation project(':RFToolsDimensions')
