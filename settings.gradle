@@ -17,6 +17,6 @@ include 'RFToolsPower'
 include 'RFToolsUtility'
 //include 'RFToolsBuilder'
 //include 'Restrictions'
-//include 'ModXNet'
+include 'ModXNet'
 
 include 'workspace'

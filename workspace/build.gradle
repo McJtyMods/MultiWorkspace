@@ -109,9 +109,9 @@ minecraft {
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
-                //ModXNet {
-                    //source project(':ModXNet').sourceSets.main
-                //}
+                ModXNet {
+                    source project(':ModXNet').sourceSets.main
+                }
             }
         }
 
@@ -179,9 +179,9 @@ minecraft {
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
-                //ModXNet {
-                    //source project(':ModXNet').sourceSets.main
-                //}
+                ModXNet {
+                    source project(':ModXNet').sourceSets.main
+                }
             }
         }
 
@@ -250,9 +250,9 @@ minecraft {
                 //LostCities {
                     //source project(':LostCities').sourceSets.main
                 //}
-                //ModXNet {
-                    //source project(':ModXNet').sourceSets.main
-                //}
+                ModXNet {
+                    source project(':ModXNet').sourceSets.main
+                }
             }
         }
     }
@@ -304,7 +304,7 @@ dependencies {
     //implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
     //implementation project(':Restrictions')
-    //implementation project(':ModXNet')
+    implementation project(':ModXNet')
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
