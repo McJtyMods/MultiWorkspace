@@ -97,9 +97,9 @@ minecraft {
                 RFToolsPower {
                     source project(':RFToolsPower').sourceSets.main
                 }
-                //RFToolsBuilder {
-                    //source project(':RFToolsBuilder').sourceSets.main
-                //}
+                RFToolsBuilder {
+                    source project(':RFToolsBuilder').sourceSets.main
+                }
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
@@ -167,9 +167,9 @@ minecraft {
                 RFToolsPower {
                     source project(':RFToolsPower').sourceSets.main
                 }
-                //RFToolsBuilder {
-                    //source project(':RFToolsBuilder').sourceSets.main
-                //}
+                RFToolsBuilder {
+                    source project(':RFToolsBuilder').sourceSets.main
+                }
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
@@ -238,9 +238,9 @@ minecraft {
                 RFToolsPower {
                     source project(':RFToolsPower').sourceSets.main
                 }
-                //RFToolsBuilder {
-                    //source project(':RFToolsBuilder').sourceSets.main
-                //}
+                RFToolsBuilder {
+                    source project(':RFToolsBuilder').sourceSets.main
+                }
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
@@ -301,7 +301,7 @@ dependencies {
     //implementation project(':RFToolsControl')
     //implementation project(':RFToolsDimensions')
     implementation project(':RFToolsPower')
-    //implementation project(':RFToolsBuilder')
+    implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
     //implementation project(':Restrictions')
     implementation project(':ModXNet')
