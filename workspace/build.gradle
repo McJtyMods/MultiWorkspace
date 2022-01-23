@@ -106,9 +106,9 @@ minecraft {
                 //Restrictions {
                     //source project(':Restrictions').sourceSets.main
                 //}
-                //LostCities {
-                    //source project(':LostCities').sourceSets.main
-                //}
+                LostCities {
+                    source project(':LostCities').sourceSets.main
+                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -176,9 +176,9 @@ minecraft {
                 //Restrictions {
                     //source project(':Restrictions').sourceSets.main
                 //}
-                //LostCities {
-                    //source project(':LostCities').sourceSets.main
-                //}
+                LostCities {
+                    source project(':LostCities').sourceSets.main
+                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -247,9 +247,9 @@ minecraft {
                 //Restrictions {
                     //source project(':Restrictions').sourceSets.main
                 //}
-                //LostCities {
-                    //source project(':LostCities').sourceSets.main
-                //}
+                LostCities {
+                    source project(':LostCities').sourceSets.main
+                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -295,7 +295,7 @@ dependencies {
     //implementation project(':HoloGui')
     //implementation project(':InControl')
     //implementation project(':FxControl')
-    //implementation project(':LostCities')
+    implementation project(':LostCities')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     implementation project(':RFToolsControl')
