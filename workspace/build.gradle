@@ -70,9 +70,9 @@ minecraft {
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
@@ -140,9 +140,9 @@ minecraft {
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
@@ -211,9 +211,9 @@ minecraft {
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
+                DeepResonance {
+                    source project(':DeepResonance').sourceSets.main
+                }
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
@@ -291,7 +291,7 @@ dependencies {
     implementation project(':McJtyLib')
     //implementation project(':Ariente')
     //implementation project(':ArienteWorld')
-    //implementation project(':DeepResonance')
+    implementation project(':DeepResonance')
     //implementation project(':HoloGui')
     //implementation project(':InControl')
     //implementation project(':FxControl')
