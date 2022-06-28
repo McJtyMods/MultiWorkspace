@@ -112,6 +112,9 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
+                }
                 //ModXNet {
                     //source project(':ModXNet').sourceSets.main
                 //}
@@ -184,6 +187,9 @@ minecraft {
                 }
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
+                }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
                 }
                 //ModXNet {
                     //source project(':ModXNet').sourceSets.main
@@ -259,6 +265,9 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
+                }
                 //ModXNet {
                     //source project(':ModXNet').sourceSets.main
                 //}
@@ -306,6 +315,7 @@ dependencies {
     //implementation project(':FxControl')
     implementation project(':LostCities')
     implementation project(':LostSouls')
+    implementation project(':LostRuins')
     //implementation project(':RFToolsStorage')
     //implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')
