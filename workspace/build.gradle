@@ -58,9 +58,6 @@ minecraft {
             // property 'forge.logging.console.level', 'debug'
 
             mods {
-                //TheOneProbe {
-                    //source project(':TheOneProbe').sourceSets.main
-                //}
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
@@ -70,48 +67,12 @@ minecraft {
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
-                //RFToolsStorage {
-                    //source project(':RFToolsStorage').sourceSets.main
-                //}
-                //RFToolsBase {
-                    //source project(':RFToolsBase').sourceSets.main
-                //}
-                //RFToolsControl {
-                    //source project(':RFToolsControl').sourceSets.main
-                //}
-                //RFToolsDimensions {
-                    //source project(':RFToolsDimensions').sourceSets.main
-                //}
-                //RFToolsPower {
-                    //source project(':RFToolsPower').sourceSets.main
-                //}
-                //RFToolsBuilder {
-                    //source project(':RFToolsBuilder').sourceSets.main
-                //}
-                //RFToolsUtility {
-                    //source project(':RFToolsUtility').sourceSets.main
-                //}
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
-                //LostCities {
-                    //source project(':LostCities').sourceSets.main
-                //}
-                //ModXNet {
-                    //source project(':ModXNet').sourceSets.main
-                //}
+                ParsMinima {
+                    source project(':ParsMinima').sourceSets.main
+                }
             }
         }
 
@@ -128,9 +89,6 @@ minecraft {
             // property 'forge.logging.console.level', 'debug'
 
             mods {
-                //TheOneProbe {
-                    //source project(':TheOneProbe').sourceSets.main
-                //}
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
@@ -140,48 +98,12 @@ minecraft {
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
-                //RFToolsStorage {
-                    //source project(':RFToolsStorage').sourceSets.main
-                //}
-                //RFToolsBase {
-                    //source project(':RFToolsBase').sourceSets.main
-                //}
-                //RFToolsControl {
-                    //source project(':RFToolsControl').sourceSets.main
-                //}
-                //RFToolsDimensions {
-                    //source project(':RFToolsDimensions').sourceSets.main
-                //}
-                //RFToolsPower {
-                    //source project(':RFToolsPower').sourceSets.main
-                //}
-                //RFToolsBuilder {
-                    //source project(':RFToolsBuilder').sourceSets.main
-                //}
-                //RFToolsUtility {
-                    //source project(':RFToolsUtility').sourceSets.main
-                //}
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
-                //LostCities {
-                    //source project(':LostCities').sourceSets.main
-                //}
-                //ModXNet {
-                    //source project(':ModXNet').sourceSets.main
-                //}
+                ParsMinima {
+                    source project(':ParsMinima').sourceSets.main
+                }
             }
         }
 
@@ -199,9 +121,6 @@ minecraft {
             args '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
-                //TheOneProbe {
-                    //source project(':TheOneProbe').sourceSets.main
-                //}
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
@@ -211,48 +130,12 @@ minecraft {
                 //ArienteWorld {
                     //source project(':ArienteWorld').sourceSets.main
                 //}
-                //DeepResonance {
-                    //source project(':DeepResonance').sourceSets.main
-                //}
                 HoloGui {
                     source project(':HoloGui').sourceSets.main
                 }
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
-                //RFToolsStorage {
-                    //source project(':RFToolsStorage').sourceSets.main
-                //}
-                //RFToolsBase {
-                    //source project(':RFToolsBase').sourceSets.main
-                //}
-                //RFToolsControl {
-                    //source project(':RFToolsControl').sourceSets.main
-                //}
-                //RFToolsDimensions {
-                    //source project(':RFToolsDimensions').sourceSets.main
-                //}
-                //RFToolsPower {
-                    //source project(':RFToolsPower').sourceSets.main
-                //}
-                //RFToolsBuilder {
-                    //source project(':RFToolsBuilder').sourceSets.main
-                //}
-                //RFToolsUtility {
-                    //source project(':RFToolsUtility').sourceSets.main
-                //}
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
-                //LostCities {
-                    //source project(':LostCities').sourceSets.main
-                //}
-                //ModXNet {
-                    //source project(':ModXNet').sourceSets.main
-                //}
+                ParsMinima {
+                    source project(':ParsMinima').sourceSets.main
+                }
             }
         }
     }
