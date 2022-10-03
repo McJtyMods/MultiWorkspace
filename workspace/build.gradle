@@ -39,7 +39,8 @@ archivesBaseName = 'modid'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'parchment', version: "2022.06.05-1.18.2"
+    //mappings channel: 'parchment', version: "2022.06.05-1.18.2"
+    mappings channel: 'official', version: "1.19.2"
 //    accessTransformer = file('workspace/accesstransformer.cfg')
 
     // Default run configurations.
@@ -61,9 +62,9 @@ minecraft {
                 //TheOneProbe {
                     //source project(':TheOneProbe').sourceSets.main
                 //}
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
+                //McJtyLib {
+                    //source project(':McJtyLib').sourceSets.main
+                //}
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -109,15 +110,18 @@ minecraft {
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
-                LostSouls {
-                    source project(':LostSouls').sourceSets.main
-                }
-                LostRuins {
-                    source project(':LostRuins').sourceSets.main
-                }
+                //LostSouls {
+                    //source project(':LostSouls').sourceSets.main
+                //}
+                //LostRuins {
+                    //source project(':LostRuins').sourceSets.main
+                //}
                 //ModXNet {
                     //source project(':ModXNet').sourceSets.main
                 //}
+                ModXNet {
+                    source project(':Wastify').sourceSets.main
+                }
             }
         }
 
@@ -137,9 +141,9 @@ minecraft {
                 //TheOneProbe {
                     //source project(':TheOneProbe').sourceSets.main
                 //}
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
+                //McJtyLib {
+                    //source project(':McJtyLib').sourceSets.main
+                //}
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -185,15 +189,18 @@ minecraft {
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
-                LostSouls {
-                    source project(':LostSouls').sourceSets.main
-                }
-                LostRuins {
-                    source project(':LostRuins').sourceSets.main
-                }
+                //LostSouls {
+                    //source project(':LostSouls').sourceSets.main
+                //}
+                //LostRuins {
+                    //source project(':LostRuins').sourceSets.main
+                //}
                 //ModXNet {
                     //source project(':ModXNet').sourceSets.main
                 //}
+                ModXNet {
+                    source project(':Wastify').sourceSets.main
+                }
             }
         }
 
@@ -214,9 +221,9 @@ minecraft {
                 //TheOneProbe {
                     //source project(':TheOneProbe').sourceSets.main
                 //}
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
+                //McJtyLib {
+                    //source project(':McJtyLib').sourceSets.main
+                //}
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -262,15 +269,18 @@ minecraft {
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
-                LostSouls {
-                    source project(':LostSouls').sourceSets.main
-                }
-                LostRuins {
-                    source project(':LostRuins').sourceSets.main
-                }
+                //LostSouls {
+                    //source project(':LostSouls').sourceSets.main
+                //}
+                //LostRuins {
+                    //source project(':LostRuins').sourceSets.main
+                //}
                 //ModXNet {
                     //source project(':ModXNet').sourceSets.main
                 //}
+                ModXNet {
+                    source project(':Wastify').sourceSets.main
+                }
             }
         }
     }
@@ -294,8 +304,11 @@ dependencies {
         })
     }
 
-    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+    // compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-1.19-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-1.19-forge-api:${jei_version}")
+    // at runtime, use the full JEI jar for Forge
+    runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
     implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
         transitive = false
     }
@@ -306,7 +319,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:xaero:2836597")
 
     //implementation project(':TheOneProbe')
-    implementation project(':McJtyLib')
+    //implementation project(':McJtyLib')
     //implementation project(':Ariente')
     //implementation project(':ArienteWorld')
     //implementation project(':DeepResonance')
@@ -314,8 +327,8 @@ dependencies {
     //implementation project(':InControl')
     //implementation project(':FxControl')
     implementation project(':LostCities')
-    implementation project(':LostSouls')
-    implementation project(':LostRuins')
+    //implementation project(':LostSouls')
+    //implementation project(':LostRuins')
     //implementation project(':RFToolsStorage')
     //implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')
@@ -325,6 +338,7 @@ dependencies {
     //implementation project(':RFToolsUtility')
     //implementation project(':Restrictions')
     //implementation project(':ModXNet')
+    implementation project(':Wastify')
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..
