@@ -20,5 +20,6 @@ include 'McJtyLib'
 //include 'RFToolsBuilder'
 //include 'Restrictions'
 //include 'ModXNet'
+include 'Wastify'
 
 include 'workspace'
