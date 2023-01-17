@@ -83,6 +83,9 @@ minecraft {
                 //FxControl {
                     //source project(':FxControl').sourceSets.main
                 //}
+                FancyTrinkets {
+                    source project(':FancyTrinkets').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -153,6 +156,9 @@ minecraft {
                 //FxControl {
                     //source project(':FxControl').sourceSets.main
                 //}
+                FancyTrinkets {
+                    source project(':FancyTrinkets').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -224,6 +230,9 @@ minecraft {
                 //FxControl {
                     //source project(':FxControl').sourceSets.main
                 //}
+                FancyTrinkets {
+                    source project(':FancyTrinkets').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -300,6 +309,7 @@ dependencies {
     //implementation project(':InControl')
     //implementation project(':FxControl')
     implementation project(':LostCities')
+    implementation project(':FancyTrinkets')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     implementation project(':RFToolsControl')
