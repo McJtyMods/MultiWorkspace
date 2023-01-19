@@ -1,4 +1,4 @@
-String getChangelogText() {
+ext.getChangelogText =  {
     def changelogFile = file('changelog.txt')
     String str = ''
     int lineCount = 0
