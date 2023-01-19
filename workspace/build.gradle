@@ -85,18 +85,18 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
-                NEW {
-                    source project(':NEW').sourceSets.main
-                }
-                Nice {
-                    source project(':Nice').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
-                SignTastic {
-                    source project(':SignTastic').sourceSets.main
-                }
+//                NEW {
+//                    source project(':NEW').sourceSets.main
+//                }
+//                Nice {
+//                    source project(':Nice').sourceSets.main
+//                }
+//                Restrictions {
+//                    source project(':Restrictions').sourceSets.main
+//                }
+//                SignTastic {
+//                    source project(':SignTastic').sourceSets.main
+//                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -167,18 +167,18 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
-                NEW {
-                    source project(':NEW').sourceSets.main
-                }
-                Nice {
-                    source project(':Nice').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
-                SignTastic {
-                    source project(':SignTastic').sourceSets.main
-                }
+//                NEW {
+//                    source project(':NEW').sourceSets.main
+//                }
+//                Nice {
+//                    source project(':Nice').sourceSets.main
+//                }
+//                Restrictions {
+//                    source project(':Restrictions').sourceSets.main
+//                }
+//                SignTastic {
+//                    source project(':SignTastic').sourceSets.main
+//                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -250,18 +250,18 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
-                NEW {
-                    source project(':NEW').sourceSets.main
-                }
-                Nice {
-                    source project(':Nice').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
-                SignTastic {
-                    source project(':SignTastic').sourceSets.main
-                }
+//                NEW {
+//                    source project(':NEW').sourceSets.main
+//                }
+//                Nice {
+//                    source project(':Nice').sourceSets.main
+//                }
+//                Restrictions {
+//                    source project(':Restrictions').sourceSets.main
+//                }
+//                SignTastic {
+//                    source project(':SignTastic').sourceSets.main
+//                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -336,10 +336,10 @@ dependencies {
     //implementation project(':FxControl')
     implementation project(':LostCities')
     implementation project(':FancyTrinkets')
-    implementation project(':NEW')
-    implementation project(':Nice')
-    implementation project(':Restrictions')
-    implementation project(':SignTastic')
+//    implementation project(':NEW')
+//    implementation project(':Nice')
+//    implementation project(':Restrictions')
+//    implementation project(':SignTastic')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     implementation project(':RFToolsControl')
