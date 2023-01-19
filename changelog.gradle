@@ -30,7 +30,7 @@ ext.getChangelogText =  {
 }
 
 ext.jei = {
-    task.dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-common-api:${jei_version}")
-    task.dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-forge-api:${jei_version}")
-    task.dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
+    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-common-api:${jei_version}")
+    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-forge-api:${jei_version}")
+    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
 }
