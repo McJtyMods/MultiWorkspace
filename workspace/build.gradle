@@ -88,9 +88,9 @@ minecraft {
 //                NEW {
 //                    source project(':NEW').sourceSets.main
 //                }
-//                Nice {
-//                    source project(':Nice').sourceSets.main
-//                }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -170,9 +170,9 @@ minecraft {
 //                NEW {
 //                    source project(':NEW').sourceSets.main
 //                }
-//                Nice {
-//                    source project(':Nice').sourceSets.main
-//                }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -253,9 +253,9 @@ minecraft {
 //                NEW {
 //                    source project(':NEW').sourceSets.main
 //                }
-//                Nice {
-//                    source project(':Nice').sourceSets.main
-//                }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -337,7 +337,7 @@ dependencies {
     implementation project(':LostCities')
     implementation project(':FancyTrinkets')
 //    implementation project(':NEW')
-//    implementation project(':Nice')
+    implementation project(':Nice')
     implementation project(':Restrictions')
     implementation project(':SignTastic')
     implementation project(':RFToolsStorage')
