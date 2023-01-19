@@ -39,8 +39,7 @@ archivesBaseName = 'modid'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-//    mappings channel: 'parchment', version: "2022.06.05-1.18.2"
-    mappings channel: 'official', version: "1.19.2"
+    mappings channel: 'parchment', version: "2022.11.27-1.19.2"
 //    accessTransformer = file('workspace/accesstransformer.cfg')
 
     // Default run configurations.
@@ -86,6 +85,18 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+                SignTastic {
+                    source project(':SignTastic').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -107,9 +118,6 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
@@ -159,6 +167,18 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+                SignTastic {
+                    source project(':SignTastic').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -180,9 +200,6 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
@@ -233,6 +250,18 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+                SignTastic {
+                    source project(':SignTastic').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -254,9 +283,6 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
@@ -310,6 +336,10 @@ dependencies {
     //implementation project(':FxControl')
     implementation project(':LostCities')
     implementation project(':FancyTrinkets')
+    implementation project(':NEW')
+    implementation project(':Nice')
+    implementation project(':Restrictions')
+    implementation project(':SignTastic')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     implementation project(':RFToolsControl')
@@ -317,7 +347,6 @@ dependencies {
     implementation project(':RFToolsPower')
     implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
-    //implementation project(':Restrictions')
     implementation project(':ModXNet')
 }
 
