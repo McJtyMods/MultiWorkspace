@@ -85,9 +85,9 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
-//                NEW {
-//                    source project(':NEW').sourceSets.main
-//                }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
                 Nice {
                     source project(':Nice').sourceSets.main
                 }
@@ -167,9 +167,9 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
-//                NEW {
-//                    source project(':NEW').sourceSets.main
-//                }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
                 Nice {
                     source project(':Nice').sourceSets.main
                 }
@@ -250,9 +250,9 @@ minecraft {
                 FancyTrinkets {
                     source project(':FancyTrinkets').sourceSets.main
                 }
-//                NEW {
-//                    source project(':NEW').sourceSets.main
-//                }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
                 Nice {
                     source project(':Nice').sourceSets.main
                 }
@@ -336,7 +336,7 @@ dependencies {
     //implementation project(':FxControl')
     implementation project(':LostCities')
     implementation project(':FancyTrinkets')
-//    implementation project(':NEW')
+    implementation project(':NEW')
     implementation project(':Nice')
     implementation project(':Restrictions')
     implementation project(':SignTastic')
