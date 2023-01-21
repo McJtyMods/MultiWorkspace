@@ -24,6 +24,7 @@ repositories {
     maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
     maven { url "https://maven.blamejared.com" } // Patchouli
     maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
+    maven { url "https://maven.theillusivec4.top/" } // Curios
 }
 
 version = '1.0'
@@ -43,33 +44,15 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                //TheOneProbe {
-                    //source project(':TheOneProbe').sourceSets.main
-                //}
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                //Ariente {
-                    //source project(':Ariente').sourceSets.main
-                //}
-                //ArienteWorld {
-                    //source project(':ArienteWorld').sourceSets.main
-                //}
                 DeepResonance {
                     source project(':DeepResonance').sourceSets.main
                 }
-                //HoloGui {
-                    //source project(':HoloGui').sourceSets.main
-                //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
-                FancyTrinkets {
-                    source project(':FancyTrinkets').sourceSets.main
-                }
+//                FancyTrinkets {
+//                    source project(':FancyTrinkets').sourceSets.main
+//                }
                 NEW {
                     source project(':NEW').sourceSets.main
                 }
@@ -118,33 +101,15 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                //TheOneProbe {
-                    //source project(':TheOneProbe').sourceSets.main
-                //}
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                //Ariente {
-                    //source project(':Ariente').sourceSets.main
-                //}
-                //ArienteWorld {
-                    //source project(':ArienteWorld').sourceSets.main
-                //}
                 DeepResonance {
                     source project(':DeepResonance').sourceSets.main
                 }
-                //HoloGui {
-                    //source project(':HoloGui').sourceSets.main
-                //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
-                FancyTrinkets {
-                    source project(':FancyTrinkets').sourceSets.main
-                }
+//                FancyTrinkets {
+//                    source project(':FancyTrinkets').sourceSets.main
+//                }
                 NEW {
                     source project(':NEW').sourceSets.main
                 }
@@ -195,33 +160,15 @@ minecraft {
             args '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
-                //TheOneProbe {
-                    //source project(':TheOneProbe').sourceSets.main
-                //}
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
-                //Ariente {
-                    //source project(':Ariente').sourceSets.main
-                //}
-                //ArienteWorld {
-                    //source project(':ArienteWorld').sourceSets.main
-                //}
                 DeepResonance {
                     source project(':DeepResonance').sourceSets.main
                 }
-                //HoloGui {
-                    //source project(':HoloGui').sourceSets.main
-                //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
-                FancyTrinkets {
-                    source project(':FancyTrinkets').sourceSets.main
-                }
+//                FancyTrinkets {
+//                    source project(':FancyTrinkets').sourceSets.main
+//                }
                 NEW {
                     source project(':NEW').sourceSets.main
                 }
@@ -272,18 +219,13 @@ dependencies {
     mc()
     jei()
     top()
+    curios()
     patchouli()
 
-    //implementation project(':TheOneProbe')
     implementation project(':McJtyLib')
-    //implementation project(':Ariente')
-    //implementation project(':ArienteWorld')
     implementation project(':DeepResonance')
-    //implementation project(':HoloGui')
-    //implementation project(':InControl')
-    //implementation project(':FxControl')
     implementation project(':LostCities')
-    implementation project(':FancyTrinkets')
+//    implementation project(':FancyTrinkets')
     implementation project(':NEW')
     implementation project(':Nice')
     implementation project(':Restrictions')
