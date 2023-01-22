@@ -103,7 +103,7 @@ ext.lostcities = {
     }
 }
 
-ext.cfdeps = { optional, required ->
+ext.cfdeps = { optional, required, versions ->
     curseforge {
         if (project.hasProperty('curseforge_key')) {
             apiKey = project.curseforge_key
@@ -115,6 +115,9 @@ ext.cfdeps = { optional, required ->
             changelogType = 'html'
             releaseType = project.curse_type
             addGameVersion project.minecraft_version
+            versions.each { v ->
+                addGameVersion v
+            }
             mainArtifact(jar) {
                 displayName = "${modname} - ${version}"
             }
