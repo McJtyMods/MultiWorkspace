@@ -3,7 +3,7 @@ project.ext.set("forge_version", '44.1.5')
 project.ext.set("jei_version", '11.0.0.225')
 project.ext.set("patchouli_version", '1.19-75')
 project.ext.set("top_version", '1.19.3-7.0.0-2')
-project.ext.set("mcjtylib_version", '1.19-7.1.0.4')
+project.ext.set("mcjtylib_version", '1.19.3-7.1.1.2')
 project.ext.set("rftoolsbase_version", '1.19.1-4.0.3-2')
 project.ext.set("curios_version", '1.19.3-5.1.2.0')
 project.ext.set("lostcities_version", '1.19-6.0.2-1')
@@ -46,11 +46,13 @@ ext.mc = {
 ext.jei = {
     dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-common-api:${jei_version}")
     dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-forge-api:${jei_version}")
+    // Temporarily disabled for 1.19.3
 //    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
 }
 
 ext.patchouli = {
     dependencies.compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
+    // Temporarily disabled for 1.19.3
 //    dependencies.implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
 //        transitive = false
 //    }
