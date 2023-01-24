@@ -101,6 +101,9 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
+                }
                 Wastify {
                     source project(':Wastify').sourceSets.main
                 }
@@ -172,6 +175,9 @@ minecraft {
                 }
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
+                }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
                 }
                 Wastify {
                     source project(':Wastify').sourceSets.main
@@ -247,6 +253,9 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
+                }
                 Wastify {
                     source project(':Wastify').sourceSets.main
                 }
@@ -274,6 +283,7 @@ dependencies {
     implementation project(':DeepResonance')
     implementation project(':LostCities')
     implementation project(':LostSouls')
+    implementation project(':LostRuins')
     implementation project(':Wastify')
     implementation project(':NEW')
     implementation project(':Nice')
