@@ -1,3 +1,11 @@
+pushd InControl
+git checkout 1.19.3
+popd
+
+pushd FxControl
+git checkout 1.19.3
+popd
+
 pushd LostCities
 git checkout 1.19.3
 popd
