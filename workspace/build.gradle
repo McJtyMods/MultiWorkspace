@@ -59,6 +59,9 @@ minecraft {
                 Nice {
                     source project(':Nice').sourceSets.main
                 }
+                ModHoloGui {
+                    source project(':ModHoloGui').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -133,6 +136,9 @@ minecraft {
                 }
                 Nice {
                     source project(':Nice').sourceSets.main
+                }
+                ModHoloGui {
+                    source project(':ModHoloGui').sourceSets.main
                 }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
@@ -211,6 +217,9 @@ minecraft {
                 Nice {
                     source project(':Nice').sourceSets.main
                 }
+                ModHoloGui {
+                    source project(':ModHoloGui').sourceSets.main
+                }
                 Restrictions {
                     source project(':Restrictions').sourceSets.main
                 }
@@ -287,6 +296,7 @@ dependencies {
     implementation project(':Wastify')
     implementation project(':NEW')
     implementation project(':Nice')
+    implementation project(':ModHoloGui')
     implementation project(':Restrictions')
     implementation project(':SignTastic')
     implementation project(':ParsMinima')
