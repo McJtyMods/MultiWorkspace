@@ -95,6 +95,12 @@ minecraft {
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
+                LostSouls {
+                    source project(':LostSouls').sourceSets.main
+                }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
+                }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
@@ -157,6 +163,12 @@ minecraft {
                 }
                 LostCities {
                     source project(':LostCities').sourceSets.main
+                }
+                LostSouls {
+                    source project(':LostSouls').sourceSets.main
+                }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
                 }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
@@ -223,6 +235,12 @@ minecraft {
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
+                LostSouls {
+                    source project(':LostSouls').sourceSets.main
+                }
+                LostRuins {
+                    source project(':LostRuins').sourceSets.main
+                }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
@@ -246,6 +264,8 @@ dependencies {
     implementation project(':McJtyLib')
     implementation project(':DeepResonance')
     implementation project(':LostCities')
+    implementation project(':LostSouls')
+    implementation project(':LostRuins')
     implementation project(':NEW')
     implementation project(':Nice')
     implementation project(':Restrictions')

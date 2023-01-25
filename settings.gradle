@@ -1,6 +1,8 @@
 rootProject.name = '1.19_tech'
 include 'DeepResonance'
 include 'LostCities'
+include 'LostSouls'
+include 'LostRuins'
 include 'McJtyLib'
 include 'NEW'
 include 'Nice'
