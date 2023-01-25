@@ -6,7 +6,10 @@ project.ext.set("top_version", '1.19.3-7.0.0-2')
 project.ext.set("mcjtylib_version", '1.19.3-7.1.1.2')
 project.ext.set("rftoolsbase_version", '1.19.1-4.0.4-3')
 project.ext.set("curios_version", '1.19.3-5.1.2.0')
-project.ext.set("lostcities_version", '1.19-6.0.2-1')
+project.ext.set("lostcities_version", '1.19-6.0.11-4')
+project.ext.set("bookshelf_version", '1.19.3:17.0.3')
+project.ext.set("gamestages_version", '1.19.2:11.0.2')
+project.ext.set("sereneseasons_version", '1.19.2-11.0.3')
 
 ext.getChangelogText =  {
     def changelogFile = file('changelog.txt')
@@ -56,6 +59,15 @@ ext.patchouli = {
 //    dependencies.implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
 //        transitive = false
 //    }
+}
+
+ext.gamestages = {
+    dependencies.compileOnly fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-${bookshelf_version}")
+    dependencies.compileOnly fg.deobf("net.darkhax.gamestages:GameStages-Forge-${gamestages_version}")
+}
+
+ext.sereneseasons = {
+    dependencies.compileOnly "com.github.glitchfiend:SereneSeasons:${sereneseasons_version}"
 }
 
 ext.top = {
