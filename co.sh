@@ -111,3 +111,8 @@ git clone https://github.com/McJtyMods/ParsMinima ParsMinima
 pushd ParsMinima
 popd
 
+git clone https://github.com/McJtyMods/InteractionWheel InteractionWheel
+pushd InteractionWheel
+git checkout 1.19
+popd
+

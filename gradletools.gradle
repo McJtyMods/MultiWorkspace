@@ -144,8 +144,8 @@ ext.cfdeps = { optional, required, versions ->
 
 ext.runs = { name ->
     minecraft {
-        //mappings channel: 'parchment', version: "2022.11.27-1.19.2"
-        mappings channel: 'official', version: "${minecraft_version}"
+        mappings channel: 'parchment', version: "2022.11.27-1.19.2"
+//        mappings channel: 'official', version: "${minecraft_version}"
         accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
         runs {
