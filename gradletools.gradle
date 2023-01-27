@@ -120,6 +120,7 @@ ext.modrinth = { opt, req, versions ->
         }
         projectId = project.projectSlug
         versionType = project.curse_type
+        versionName = "${modname} - ${version}"
         uploadFile = jar
         gameVersions = [project.minecraft_version] + versions
         changelog = System.getenv('CHANGELOG') == null || System.getenv('CHANGELOG').equals('none') ? getChangelogText() : System.getenv('CHANGELOG')
