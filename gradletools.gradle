@@ -112,7 +112,7 @@ ext.lostcities = {
     }
 }
 
-ext.modrinth = { optional, required, versions ->
+ext.modrinth = { opt, req, versions ->
     tasks.modrinth.enabled = project.hasProperty('modrinth_token')
     modrinth {
         if (project.hasProperty('modrinth_token')) {
@@ -124,10 +124,10 @@ ext.modrinth = { optional, required, versions ->
         gameVersions = [project.minecraft_version] + versions
         changelog = System.getenv('CHANGELOG') == null || System.getenv('CHANGELOG').equals('none') ? getChangelogText() : System.getenv('CHANGELOG')
         dependencies {
-            optional.each { lib ->
+            opt.each { lib ->
                 optional.project lib
             }
-            required.each { lib ->
+            req.each { lib ->
                 required.project lib
             }
         }
