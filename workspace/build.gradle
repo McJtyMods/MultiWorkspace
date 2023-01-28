@@ -2,9 +2,9 @@ buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net/' }
         maven { url = 'https://maven.parchmentmc.org' }
-        maven { url = "https://plugins.gradle.org/m2/" }
-        jcenter()
+        maven { url = 'https://plugins.gradle.org/m2/' }
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
@@ -13,23 +13,23 @@ buildscript {
     }
 }
 
+plugins { id "com.modrinth.minotaur" version "2.+" }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'maven-publish'
+if (project.file('../gradletools.gradle').exists()) {
+    apply from: '../gradletools.gradle'
+} else {
+    apply from: 'https://raw.githubusercontent.com/McJtyMods/MultiWorkspace/1.18_tech/gradletools.gradle'
+}
 
 repositories {
-    maven { url 'https://www.dogforce-games.com/maven/' }
-    maven { // JEI
-        url "https://dvs1.progwml6.com/files/maven"
-    }
-    maven { // Patchouli
-        url "https://maven.blamejared.com"
-    }
-    maven { // TOP
-        url "https://maven.k-4u.nl"
-    }
+    maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
+    maven { url "https://maven.blamejared.com" } // Patchouli
+    maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
+    maven { url "https://maven.theillusivec4.top/" } // Curios
 }
 
 version = '1.0'
@@ -263,29 +263,11 @@ jar {
 }
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
-    if (findProject(':TheOneProbe') != null) {
-        implementation project(':TheOneProbe')
-    } else {
-        implementation fg.deobf(project.dependencies.create("mcjty.theoneprobe:theoneprobe:${top_version}") {
-            transitive = false
-        })
-    }
-
-    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
-        transitive = false
-    }
-
-//    implementation fg.deobf("curse.maven:wildnature:2837635")
-//    implementation fg.deobf("curse.maven:voxelmap:2765032")
-//    implementation fg.deobf("curse.maven:minimap:2849263")
-//    implementation fg.deobf("curse.maven:xaero:2836597")
+    mc()
+    jei()
+    top()
+    curios()
+    patchouli()
 
     //implementation project(':TheOneProbe')
     implementation project(':McJtyLib')
