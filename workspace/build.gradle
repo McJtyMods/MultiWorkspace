@@ -64,6 +64,12 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -76,12 +82,12 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -103,9 +109,15 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+                SignTastic {
+                    source project(':SignTastic').sourceSets.main
+                }
+                Trinkets {
+                    source project(':Trinkets').sourceSets.main
+                }
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
@@ -134,6 +146,12 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -146,12 +164,12 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -173,9 +191,15 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+                SignTastic {
+                    source project(':SignTastic').sourceSets.main
+                }
+                Trinkets {
+                    source project(':Trinkets').sourceSets.main
+                }
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
@@ -205,6 +229,12 @@ minecraft {
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
+                Nice {
+                    source project(':Nice').sourceSets.main
+                }
+                NEW {
+                    source project(':NEW').sourceSets.main
+                }
                 //Ariente {
                     //source project(':Ariente').sourceSets.main
                 //}
@@ -217,12 +247,12 @@ minecraft {
                 //HoloGui {
                     //source project(':HoloGui').sourceSets.main
                 //}
-                //InControl {
-                    //source project(':InControl').sourceSets.main
-                //}
-                //FxControl {
-                    //source project(':FxControl').sourceSets.main
-                //}
+                InControl {
+                    source project(':InControl').sourceSets.main
+                }
+                FxControl {
+                    source project(':FxControl').sourceSets.main
+                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -244,9 +274,15 @@ minecraft {
                 RFToolsUtility {
                     source project(':RFToolsUtility').sourceSets.main
                 }
-                //Restrictions {
-                    //source project(':Restrictions').sourceSets.main
-                //}
+                Restrictions {
+                    source project(':Restrictions').sourceSets.main
+                }
+                SignTastic {
+                    source project(':SignTastic').sourceSets.main
+                }
+                Trinkets {
+                    source project(':Trinkets').sourceSets.main
+                }
                 LostCities {
                     source project(':LostCities').sourceSets.main
                 }
@@ -271,12 +307,14 @@ dependencies {
 
     //implementation project(':TheOneProbe')
     implementation project(':McJtyLib')
+    implementation project(':Nice')
+    implementation project(':NEW')
     //implementation project(':Ariente')
     //implementation project(':ArienteWorld')
     implementation project(':DeepResonance')
     //implementation project(':HoloGui')
-    //implementation project(':InControl')
-    //implementation project(':FxControl')
+    implementation project(':InControl')
+    implementation project(':FxControl')
     implementation project(':LostCities')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
@@ -285,7 +323,9 @@ dependencies {
     implementation project(':RFToolsPower')
     implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
-    //implementation project(':Restrictions')
+    implementation project(':Restrictions')
+    implementation project(':SignTastic')
+    implementation project(':Trinkets')
     implementation project(':ModXNet')
 }
 
