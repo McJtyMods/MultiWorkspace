@@ -49,11 +49,11 @@ ext.mc = {
 ext.jei = {
     dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-common-api:${jei_version}")
     dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-forge-api:${jei_version}")
-    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
+//    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
 }
 
 ext.patchouli = {
-    dependencies.implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
+    dependencies.compileOnly fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
         transitive = false
     }
 }
@@ -168,7 +168,7 @@ ext.cfdeps = { optional, required, versions ->
 
 ext.runs = { name ->
     minecraft {
-        mappings channel: 'parchment', version: "2022.11.27-1.19.2"
+        mappings channel: 'parchment', version: "2022.12.18-1.19.3"
 //        mappings channel: 'official', version: "${minecraft_version}"
         accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
