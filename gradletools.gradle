@@ -1,11 +1,11 @@
-project.ext.set("minecraft_version", '1.19.3')
-project.ext.set("forge_version", '44.1.5')
+project.ext.set("minecraft_version", '1.19.4')
+project.ext.set("forge_version", '45.0.9')
 project.ext.set("jei_version", '11.0.0.225')
 project.ext.set("patchouli_version", '1.19-75')
 project.ext.set("top_version", '1.19.3-7.0.0-2')
 project.ext.set("mcjtylib_version", '1.19.3-7.1.4.5')
 project.ext.set("rftoolsbase_version", '1.19.1-4.0.4-3')
-project.ext.set("curios_version", '1.19.3-5.1.2.0')
+project.ext.set("curios_version", '1.19.4-5.1.4.2')
 project.ext.set("lostcities_version", '1.19-6.0.11-4')
 project.ext.set("bookshelf_version", '1.19.3:17.0.3')
 project.ext.set("gamestages_version", '1.19.2:11.0.2')
@@ -168,8 +168,8 @@ ext.cfdeps = { optional, required, versions ->
 
 ext.runs = { name ->
     minecraft {
-        mappings channel: 'parchment', version: "2022.12.18-1.19.3"
-//        mappings channel: 'official', version: "${minecraft_version}"
+//        mappings channel: 'parchment', version: "2022.12.18-1.19.3"
+        mappings channel: 'official', version: "${minecraft_version}"
         accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
         runs {
