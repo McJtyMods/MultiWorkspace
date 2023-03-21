@@ -1,4 +1,4 @@
-rootProject.name = '1.19_tech'
+rootProject.name = '1.19.4_tech'
 include 'DeepResonance'
 include 'LostCities'
 include 'LostSouls'
