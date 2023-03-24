@@ -1,5 +1,5 @@
 project.ext.set("minecraft_version", '1.19.4')
-project.ext.set("forge_version", '45.0.9')
+project.ext.set("forge_version", '45.0.23')
 project.ext.set("jei_version", '11.0.0.225')
 project.ext.set("patchouli_version", '1.19-75')
 project.ext.set("top_version", '1.19.4-8.0.0-1')
