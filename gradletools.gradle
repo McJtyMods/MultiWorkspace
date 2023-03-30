@@ -1,9 +1,9 @@
 project.ext.set("minecraft_version", '1.19.4')
-project.ext.set("forge_version", '45.0.23')
-project.ext.set("jei_version", '11.0.0.225')
+project.ext.set("forge_version", '45.0.39')
+project.ext.set("jei_version", '12.4.0.22')
 project.ext.set("patchouli_version", '1.19-75')
 project.ext.set("top_version", '1.19.4-8.0.0-1')
-project.ext.set("mcjtylib_version", '1.19.4-7.2.1.4')
+project.ext.set("mcjtylib_version", '1.19.4-7.2.0.3')
 project.ext.set("rftoolsbase_version", '1.19.1-4.0.4-3')
 project.ext.set("curios_version", '1.19.4-5.1.4.2')
 project.ext.set("lostcities_version", '1.19-6.0.11-4')
@@ -42,14 +42,24 @@ ext.getChangelogText =  {
     return str
 }
 
+ext.repos = {
+    repositories {
+        maven { url "https://maven.blamejared.com" }    // Patchouli, bookshelf, gamestages, JEI
+        //maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
+        maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
+        maven { url 'https://maven.minecraftforge.net/' } // Serene Seasons
+        maven { url "https://maven.theillusivec4.top/" } // Curios
+    }
+}
+
 ext.mc = {
     dependencies.minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 }
 
 ext.jei = {
-    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-common-api:${jei_version}")
-    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19-forge-api:${jei_version}")
-//    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19-forge:${jei_version}")
+    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19.3-common-api:${jei_version}")
+    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.19.3-forge-api:${jei_version}")
+//    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.19.3-forge:${jei_version}")
 }
 
 ext.patchouli = {
