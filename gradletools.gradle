@@ -10,6 +10,7 @@ project.ext.set("lostcities_version", '1.19-6.0.11-4')
 project.ext.set("bookshelf_version", '1.19.2:16.1.11')
 project.ext.set("gamestages_version", '1.19.2:11.0.2')
 project.ext.set("sereneseasons_version", '1.19.2-8.1.0.24')
+project.ext.set("terrablender_version", '2.0.1.136')
 
 ext.getChangelogText =  {
     def changelogFile = file('changelog.txt')
@@ -50,6 +51,10 @@ ext.repos = {
         maven { url 'https://maven.minecraftforge.net/' } // Serene Seasons
         maven { url "https://maven.theillusivec4.top/" } // Curios
     }
+}
+
+ext.terrablender = {
+    dependencies.implementation fg.deobf('com.github.glitchfiend:TerraBlender-forge:' + minecraft_version + '-' + terrablender_version)
 }
 
 ext.mc = {
