@@ -10,12 +10,16 @@ popd
 
 git clone https://github.com/McJtyMods/LostCities LostCities
 pushd LostCities
-git checkout 1.19
+git checkout 1.19.4
+popd
+
+git clone https://github.com/McJtyMods/LostCities LostEdit
+pushd LostEdit
 popd
 
 git clone https://github.com/McJtyMods/McJtyLib McJtyLib
 pushd McJtyLib
-git checkout 1.19
+git checkout 1.19.4
 popd
 
 git clone https://github.com/McJtyMods/XNet ModXNet
@@ -55,7 +59,7 @@ popd
 
 git clone https://github.com/McJtyMods/RFToolsDimensions RFToolsDimensions
 pushd RFToolsDimensions
-git checkout 1.19
+git checkout 1.19.4
 popd
 
 git clone https://github.com/McJtyMods/RFToolsPower RFToolsPower
@@ -80,12 +84,12 @@ popd
 
 git clone https://github.com/McJtyMods/InControl InControl
 pushd InControl
-git checkout 1.19
+git checkout 1.19.4
 popd
 
 git clone https://github.com/McJtyMods/FxControl FxControl
 pushd FxControl
-git checkout 1.19
+git checkout 1.19.4
 popd
 
 git clone https://github.com/McJtyMods/HoloGui ModHoloGui
@@ -95,7 +99,7 @@ popd
 
 git clone https://github.com/McJtyMods/LostSouls LostSouls
 pushd LostSouls
-git checkout 1.19
+git checkout 1.19.3
 popd
 
 git clone https://github.com/McJtyMods/LostRuins LostRuins
@@ -104,7 +108,12 @@ popd
 
 git clone https://github.com/McJtyMods/Wastify Wastify
 pushd Wastify
-git checkout 1.19
+git checkout 1.19.4
+popd
+
+git clone https://github.com/McJtyMods/InteractionWheel
+pushd InteractionWheel
+git checkout 1.19.3
 popd
 
 git clone https://github.com/McJtyMods/ParsMinima ParsMinima

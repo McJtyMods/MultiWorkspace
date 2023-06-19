@@ -20,7 +20,7 @@ apply plugin: 'maven-publish'
 if (project.file('../gradletools.gradle').exists()) {
     apply from: '../gradletools.gradle'
 } else {
-    apply from: 'https://raw.githubusercontent.com/McJtyMods/MultiWorkspace/1.19.4_tech/gradletools.gradle'
+    apply from: 'https://raw.githubusercontent.com/McJtyMods/MultiWorkspace/1.20_tech/gradletools.gradle'
 }
 
 repositories {
@@ -110,9 +110,9 @@ minecraft {
                 Wastify {
                     source project(':Wastify').sourceSets.main
                 }
-                Trinkets {
-                    source project(':Trinkets').sourceSets.main
-                }
+//                Trinkets {
+//                    source project(':Trinkets').sourceSets.main
+//                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -188,9 +188,9 @@ minecraft {
                 Wastify {
                     source project(':Wastify').sourceSets.main
                 }
-                Trinkets {
-                    source project(':Trinkets').sourceSets.main
-                }
+//                Trinkets {
+//                    source project(':Trinkets').sourceSets.main
+//                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -268,9 +268,9 @@ minecraft {
                 Wastify {
                     source project(':Wastify').sourceSets.main
                 }
-                Trinkets {
-                    source project(':Trinkets').sourceSets.main
-                }
+//                Trinkets {
+//                    source project(':Trinkets').sourceSets.main
+//                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -309,7 +309,7 @@ dependencies {
     implementation project(':RFToolsPower')
     implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
-    implementation project(':Trinkets')
+//    implementation project(':Trinkets')
     implementation project(':ModXNet')
 }
 
