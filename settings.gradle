@@ -20,7 +20,7 @@ include 'RFToolsDimensions'
 include 'RFToolsPower'
 include 'RFToolsUtility'
 include 'RFToolsBuilder'
-//include 'Trinkets'
+include 'Trinkets'
 include 'ModXNet'
 
 include 'workspace'
