@@ -71,9 +71,6 @@ minecraft {
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
-                FxControl {
-                    source project(':FxControl').sourceSets.main
-                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -148,9 +145,6 @@ minecraft {
                 }
                 InControl {
                     source project(':InControl').sourceSets.main
-                }
-                FxControl {
-                    source project(':FxControl').sourceSets.main
                 }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
@@ -229,9 +223,6 @@ minecraft {
                 InControl {
                     source project(':InControl').sourceSets.main
                 }
-                FxControl {
-                    source project(':FxControl').sourceSets.main
-                }
                 RFToolsStorage {
                     source project(':RFToolsStorage').sourceSets.main
                 }
@@ -301,7 +292,6 @@ dependencies {
     implementation project(':Restrictions')
     implementation project(':SignTastic')
     implementation project(':InControl')
-    implementation project(':FxControl')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     implementation project(':RFToolsControl')
