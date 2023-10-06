@@ -13,8 +13,9 @@ pushd LostCities
 git checkout 1.20
 popd
 
-git clone https://github.com/McJtyMods/LostCities LostEdit
+git clone https://github.com/McJtyMods/LostEdit LostEdit
 pushd LostEdit
+git checkout 1.20
 popd
 
 git clone https://github.com/McJtyMods/McJtyLib McJtyLib
@@ -104,6 +105,7 @@ popd
 
 git clone https://github.com/McJtyMods/LostRuins LostRuins
 pushd LostRuins
+git checkout 1.20
 popd
 
 git clone https://github.com/McJtyMods/Wastify Wastify
