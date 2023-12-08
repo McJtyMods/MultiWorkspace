@@ -104,9 +104,12 @@ minecraft {
                 LostEdit {
                     source project(':LostEdit').sourceSets.main
                 }
-                Wastify {
-                    source project(':Wastify').sourceSets.main
+                LostWorlds {
+                    source project(':LostWorlds').sourceSets.main
                 }
+//                Wastify {
+//                    source project(':Wastify').sourceSets.main
+//                }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
@@ -179,9 +182,12 @@ minecraft {
                 LostEdit {
                     source project(':LostEdit').sourceSets.main
                 }
-                Wastify {
-                    source project(':Wastify').sourceSets.main
+                LostWorlds {
+                    source project(':LostWorlds').sourceSets.main
                 }
+//                Wastify {
+//                    source project(':Wastify').sourceSets.main
+//                }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
@@ -256,9 +262,12 @@ minecraft {
                 LostEdit {
                     source project(':LostEdit').sourceSets.main
                 }
-                Wastify {
-                    source project(':Wastify').sourceSets.main
+                LostWorlds {
+                    source project(':LostWorlds').sourceSets.main
                 }
+//                Wastify {
+//                    source project(':Wastify').sourceSets.main
+//                }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
@@ -285,7 +294,8 @@ dependencies {
     implementation project(':LostSouls')
     implementation project(':LostRuins')
     implementation project(':LostEdit')
-    implementation project(':Wastify')
+    implementation project(':LostWorlds')
+//    implementation project(':Wastify')
     implementation project(':NEW')
     implementation project(':Nice')
     implementation project(':InteractionWheel')
