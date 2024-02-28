@@ -1,8 +1,13 @@
-project.ext.set("minecraft_version", '1.20.1')
-project.ext.set("forge_version", '47.1.3')
-project.ext.set("jei_version", '15.2.0.23')
+project.ext.set("mod_group_id", 'com.github.mcjty')
+project.ext.set("mod_authors", 'McJty')
+project.ext.set("minecraft_version", '1.20.4')
+project.ext.set("minecraft_version_range", '[1.20.4,1.21)')
+project.ext.set("neo_version", '20.4.151-beta')
+project.ext.set("neo_version_range", '[20.4,)')
+project.ext.set("loader_version_range", '[2,)')
+project.ext.set("jei_version", '17.3.0.48')
 project.ext.set("patchouli_version", '1.20.1-81-FORGE')
-project.ext.set("top_version", '1.20.0-9.0.0-1')
+project.ext.set("top_version", '1.20.4_neo-11.0.1-2')
 project.ext.set("mcjtylib_version", '1.20-8.0.0.1')
 project.ext.set("rftoolsbase_version", '1.20-5.0.0-1')
 project.ext.set("curios_version", '5.2.0-beta.3+1.20.1')
@@ -23,7 +28,7 @@ ext.getChangelogText =  {
         if (it.size() > 1) {
             def temp = it
             if (lineCount == 0) {
-                temp = "${modname} ${version}"
+                temp = "${mod_name} ${version}"
                 temp = "<h2>$temp</h2>"
             } else if (it.startsWith('-')) {
                 temp = "&nbsp;&nbsp;&nbsp;$temp"
@@ -44,6 +49,7 @@ ext.getChangelogText =  {
 
 ext.repos = {
     repositories {
+        mavenLocal()
         maven { url "https://maven.blamejared.com" }    // Patchouli, bookshelf, gamestages, JEI
         //maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
         maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
@@ -53,24 +59,22 @@ ext.repos = {
 }
 
 ext.mc = {
-    dependencies.minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    dependencies.implementation "net.neoforged:neoforge:${neo_version}"
 }
 
 ext.jei = {
-    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.20.1-common-api:${jei_version}")
-    dependencies.compileOnly fg.deobf("mezz.jei:jei-1.20.1-forge-api:${jei_version}")
-    dependencies.runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
+    dependencies.compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    dependencies.compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    dependencies.runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
 }
 
 ext.patchouli = {
-    dependencies.implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}") {
-        transitive = false
-    }
+    dependencies.implementation "vazkii.patchouli:Patchouli:${patchouli_version}"
 }
 
 ext.gamestages = {
-    dependencies.implementation fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-${bookshelf_version}")
-    dependencies.implementation fg.deobf("net.darkhax.gamestages:GameStages-Forge-${gamestages_version}")
+    dependencies.implementation "net.darkhax.bookshelf:Bookshelf-Forge-${bookshelf_version}"
+    dependencies.implementation "net.darkhax.gamestages:GameStages-Forge-${gamestages_version}"
 }
 
 ext.sereneseasons = {
@@ -81,9 +85,7 @@ ext.top = {
     if (findProject(':TheOneProbe') != null) {
         dependencies.implementation project(':TheOneProbe')
     } else {
-        dependencies.implementation fg.deobf(project.dependencies.create("mcjty.theoneprobe:theoneprobe:${top_version}") {
-            transitive = false
-        })
+        dependencies.implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
     }
 }
 
@@ -91,9 +93,7 @@ ext.mcjtylib = {
     if (findProject(':McJtyLib') != null) {
         dependencies.implementation project(':McJtyLib')
     } else {
-        dependencies.implementation fg.deobf (project.dependencies.create("com.github.mcjty:mcjtylib:${mcjtylib_version}") {
-            transitive = false
-        })
+        dependencies.implementation "com.github.mcjty:mcjtylib:${mcjtylib_version}"
     }
 }
 
@@ -101,24 +101,20 @@ ext.rftoolsbase = {
     if (findProject(':RFToolsBase') != null) {
         dependencies.implementation project(':RFToolsBase')
     } else {
-        dependencies.implementation fg.deobf (project.dependencies.create("com.github.mcjty:rftoolsbase:${rftoolsbase_version}") {
-            transitive = false
-        })
+        dependencies.implementation "com.github.mcjty:rftoolsbase:${rftoolsbase_version}"
     }
 }
 
 ext.curios = {
-    dependencies.runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    dependencies.compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    dependencies.runtimeOnly "top.theillusivec4.curios:curios-forge:${curios_version}"
+    dependencies.compileOnly "top.theillusivec4.curios:curios-forge:${curios_version}:api"
 }
 
 ext.lostcities = {
     if (findProject(':LostCities') != null) {
         dependencies.implementation project(':LostCities')
     } else {
-        dependencies.implementation fg.deobf (project.dependencies.create("com.github.mcjty:lostcities:${lostcities_version}") {
-            transitive = false
-        })
+        dependencies.implementation "com.github.mcjty:lostcities:${lostcities_version}"
     }
 }
 
@@ -130,7 +126,7 @@ ext.modrinth = { opt, req, versions ->
         }
         projectId = project.projectSlug
         versionType = project.curse_type
-        versionName = "${modname} - ${version}"
+        versionName = "${mod_name} - ${version}"
         uploadFile = jar
         gameVersions = [project.minecraft_version] + versions
         changelog = System.getenv('CHANGELOG') == null || System.getenv('CHANGELOG').equals('none') ? getChangelogText() : System.getenv('CHANGELOG')
@@ -162,7 +158,7 @@ ext.cfdeps = { optional, required, versions ->
                 addGameVersion v
             }
             mainArtifact(jar) {
-                displayName = "${modname} - ${version}"
+                displayName = "${mod_name} - ${version}"
             }
             relations {
                 optional.each { lib ->
@@ -176,54 +172,54 @@ ext.cfdeps = { optional, required, versions ->
     }
 }
 
-ext.runs = { name ->
+ext.at = {
     minecraft {
-        mappings channel: 'parchment', version: "2023.06.26-1.20.1"
-//        mappings channel: 'official', version: "${minecraft_version}"
-        accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-        runs {
-            client = {
-                property 'mixin.env.remapRefMap', 'true'
-                property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-                properties 'forge.logging.markers': ''
-                properties 'forge.logging.console.level': 'debug'
-                workingDirectory project.file('run').canonicalPath
-                source sourceSets.main
-            }
-            server = {
-                property 'mixin.env.remapRefMap', 'true'
-                property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-                properties 'forge.logging.markers': ''
-                properties 'forge.logging.console.level': 'debug'
-                workingDirectory project.file('run').canonicalPath
-                source sourceSets.main
-            }
-            data = {
-                property 'mixin.env.remapRefMap', 'true'
-                property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-                workingDirectory project.file('run').canonicalPath
-                property 'forge.logging.markers', ''
-                property 'forge.logging.console.level', 'debug'
-                args '--mod', name, '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
-                source sourceSets.main
-            }
+        accessTransformers {
+            file('src/main/resources/META-INF/accesstransformer.cfg')
         }
     }
 }
 
-ext.jars = { name ->
+ext.runs = {
+    runs {
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'forge.logging.console.level', 'debug'
+            modSource project.sourceSets.main
+        }
+
+        client {
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            programArgument '--nogui'
+        }
+
+        gameTestServer {
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+    }
+}
+
+ext.jars = {
     jar {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
         manifest {
-            attributes 'FMLAT': 'accesstransformer.cfg',
-            "Specification-Title": name,
-            "Specification-Vendor": "McJty",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"McJty",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            attributes([
+                    "Specification-Title"     : project.mod_id,
+                    "Specification-Vendor"    : project.mod_authors,
+                    "Specification-Version"   : "1", // We are version 1 of ourselves
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Version"  : project.jar.archiveVersion,
+                    "Implementation-Vendor"   : project.mod_authors,
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            ])
         }
     }
 }

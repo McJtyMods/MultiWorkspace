@@ -1,22 +1,13 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        maven { url = 'https://plugins.gradle.org/m2/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
-    }
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id "com.modrinth.minotaur" version "2.+"
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id 'net.neoforged.gradle.userdev' version '7.0.95'
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
-apply plugin: 'eclipse'
-apply plugin: 'com.matthewprenger.cursegradle'
-apply plugin: 'maven-publish'
 if (project.file('../gradletools.gradle').exists()) {
     apply from: '../gradletools.gradle'
 } else {
@@ -24,6 +15,7 @@ if (project.file('../gradletools.gradle').exists()) {
 }
 
 repositories {
+    mavenLocal()
     maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
     maven { url "https://maven.blamejared.com" } // Patchouli
     maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
@@ -36,250 +28,55 @@ archivesBaseName = 'modid'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    //mappings channel: 'parchment', version: "2022.11.27-1.19.2"
-        mappings channel: 'official', version: "${minecraft_version}"
-//    accessTransformer = file('workspace/accesstransformer.cfg')
-
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
-            mods {
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
-                DeepResonance {
-                    source project(':DeepResonance').sourceSets.main
-                }
-                NEW {
-                    source project(':NEW').sourceSets.main
-                }
-                Nice {
-                    source project(':Nice').sourceSets.main
-                }
-                InteractionWheel {
-                    source project(':InteractionWheel').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
-                SignTastic {
-                    source project(':SignTastic').sourceSets.main
-                }
-                InControl {
-                    source project(':InControl').sourceSets.main
-                }
-                RFToolsStorage {
-                    source project(':RFToolsStorage').sourceSets.main
-                }
-                RFToolsBase {
-                    source project(':RFToolsBase').sourceSets.main
-                }
-                RFToolsControl {
-                    source project(':RFToolsControl').sourceSets.main
-                }
-                RFToolsDimensions {
-                    source project(':RFToolsDimensions').sourceSets.main
-                }
-                RFToolsPower {
-                    source project(':RFToolsPower').sourceSets.main
-                }
-                RFToolsBuilder {
-                    source project(':RFToolsBuilder').sourceSets.main
-                }
-                RFToolsUtility {
-                    source project(':RFToolsUtility').sourceSets.main
-                }
-                LostCities {
-                    source project(':LostCities').sourceSets.main
-                }
-                LostSouls {
-                    source project(':LostSouls').sourceSets.main
-                }
-                LostRuins {
-                    source project(':LostRuins').sourceSets.main
-                }
-                LostEdit {
-                    source project(':LostEdit').sourceSets.main
-                }
-                LostWorlds {
-                    source project(':LostWorlds').sourceSets.main
-                }
-//                Wastify {
-//                    source project(':Wastify').sourceSets.main
-//                }
-                Trinkets {
-                    source project(':Trinkets').sourceSets.main
-                }
-                ModXNet {
-                    source project(':ModXNet').sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
-            mods {
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
-                DeepResonance {
-                    source project(':DeepResonance').sourceSets.main
-                }
-                NEW {
-                    source project(':NEW').sourceSets.main
-                }
-                Nice {
-                    source project(':Nice').sourceSets.main
-                }
-                InteractionWheel {
-                    source project(':InteractionWheel').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
-                SignTastic {
-                    source project(':SignTastic').sourceSets.main
-                }
-                InControl {
-                    source project(':InControl').sourceSets.main
-                }
-                RFToolsStorage {
-                    source project(':RFToolsStorage').sourceSets.main
-                }
-                RFToolsBase {
-                    source project(':RFToolsBase').sourceSets.main
-                }
-                RFToolsControl {
-                    source project(':RFToolsControl').sourceSets.main
-                }
-                RFToolsDimensions {
-                    source project(':RFToolsDimensions').sourceSets.main
-                }
-                RFToolsPower {
-                    source project(':RFToolsPower').sourceSets.main
-                }
-                RFToolsBuilder {
-                    source project(':RFToolsBuilder').sourceSets.main
-                }
-                RFToolsUtility {
-                    source project(':RFToolsUtility').sourceSets.main
-                }
-                LostCities {
-                    source project(':LostCities').sourceSets.main
-                }
-                LostSouls {
-                    source project(':LostSouls').sourceSets.main
-                }
-                LostRuins {
-                    source project(':LostRuins').sourceSets.main
-                }
-                LostEdit {
-                    source project(':LostEdit').sourceSets.main
-                }
-                LostWorlds {
-                    source project(':LostWorlds').sourceSets.main
-                }
-//                Wastify {
-//                    source project(':Wastify').sourceSets.main
-//                }
-                Trinkets {
-                    source project(':Trinkets').sourceSets.main
-                }
-                ModXNet {
-                    source project(':ModXNet').sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
-            args '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
-
-            mods {
-                McJtyLib {
-                    source project(':McJtyLib').sourceSets.main
-                }
-                DeepResonance {
-                    source project(':DeepResonance').sourceSets.main
-                }
-                NEW {
-                    source project(':NEW').sourceSets.main
-                }
-                Nice {
-                    source project(':Nice').sourceSets.main
-                }
-                InteractionWheel {
-                    source project(':InteractionWheel').sourceSets.main
-                }
-                Restrictions {
-                    source project(':Restrictions').sourceSets.main
-                }
-                SignTastic {
-                    source project(':SignTastic').sourceSets.main
-                }
-                InControl {
-                    source project(':InControl').sourceSets.main
-                }
-                RFToolsStorage {
-                    source project(':RFToolsStorage').sourceSets.main
-                }
-                RFToolsBase {
-                    source project(':RFToolsBase').sourceSets.main
-                }
-                RFToolsControl {
-                    source project(':RFToolsControl').sourceSets.main
-                }
-                RFToolsDimensions {
-                    source project(':RFToolsDimensions').sourceSets.main
-                }
-                RFToolsPower {
-                    source project(':RFToolsPower').sourceSets.main
-                }
-                RFToolsBuilder {
-                    source project(':RFToolsBuilder').sourceSets.main
-                }
-                RFToolsUtility {
-                    source project(':RFToolsUtility').sourceSets.main
-                }
-                LostCities {
-                    source project(':LostCities').sourceSets.main
-                }
-                LostSouls {
-                    source project(':LostSouls').sourceSets.main
-                }
-                LostRuins {
-                    source project(':LostRuins').sourceSets.main
-                }
-                LostEdit {
-                    source project(':LostEdit').sourceSets.main
-                }
-                LostWorlds {
-                    source project(':LostWorlds').sourceSets.main
-                }
-//                Wastify {
-//                    source project(':Wastify').sourceSets.main
-//                }
-                Trinkets {
-                    source project(':Trinkets').sourceSets.main
-                }
-                ModXNet {
-                    source project(':ModXNet').sourceSets.main
-                }
-            }
-        }
+    accessTransformers {
+        file('src/main/resources/META-INF/accesstransformer.cfg')
     }
 }
 
-jars('mcmod')
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            systemProperty 'mixin.env.remapRefMap', 'true'
+            systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+
+                    modSource project(':McJtyLib').sourceSets.main
+                    modSource project(':DeepResonance').sourceSets.main
+                    modSource project(':NEW').sourceSets.main
+                    modSource project(':Nice').sourceSets.main
+                    modSource project(':InteractionWheel').sourceSets.main
+                    modSource project(':Restrictions').sourceSets.main
+                    modSource project(':SignTastic').sourceSets.main
+                    modSource project(':InControl').sourceSets.main
+                    modSource project(':RFToolsStorage').sourceSets.main
+                    modSource project(':RFToolsBase').sourceSets.main
+                    modSource project(':RFToolsControl').sourceSets.main
+                    modSource project(':RFToolsDimensions').sourceSets.main
+                    modSource project(':RFToolsPower').sourceSets.main
+                    modSource project(':RFToolsBuilder').sourceSets.main
+                    modSource project(':RFToolsUtility').sourceSets.main
+                    modSource project(':LostCities').sourceSets.main
+                    modSource project(':LostSouls').sourceSets.main
+                    modSource project(':LostRuins').sourceSets.main
+                    modSource project(':LostEdit').sourceSets.main
+                    modSource project(':LostWorlds').sourceSets.main
+//                    modSource project(':Wastify').sourceSets.main
+                    modSource project(':Trinkets').sourceSets.main
+                    modSource project(':ModXNet').sourceSets.main
+        }
+
+
+        client {
+        }
+
+        server {
+        }
+
+        data {
+            programArguments.addAll '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
+        }
+    }
+
+jars()
 
 dependencies {
     mc()
