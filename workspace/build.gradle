@@ -72,7 +72,7 @@ minecraft {
         }
 
         data {
-            programArguments.addAll '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
+            programArguments.addAll '--all', '--output', file('src/generated/resources/').absolutePath, '--existing', sourceSets.main.resources.srcDirs[0].absolutePath
         }
     }
 
