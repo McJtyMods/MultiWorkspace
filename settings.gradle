@@ -10,7 +10,7 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
 }
 
-rootProject.name = '1.20_tech'
+rootProject.name = '1.20_5_neo'
 include 'DeepResonance'
 include 'LostCities'
 include 'LostSouls'
