@@ -89,7 +89,7 @@ ext.gamestages = {
 }
 
 ext.sereneseasons = {
-    dependencies.compileOnly "com.github.glitchfiend:SereneSeasons:${sereneseasons_version}"
+    dependencies.compileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${sereneseasons_version}"
 }
 
 ext.top = {
