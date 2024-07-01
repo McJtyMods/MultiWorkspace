@@ -60,7 +60,7 @@ ext.repos = {
 
 ext.parchment = {
     subsystems {
-        parchment {
+        dependencies.parchment {
             minecraftVersion = "1.21"
             mappingsVersion = "2024.06.23"
         }
