@@ -58,9 +58,9 @@ ext.repos = {
     }
 }
 
-ext.parchment = {
+ext.parch = {
     subsystems {
-        dependencies.parchment {
+        parchment {
             minecraftVersion = "1.21"
             mappingsVersion = "2024.06.23"
         }
