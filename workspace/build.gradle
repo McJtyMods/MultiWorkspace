@@ -5,13 +5,13 @@ plugins {
     id 'maven-publish'
     id "com.modrinth.minotaur" version "2.+"
     id "com.matthewprenger.cursegradle" version "1.4.0"
-    id 'net.neoforged.gradle.userdev' version '7.0.95'
+    id 'net.neoforged.gradle.userdev' version '7.0.142'
 }
 
 if (project.file('../gradletools.gradle').exists()) {
     apply from: '../gradletools.gradle'
 } else {
-    apply from: 'https://raw.githubusercontent.com/McJtyMods/MultiWorkspace/1.20_tech/gradletools.gradle'
+    apply from: 'https://raw.githubusercontent.com/McJtyMods/MultiWorkspace/1.21_neo/gradletools.gradle'
 }
 
 repositories {
@@ -25,7 +25,7 @@ repositories {
 version = '1.0'
 group = 'com.yourname.modid'
 archivesBaseName = 'modid'
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 minecraft {
     accessTransformers {
@@ -40,28 +40,28 @@ minecraft {
             systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
                     modSource project(':McJtyLib').sourceSets.main
-                    modSource project(':DeepResonance').sourceSets.main
-                    modSource project(':NEW').sourceSets.main
-                    modSource project(':Nice').sourceSets.main
+                    //modSource project(':DeepResonance').sourceSets.main
+                    //modSource project(':NEW').sourceSets.main
+                    //modSource project(':Nice').sourceSets.main
                     modSource project(':InteractionWheel').sourceSets.main
                     modSource project(':Restrictions').sourceSets.main
                     modSource project(':SignTastic').sourceSets.main
                     modSource project(':InControl').sourceSets.main
-                    modSource project(':RFToolsStorage').sourceSets.main
-                    modSource project(':RFToolsBase').sourceSets.main
-                    modSource project(':RFToolsControl').sourceSets.main
-                    modSource project(':RFToolsDimensions').sourceSets.main
-                    modSource project(':RFToolsPower').sourceSets.main
-                    modSource project(':RFToolsBuilder').sourceSets.main
-                    modSource project(':RFToolsUtility').sourceSets.main
+                    //modSource project(':RFToolsStorage').sourceSets.main
+                    //modSource project(':RFToolsBase').sourceSets.main
+                    //modSource project(':RFToolsControl').sourceSets.main
+                    //modSource project(':RFToolsDimensions').sourceSets.main
+                    //modSource project(':RFToolsPower').sourceSets.main
+                    //modSource project(':RFToolsBuilder').sourceSets.main
+                    //modSource project(':RFToolsUtility').sourceSets.main
                     modSource project(':LostCities').sourceSets.main
-                    modSource project(':LostSouls').sourceSets.main
-                    modSource project(':LostRuins').sourceSets.main
-                    modSource project(':LostEdit').sourceSets.main
-                    modSource project(':LostWorlds').sourceSets.main
+                    //modSource project(':LostSouls').sourceSets.main
+                    //modSource project(':LostRuins').sourceSets.main
+                    //modSource project(':LostEdit').sourceSets.main
+                    //modSource project(':LostWorlds').sourceSets.main
 //                    modSource project(':Wastify').sourceSets.main
-                    modSource project(':Trinkets').sourceSets.main
-                    modSource project(':ModXNet').sourceSets.main
+//                    modSource project(':Trinkets').sourceSets.main
+                    //modSource project(':ModXNet').sourceSets.main
         }
 
 
@@ -82,32 +82,32 @@ dependencies {
     mc()
     jei()
     top()
-    curios()
-    patchouli()
+    //curios()
+    //patchouli()
 
     implementation project(':McJtyLib')
-    implementation project(':DeepResonance')
+    //implementation project(':DeepResonance')
     implementation project(':LostCities')
-    implementation project(':LostSouls')
-    implementation project(':LostRuins')
-    implementation project(':LostEdit')
-    implementation project(':LostWorlds')
+    //implementation project(':LostSouls')
+    //implementation project(':LostRuins')
+    //implementation project(':LostEdit')
+    //implementation project(':LostWorlds')
 //    implementation project(':Wastify')
-    implementation project(':NEW')
-    implementation project(':Nice')
+    //implementation project(':NEW')
+    //implementation project(':Nice')
     implementation project(':InteractionWheel')
     implementation project(':Restrictions')
     implementation project(':SignTastic')
     implementation project(':InControl')
-    implementation project(':RFToolsStorage')
-    implementation project(':RFToolsBase')
-    implementation project(':RFToolsControl')
-    implementation project(':RFToolsDimensions')
-    implementation project(':RFToolsPower')
-    implementation project(':RFToolsBuilder')
-    implementation project(':RFToolsUtility')
-    implementation project(':Trinkets')
-    implementation project(':ModXNet')
+    //implementation project(':RFToolsStorage')
+    //implementation project(':RFToolsBase')
+    //implementation project(':RFToolsControl')
+    //implementation project(':RFToolsDimensions')
+    //implementation project(':RFToolsPower')
+    //implementation project(':RFToolsBuilder')
+    //implementation project(':RFToolsUtility')
+//    implementation project(':Trinkets')
+    //implementation project(':ModXNet')
 }
 
 // Example configuration to allow publishing using the maven-publish task
@@ -131,3 +131,12 @@ publishing {
         }
     }
 }
+
+
+subsystems {
+    parchment {
+        minecraftVersion = "1.21"
+        mappingsVersion = "2024.06.23"
+    }
+}
+
