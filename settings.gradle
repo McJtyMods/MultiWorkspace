@@ -36,3 +36,6 @@ include 'InControl'
 //include 'ModXNet'
 
 include 'workspace'
+include 'workspace:src:main:javca'
+findProject(':workspace:src:main:javca')?.name = 'javca'
+

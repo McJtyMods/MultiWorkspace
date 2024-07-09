@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT License https://github.com/McJtyMods/MultiWorkspace/blob/1.21_neo/LICENSE"
+issueTrackerURL="http://my.issue.tracker/" #optional
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+
+
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+# The modid of the mod
+modId="modid" #mandatory
+# The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
+version="${file.jarVersion}" #mandatory
+ # A display name for the mod
+displayName="ModId" #mandatory
+# A URL to query for updates for this mod. See the JSON update specification <here>
+updateJSONURL="http://myurl.me/" #optional
+# A URL for the "homepage" for this mod, displayed in the mod UI
+displayURL="http://example.com/" #optional
+# A file name (in the root of the mod JAR) containing a logo for display
+logoFile="modid.png" #optional
+# A text field displayed in the mod UI
+credits="Thanks for this example mod goes to Java" #optional
+# A text field displayed in the mod UI
+authors="McJty" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+Signs signs and signs
+'''
+[[dependencies.modid]] #optional
+    modId="neoforge"
+    type="required"
+    versionRange="[21.0,)"
+    ordering="NONE"
+    side="BOTH"
