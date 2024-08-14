@@ -1,6 +1,6 @@
 project.ext.set("mod_group_id", 'com.github.mcjty')
 project.ext.set("mod_authors", 'McJty')
-project.ext.set("minecraft_version", '1.21')
+project.ext.set("minecraft_version", '1.21.1')
 project.ext.set("minecraft_version_range", '[1.21,1.22)')
 project.ext.set("neo_version", '21.1.6')
 project.ext.set("neo_version_range", '[21.0,)')
