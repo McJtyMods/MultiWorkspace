@@ -55,6 +55,7 @@ minecraft {
                     //modSource project(':RFToolsBuilder').sourceSets.main
                     //modSource project(':RFToolsUtility').sourceSets.main
                     modSource project(':LostCities').sourceSets.main
+                    modSource project(':TheOneProbe').sourceSets.main
                     //modSource project(':LostSouls').sourceSets.main
                     //modSource project(':LostRuins').sourceSets.main
                     //modSource project(':LostEdit').sourceSets.main
