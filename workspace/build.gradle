@@ -73,7 +73,7 @@ minecraft {
         }
 
         data {
-            programArguments.addAll '--all', '--output', file('src/generated/resources/').absolutePath, '--existing', sourceSets.main.resources.srcDirs[0].absolutePath
+            arguments.addAll '--all', '--output', file('src/generated/resources/').absolutePath, '--existing', sourceSets.main.resources.srcDirs[0].absolutePath
         }
     }
 
@@ -100,6 +100,7 @@ dependencies {
     implementation project(':Restrictions')
     implementation project(':SignTastic')
     implementation project(':InControl')
+    implementation project(':TheOneProbe')
     //implementation project(':RFToolsStorage')
     //implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')

@@ -4,7 +4,7 @@ project.ext.set("minecraft_version", '1.21.1')
 project.ext.set("minecraft_version_range", '[1.21,1.22)')
 project.ext.set("parchment_version", '2024.07.28')
 project.ext.set("parchment_minecraft_version", '1.21')
-project.ext.set("neo_version", '21.1.50')
+project.ext.set("neo_version", '21.1.47')
 project.ext.set("neo_version_range", '[21.1,)')
 project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '19.9.1.125')
@@ -207,7 +207,7 @@ ext.runs = {
 
         server {
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-            programArgument '--nogui'
+            argument '--nogui'
         }
 
         gameTestServer {
@@ -215,7 +215,7 @@ ext.runs = {
         }
 
         data {
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
     }
 }
