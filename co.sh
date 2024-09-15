@@ -28,10 +28,10 @@ popd
 #git checkout 1.21_neo
 #popd
 
-#git clone https://github.com/romelo333/notenoughwands1.8.8 NEW
-#pushd NEW
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/romelo333/notenoughwands1.8.8 NEW
+pushd NEW
+git checkout 1.21_neo
+popd
 
 #git clone https://github.com/McJtyMods/Nice Nice
 #pushd Nice
