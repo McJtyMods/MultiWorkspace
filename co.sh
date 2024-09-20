@@ -43,10 +43,10 @@ pushd Restrictions
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/RFToolsBase RFToolsBase
-#pushd RFToolsBase
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/RFToolsBase RFToolsBase
+pushd RFToolsBase
+git checkout 1.21_neo
+popd
 
 #git clone https://github.com/McJtyMods/RFToolsBuilder RFToolsBuilder
 #pushd RFToolsBuilder
