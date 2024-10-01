@@ -63,10 +63,10 @@ popd
 #git checkout 1.21_neo
 #popd
 
-#git clone https://github.com/McJtyMods/RFToolsPower RFToolsPower
-#pushd RFToolsPower
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/RFToolsPower RFToolsPower
+pushd RFToolsPower
+git checkout 1.21_neo
+popd
 
 #git clone https://github.com/McJtyMods/RFToolsStorage RFToolsStorage
 #pushd RFToolsStorage

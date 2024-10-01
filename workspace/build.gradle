@@ -51,7 +51,7 @@ minecraft {
                     modSource project(':RFToolsBase').sourceSets.main
                     //modSource project(':RFToolsControl').sourceSets.main
                     //modSource project(':RFToolsDimensions').sourceSets.main
-                    //modSource project(':RFToolsPower').sourceSets.main
+                    modSource project(':RFToolsPower').sourceSets.main
                     //modSource project(':RFToolsBuilder').sourceSets.main
                     //modSource project(':RFToolsUtility').sourceSets.main
                     modSource project(':LostCities').sourceSets.main
@@ -105,7 +105,7 @@ dependencies {
     implementation project(':RFToolsBase')
     //implementation project(':RFToolsControl')
     //implementation project(':RFToolsDimensions')
-    //implementation project(':RFToolsPower')
+    implementation project(':RFToolsPower')
     //implementation project(':RFToolsBuilder')
     //implementation project(':RFToolsUtility')
 //    implementation project(':Trinkets')
