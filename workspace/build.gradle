@@ -62,7 +62,7 @@ minecraft {
                     //modSource project(':LostWorlds').sourceSets.main
 //                    modSource project(':Wastify').sourceSets.main
 //                    modSource project(':Trinkets').sourceSets.main
-                    //modSource project(':ModXNet').sourceSets.main
+                    modSource project(':ModXNet').sourceSets.main
         }
 
 
@@ -109,7 +109,7 @@ dependencies {
     //implementation project(':RFToolsBuilder')
     //implementation project(':RFToolsUtility')
 //    implementation project(':Trinkets')
-    //implementation project(':ModXNet')
+    implementation project(':ModXNet')
 }
 
 // Example configuration to allow publishing using the maven-publish task

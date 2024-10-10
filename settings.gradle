@@ -34,7 +34,7 @@ include 'RFToolsPower'
 //include 'RFToolsUtility'
 //include 'RFToolsBuilder'
 //include 'Trinkets'
-//include 'ModXNet'
+include 'ModXNet'
 
 include 'workspace'
 include 'workspace:src:main:javca'

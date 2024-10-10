@@ -23,10 +23,10 @@ pushd McJtyLib
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/XNet ModXNet
-#pushd ModXNet
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/XNet ModXNet
+pushd ModXNet
+git checkout 1.21_neo
+popd
 
 git clone https://github.com/romelo333/notenoughwands1.8.8 NEW
 pushd NEW
