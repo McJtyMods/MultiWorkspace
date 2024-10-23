@@ -173,12 +173,14 @@ ext.cfdeps = { optional, required, versions ->
             mainArtifact(jar) {
                 displayName = "${mod_name} - ${version}"
             }
-            relations {
-                optional.each { lib ->
-                    optionalLibrary lib
-                }
-                required.each { lib ->
-                    requiredDependency lib
+            if (optional.size() > 0 || required.size() > 0) {
+                relations {
+                    optional.each { lib ->
+                        optionalLibrary lib
+                    }
+                    required.each { lib ->
+                        requiredDependency lib
+                    }
                 }
             }
         }
