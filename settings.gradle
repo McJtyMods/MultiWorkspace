@@ -32,7 +32,7 @@ include 'RFToolsBase'
 //include 'RFToolsDimensions'
 include 'RFToolsPower'
 //include 'RFToolsUtility'
-//include 'RFToolsBuilder'
+include 'RFToolsBuilder'
 //include 'Trinkets'
 include 'ModXNet'
 
