@@ -98,8 +98,8 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
-                LostRadar {
-                    source project(':LostRadar').sourceSets.main
+                Radar {
+                    source project(':Radar').sourceSets.main
                 }
                 LostRuins {
                     source project(':LostRuins').sourceSets.main
@@ -179,8 +179,8 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
-                LostRadar {
-                    source project(':LostRadar').sourceSets.main
+                Radar {
+                    source project(':Radar').sourceSets.main
                 }
                 LostRuins {
                     source project(':LostRuins').sourceSets.main
@@ -262,8 +262,8 @@ minecraft {
                 LostSouls {
                     source project(':LostSouls').sourceSets.main
                 }
-                LostRadar {
-                    source project(':LostRadar').sourceSets.main
+                Radar {
+                    source project(':Radar').sourceSets.main
                 }
                 LostRuins {
                     source project(':LostRuins').sourceSets.main
@@ -301,7 +301,6 @@ dependencies {
     implementation project(':DeepResonance')
     implementation project(':LostCities')
     implementation project(':LostSouls')
-    implementation project(':LostRadar')
     implementation project(':LostRuins')
     implementation project(':LostEdit')
     implementation project(':LostWorlds')
@@ -312,6 +311,7 @@ dependencies {
     implementation project(':Restrictions')
     implementation project(':SignTastic')
     implementation project(':InControl')
+    implementation project(':Radar')
     implementation project(':RFToolsStorage')
     implementation project(':RFToolsBase')
     implementation project(':RFToolsControl')

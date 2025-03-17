@@ -108,7 +108,7 @@ pushd LostRuins
 git checkout 1.20
 popd
 
-git clone https://github.com/McJtyMods/LostRadar LostRadar
+git clone https://github.com/McJtyMods/LostRadar Radar
 pushd LostRuins
 popd
 
