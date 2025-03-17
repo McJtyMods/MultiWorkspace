@@ -108,6 +108,10 @@ pushd LostRuins
 git checkout 1.20
 popd
 
+git clone https://github.com/McJtyMods/LostRadar LostRadar
+pushd LostRuins
+popd
+
 git clone https://github.com/McJtyMods/Wastify Wastify
 pushd Wastify
 git checkout 1.20
