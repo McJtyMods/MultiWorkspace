@@ -197,6 +197,9 @@ minecraft {
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
+//                ModBlocker {
+//                    source project(':ModBlocker').sourceSets.main
+//                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -280,6 +283,9 @@ minecraft {
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
+//                ModBlocker {
+//                    source project(':ModBlocker').sourceSets.main
+//                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -320,6 +326,7 @@ dependencies {
     implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
     implementation project(':Trinkets')
+//    implementation project(':ModBlocker')
     implementation project(':ModXNet')
 }
 
