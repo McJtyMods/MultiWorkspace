@@ -68,10 +68,10 @@ pushd RFToolsPower
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/RFToolsStorage RFToolsStorage
-#pushd RFToolsStorage
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/RFToolsStorage RFToolsStorage
+pushd RFToolsStorage
+git checkout 1.21_neo
+popd
 
 #git clone https://github.com/McJtyMods/RFToolsUtility RFToolsUtility
 #pushd RFToolsUtility
