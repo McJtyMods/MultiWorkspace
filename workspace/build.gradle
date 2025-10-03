@@ -40,7 +40,7 @@ minecraft {
             systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
                     modSource project(':McJtyLib').sourceSets.main
-                    //modSource project(':DeepResonance').sourceSets.main
+                    modSource project(':DeepResonance').sourceSets.main
                     modSource project(':NEW').sourceSets.main
                     //modSource project(':Nice').sourceSets.main
                     modSource project(':InteractionWheel').sourceSets.main
@@ -87,7 +87,7 @@ dependencies {
     //patchouli()
 
     implementation project(':McJtyLib')
-    //implementation project(':DeepResonance')
+    implementation project(':DeepResonance')
     implementation project(':LostCities')
     //implementation project(':LostSouls')
     //implementation project(':LostRuins')

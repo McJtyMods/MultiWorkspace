@@ -1,7 +1,7 @@
-#git clone https://github.com/McJtyMods/DeepResonance DeepResonance
-#pushd DeepResonance
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/DeepResonance DeepResonance
+pushd DeepResonance
+git checkout 1.21_neo
+popd
 
 #git clone https://github.com/McJtyMods/FancyTrinkets Trinkets
 #pushd Trinkets
