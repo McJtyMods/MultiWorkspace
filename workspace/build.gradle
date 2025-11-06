@@ -61,7 +61,7 @@ minecraft {
                     //modSource project(':LostEdit').sourceSets.main
                     //modSource project(':LostWorlds').sourceSets.main
 //                    modSource project(':Wastify').sourceSets.main
-//                    modSource project(':Trinkets').sourceSets.main
+                    modSource project(':Trinkets').sourceSets.main
                     modSource project(':ModXNet').sourceSets.main
         }
 
@@ -108,7 +108,7 @@ dependencies {
     implementation project(':RFToolsPower')
     implementation project(':RFToolsBuilder')
     implementation project(':RFToolsUtility')
-//    implementation project(':Trinkets')
+    implementation project(':Trinkets')
     implementation project(':ModXNet')
 }
 

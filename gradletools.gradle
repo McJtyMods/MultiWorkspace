@@ -12,7 +12,7 @@ project.ext.set("patchouli_version", '1.21-87-NEOFORGE')
 project.ext.set("top_version", '1.21_neo-12.0.3-5')
 project.ext.set("mcjtylib_version", '1.21-9.0.15.16')
 project.ext.set("rftoolsbase_version", '1.21-6.0.8-8')
-project.ext.set("curios_version", '5.2.0-beta.3+1.20.1')
+project.ext.set("curios_version", '9.5.1+1.21.1')
 project.ext.set("lostcities_version", '1.21-8.2.2-6')
 project.ext.set("bookshelf_version", '1.20.1:20.0.2')
 project.ext.set("gamestages_version", '1.20.1:15.0.1')
@@ -119,8 +119,8 @@ ext.rftoolsbase = {
 }
 
 ext.curios = {
-    dependencies.runtimeOnly "top.theillusivec4.curios:curios-forge:${curios_version}"
-    dependencies.compileOnly "top.theillusivec4.curios:curios-forge:${curios_version}:api"
+    dependencies.runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    dependencies.compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
 }
 
 ext.lostcities = {

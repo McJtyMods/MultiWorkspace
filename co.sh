@@ -3,10 +3,10 @@ pushd DeepResonance
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/FancyTrinkets Trinkets
-#pushd Trinkets
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/FancyTrinkets Trinkets
+pushd Trinkets
+git checkout 1.21_neo
+popd
 
 git clone https://github.com/McJtyMods/LostCities LostCities
 pushd LostCities
