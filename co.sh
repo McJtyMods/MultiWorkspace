@@ -73,10 +73,10 @@ pushd RFToolsStorage
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/RFToolsUtility RFToolsUtility
-#pushd RFToolsUtility
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/RFToolsUtility RFToolsUtility
+pushd RFToolsUtility
+git checkout 1.21_neo
+popd
 
 git clone https://github.com/McJtyMods/SignTastic SignTastic
 pushd SignTastic
