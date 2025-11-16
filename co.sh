@@ -58,10 +58,10 @@ pushd RFToolsControl
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/RFToolsDimensions RFToolsDimensions
-#pushd RFToolsDimensions
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/RFToolsDimensions RFToolsDimensions
+pushd RFToolsDimensions
+git checkout 1.21_neo
+popd
 
 git clone https://github.com/McJtyMods/RFToolsPower RFToolsPower
 pushd RFToolsPower
