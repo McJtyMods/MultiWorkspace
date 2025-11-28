@@ -57,6 +57,7 @@ ext.repos = {
         maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
         maven { url 'https://maven.minecraftforge.net/' } // Serene Seasons
         maven { url "https://maven.theillusivec4.top/" } // Curios
+        maven { url "https://cursemaven.com" }
     }
 }
 
