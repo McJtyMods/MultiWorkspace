@@ -108,6 +108,12 @@ popd
 #git checkout 1.21_neo
 #popd
 
+git clone https://github.com/McJtyMods/LostRadar Radar
+pushd LostRadar
+git checkout 1.21_neo
+popd
+
+
 git clone https://github.com/McJtyMods/InteractionWheel
 pushd InteractionWheel
 git checkout 1.21_neo

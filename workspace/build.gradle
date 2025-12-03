@@ -49,6 +49,7 @@ minecraft {
                     modSource project(':RFToolsBuilder').sourceSets.main
                     modSource project(':RFToolsUtility').sourceSets.main
                     modSource project(':LostCities').sourceSets.main
+                    modSource project(':Radar').sourceSets.main
                     modSource project(':TheOneProbe').sourceSets.main
                     //modSource project(':LostSouls').sourceSets.main
                     //modSource project(':LostRuins').sourceSets.main
@@ -83,6 +84,7 @@ dependencies {
     implementation project(':McJtyLib')
     implementation project(':DeepResonance')
     implementation project(':LostCities')
+    implementation project(':Radar')
     //implementation project(':LostSouls')
     //implementation project(':LostRuins')
     //implementation project(':LostEdit')
