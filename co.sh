@@ -93,10 +93,10 @@ popd
 #git checkout 1.21_neo
 #popd
 
-#git clone https://github.com/McJtyMods/LostSouls LostSouls
-#pushd LostSouls
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/LostSouls LostSouls
+pushd LostSouls
+git checkout 1.21_neo
+popd
 
 #git clone https://github.com/McJtyMods/LostRuins LostRuins
 #pushd LostRuins

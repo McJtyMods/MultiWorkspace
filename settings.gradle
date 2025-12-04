@@ -13,7 +13,7 @@ plugins {
 rootProject.name = '1.21_neo'
 include 'DeepResonance'
 include 'LostCities'
-//include 'LostSouls'
+include 'LostSouls'
 //include 'LostRuins'
 //include 'LostEdit'
 //include 'LostWorlds'
