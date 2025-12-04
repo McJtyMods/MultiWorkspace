@@ -36,7 +36,7 @@ minecraft {
                     modSource project(':McJtyLib').sourceSets.main
                     modSource project(':DeepResonance').sourceSets.main
                     modSource project(':NEW').sourceSets.main
-                    //modSource project(':Nice').sourceSets.main
+                    modSource project(':Nice').sourceSets.main
                     modSource project(':InteractionWheel').sourceSets.main
                     modSource project(':Restrictions').sourceSets.main
                     modSource project(':SignTastic').sourceSets.main
@@ -91,7 +91,7 @@ dependencies {
     //implementation project(':LostWorlds')
 //    implementation project(':Wastify')
     implementation project(':NEW')
-    //implementation project(':Nice')
+    implementation project(':Nice')
     implementation project(':InteractionWheel')
     implementation project(':Restrictions')
     implementation project(':SignTastic')

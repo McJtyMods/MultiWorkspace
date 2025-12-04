@@ -33,10 +33,10 @@ pushd NEW
 git checkout 1.21_neo
 popd
 
-#git clone https://github.com/McJtyMods/Nice Nice
-#pushd Nice
-#git checkout 1.21_neo
-#popd
+git clone https://github.com/McJtyMods/Nice Nice
+pushd Nice
+git checkout 1.21_neo
+popd
 
 git clone https://github.com/McJtyMods/Restrictions Restrictions
 pushd Restrictions
