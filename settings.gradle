@@ -23,5 +23,6 @@ include 'RFToolsUtility'
 include 'RFToolsBuilder'
 include 'Trinkets'
 include 'ModXNet'
+include 'Hazardous'
 
 include 'workspace'

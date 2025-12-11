@@ -119,6 +119,9 @@ minecraft {
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
+                Hazardous {
+                    source project(':Hazardous').sourceSets.main
+                }
             }
         }
 
@@ -202,6 +205,9 @@ minecraft {
 //                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
+                }
+                Hazardous {
+                    source project(':Hazardous').sourceSets.main
                 }
             }
         }
@@ -289,6 +295,9 @@ minecraft {
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
+                Hazardous {
+                    source project(':Hazardous').sourceSets.main
+                }
             }
         }
     }
@@ -328,6 +337,7 @@ dependencies {
     implementation project(':Trinkets')
 //    implementation project(':ModBlocker')
     implementation project(':ModXNet')
+    implementation project(':Hazardous')
 }
 
 // Example configuration to allow publishing using the maven-publish task
