@@ -39,7 +39,7 @@
   - `./gradlew :workspace:runClient`
   - `./gradlew :RFToolsUtility:build`
   - `./gradlew :RFToolsUtility:runData`
-- Important environment note: current builds require **Java 17+ to launch Gradle, and the scripts target Java toolchain 21** (`java.toolchain.languageVersion = 21`). A root `gradlew projects` run failed under Java 8 in this workspace, so fix `JAVA_HOME` first if Gradle dies early.
+- Important environment note: current builds require **Java 21+ to launch Gradle, and the scripts target Java toolchain 21** (`java.toolchain.languageVersion = 21`). A root `gradlew projects` run failed under Java 8 in this workspace, so fix `JAVA_HOME` first if Gradle dies early.
 - There are very few conventional tests (`McJtyLib/src/test/java/.../TestPackets.java` is mostly commented out). Validate changes mainly through targeted module builds, datagen runs, and `:workspace` game runs.
 - Publishing tasks are conditional: `modrinth` needs `modrinth_token`, `curseforge` needs `curseforge_key`, and some modules publish to a local Maven repo when `local_maven` is set.
 
