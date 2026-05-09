@@ -2,6 +2,7 @@ pluginManagement {
     repositories {
         mavenLocal()
         gradlePluginPortal()
+        maven { url = 'https://maven.firstdark.dev/releases' }
         maven { url = 'https://maven.neoforged.net/releases' }
     }
 }
@@ -40,4 +41,3 @@ include 'ModXNet'
 include 'workspace'
 include 'workspace:src:main:javca'
 findProject(':workspace:src:main:javca')?.name = 'javca'
-
