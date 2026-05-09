@@ -13,7 +13,7 @@ project.ext.set("sereneseasons_version", '1.20-9.0.0.41')
 
 ext.getChangelogText =  {
     def changelogFile = file('changelog.txt')
-    String str = ''
+    StringBuilder str = new StringBuilder()
     int lineCount = 0
     boolean done = false
     changelogFile.eachLine {
@@ -24,22 +24,21 @@ ext.getChangelogText =  {
             def temp = it
             if (lineCount == 0) {
                 temp = "${modname} ${version}"
-                temp = "<h2>$temp</h2>"
-            } else if (it.startsWith('-')) {
-                temp = "&nbsp;&nbsp;&nbsp;$temp"
-                temp = temp.replaceAll("(\\S+\\/\\S+)#([0-9]+)\\b", "<a href=\"https://github.com/\$1/issues/\$2\">\$0</a>");
-                temp = temp.replaceAll("#([0-9]+)\\b(?!<\\/a>)", "<a href=\"https://github.com/$github_project/issues/\$1\">\$0</a>");
+                temp = "## $temp"
+            } else if (!it.startsWith('-')) {
+                temp = "#### $temp"
             } else {
-                temp = "<h4>$temp</h4>"
+                temp = temp.replaceAll("(\\S+\\/\\S+)#([0-9]+)\\b", "[\$0](https://github.com/\$1/issues/\$2)")
+                temp = temp.replaceAll("#([0-9]+)\\b", "[\$0](https://github.com/$github_project/issues/\$1)")
             }
-            str += "$temp<br/>"
+            str.append(temp).append('\n')
             lineCount++
             return
         } else {
             done = true
         }
     }
-    return str
+    return str.toString()
 }
 
 ext.repos = {
@@ -123,56 +122,57 @@ ext.lostcities = {
     }
 }
 
-ext.modrinth = { opt, req, versions ->
-    tasks.modrinth.enabled = project.hasProperty('modrinth_token')
-    modrinth {
-        if (project.hasProperty('modrinth_token')) {
-            token = project.modrinth_token
-        }
-        projectId = project.projectSlug
-        versionType = project.curse_type
-        versionName = "${modname} - ${version}"
-        uploadFile = jar
-        gameVersions = [project.minecraft_version] + versions
-        changelog = System.getenv('CHANGELOG') == null || System.getenv('CHANGELOG').equals('none') ? getChangelogText() : System.getenv('CHANGELOG')
-        dependencies {
-            opt.each { lib ->
-                optional.project lib
-            }
-            req.each { lib ->
-                required.project lib
-            }
-        }
-    }
+ext.getPublishChangelog = {
+    System.getenv('CHANGELOG') == null || System.getenv('CHANGELOG').equals('none') ? getChangelogText() : System.getenv('CHANGELOG')
 }
 
-ext.cfdeps = { optional, required, versions ->
-    tasks.curseforge.enabled = project.hasProperty('curseforge_key')
-    curseforge {
-        if (project.hasProperty('curseforge_key')) {
-            apiKey = project.curseforge_key
+ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthRequired, versions ->
+    def curseKey = (project.findProperty('curseforge_key') ?: System.getenv('CURSEFORGE_TOKEN') ?: System.getenv('CURSE_TOKEN') ?: '').toString()
+    def modrinthKey = (project.findProperty('modrinth_token') ?: System.getenv('MODRINTH_TOKEN') ?: '').toString()
+    def allVersions = ([project.minecraft_version] + versions).collect { it.toString() }.unique()
+
+    tasks.named('publishCurseforge') {
+        enabled = !curseKey.isEmpty()
+    }
+    tasks.named('publishModrinth') {
+        enabled = !modrinthKey.isEmpty() && project.hasProperty('modrinthId')
+    }
+    ['publishGitHub', 'publishNightbloom', 'publishModtale'].each { taskName ->
+        def publishTask = tasks.findByName(taskName)
+        if (publishTask != null) {
+            publishTask.enabled = false
+        }
+    }
+
+    publisher {
+        apiKeys {
+            curseforge curseKey
+            modrinth modrinthKey
         }
 
-        project {
-            id = project.projectId
-            changelog = System.getenv('CHANGELOG') == null || System.getenv('CHANGELOG').equals('none') ? getChangelogText() : System.getenv('CHANGELOG')
-            changelogType = 'html'
-            releaseType = project.curse_type
-            addGameVersion project.minecraft_version
-            versions.each { v ->
-                addGameVersion v
-            }
-            mainArtifact(jar) {
-                displayName = "${modname} - ${version}"
-            }
-            relations {
-                optional.each { lib ->
-                    optionalLibrary lib
-                }
-                required.each { lib ->
-                    requiredDependency lib
-                }
-            }
+        if (project.hasProperty('projectId')) {
+            curseID.set(project.projectId.toString())
+        }
+        if (project.hasProperty('modrinthId')) {
+            modrinthID.set(project.modrinthId.toString())
+        }
+
+        versionType.set(project.curse_type.toString())
+        changelog.set({ getPublishChangelog() })
+        version.set(project.version.toString())
+        displayName.set("${modname} - ${project.version}")
+        gameVersions.set(allVersions)
+        loaders.set(['forge'])
+        curseEnvironment.set('both')
+        artifact.set(jar)
+
+        curseDepends {
+            curseOptional.each { lib -> optional lib }
+            curseRequired.each { lib -> required lib }
+        }
+        modrinthDepends {
+            modrinthOptional.each { lib -> optional lib }
+            modrinthRequired.each { lib -> required lib }
         }
     }
 }

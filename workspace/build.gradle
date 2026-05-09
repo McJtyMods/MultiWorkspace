@@ -8,14 +8,12 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
-apply plugin: 'com.matthewprenger.cursegradle'
 apply plugin: 'maven-publish'
 if (project.file('../gradletools.gradle').exists()) {
     apply from: '../gradletools.gradle'
