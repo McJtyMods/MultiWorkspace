@@ -144,9 +144,14 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
 
     tasks.named('publishCurseforge') {
         enabled = !curseKey.isEmpty()
+        dependsOn 'reobfJar'
     }
     tasks.named('publishModrinth') {
         enabled = !modrinthKey.isEmpty() && project.hasProperty('modrinthId')
+        dependsOn 'reobfJar'
+    }
+    tasks.named('publishMod') {
+        dependsOn 'reobfJar'
     }
     ['publishGitHub', 'publishNightbloom', 'publishModtale'].each { taskName ->
         def publishTask = tasks.findByName(taskName)
