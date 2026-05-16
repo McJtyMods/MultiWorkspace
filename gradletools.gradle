@@ -130,6 +130,17 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
     def curseKey = (project.findProperty('curseforge_key') ?: System.getenv('CURSEFORGE_TOKEN') ?: System.getenv('CURSE_TOKEN') ?: '').toString()
     def modrinthKey = (project.findProperty('modrinth_token') ?: System.getenv('MODRINTH_TOKEN') ?: '').toString()
     def allVersions = ([project.minecraft_version] + versions).collect { it.toString() }.unique()
+    def modrinthProjectIds = [
+            'curios'          : 'vvuO3ImH',
+            'game-stages'     : 'iAlZk5aS',
+            'mcjtylib'        : '1Zu0uTEE',
+            'rftools-base'    : 'hIO8IsD8',
+            'the-lost-cities' : '8VDCUS3b',
+            'the-one-probe'   : 'Eyw0UxEx',
+    ]
+    def toModrinthProjectId = { lib ->
+        modrinthProjectIds.get(lib.toString(), lib.toString())
+    }
 
     tasks.named('publishCurseforge') {
         enabled = !curseKey.isEmpty()
@@ -171,8 +182,8 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
             curseRequired.each { lib -> required lib }
         }
         modrinthDepends {
-            modrinthOptional.each { lib -> optional lib }
-            modrinthRequired.each { lib -> required lib }
+            modrinthOptional.each { lib -> optional toModrinthProjectId(lib) }
+            modrinthRequired.each { lib -> required toModrinthProjectId(lib) }
         }
     }
 }
