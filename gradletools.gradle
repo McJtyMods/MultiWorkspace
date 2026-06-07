@@ -194,12 +194,16 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
 }
 
 ext.runs = { name ->
-    def configureProjectRuns = !(rootProject.findProject(":workspace") != null && project.name != "workspace" && !project.hasProperty("enable_individual_runs"))
+    def workspaceImportProject = rootProject.findProject(":workspace") != null && project.name != "workspace"
+    def configureProjectRuns = !(workspaceImportProject && !project.hasProperty("enable_individual_runs"))
+    def configureAccessTransformer = configureProjectRuns || !gradle.startParameter.taskNames.isEmpty()
 
     minecraft {
         mappings channel: "parchment", version: "2023.09.03-1.20.1"
 //        mappings channel: "official", version: "${minecraft_version}"
-        accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
+        if (configureAccessTransformer) {
+            accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
+        }
 
         if (configureProjectRuns) {
             runs {
