@@ -365,3 +365,24 @@ publishing {
         }
     }
 }
+
+tasks.register('fixIntellijRunModules') {
+    onlyIf { rootProject.file('.idea/runConfigurations').directory }
+
+    doLast {
+        def moduleName = (project.findProperty('intellij_run_module') ?: "${rootProject.name}.${project.name}.main").toString()
+        rootProject.fileTree('.idea/runConfigurations') {
+            include "${project.name}_run*.xml"
+        }.each { runConfig ->
+            def original = runConfig.getText('UTF-8')
+            def updated = original.replaceAll(/<module name="[^"]*"\s*\/>/, "<module name=\"${moduleName}\"/>")
+            if (updated != original) {
+                runConfig.setText(updated, 'UTF-8')
+            }
+        }
+    }
+}
+
+tasks.matching { it.name == 'genIntellijRuns' }.configureEach {
+    finalizedBy 'fixIntellijRunModules'
+}
