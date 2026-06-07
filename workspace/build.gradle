@@ -303,6 +303,12 @@ minecraft {
 
 jars('mcmod')
 
+def workspaceProject = { path ->
+    dependencies.add('implementation', project(path)) {
+        transitive = false
+    }
+}
+
 dependencies {
     mc()
     jei()
@@ -310,32 +316,32 @@ dependencies {
     curios()
     patchouli()
 
-    implementation project(':McJtyLib')
-    implementation project(':DeepResonance')
-    implementation project(':LostCities')
-    implementation project(':LostSouls')
-    implementation project(':LostRuins')
-    implementation project(':LostEdit')
-    implementation project(':LostWorlds')
-//    implementation project(':Wastify')
-    implementation project(':NEW')
-    implementation project(':Nice')
-    implementation project(':InteractionWheel')
-    implementation project(':Restrictions')
-    implementation project(':SignTastic')
-    implementation project(':InControl')
-    implementation project(':Radar')
-    implementation project(':RFToolsStorage')
-    implementation project(':RFToolsBase')
-    implementation project(':RFToolsControl')
-    implementation project(':RFToolsDimensions')
-    implementation project(':RFToolsPower')
-    implementation project(':RFToolsBuilder')
-    implementation project(':RFToolsUtility')
-    implementation project(':Trinkets')
-//    implementation project(':ModBlocker')
-    implementation project(':ModXNet')
-    implementation project(':Hazardous')
+    workspaceProject(':McJtyLib')
+    workspaceProject(':DeepResonance')
+    workspaceProject(':LostCities')
+    workspaceProject(':LostSouls')
+    workspaceProject(':LostRuins')
+    workspaceProject(':LostEdit')
+    workspaceProject(':LostWorlds')
+//    workspaceProject(':Wastify')
+    workspaceProject(':NEW')
+    workspaceProject(':Nice')
+    workspaceProject(':InteractionWheel')
+    workspaceProject(':Restrictions')
+    workspaceProject(':SignTastic')
+    workspaceProject(':InControl')
+    workspaceProject(':Radar')
+    workspaceProject(':RFToolsStorage')
+    workspaceProject(':RFToolsBase')
+    workspaceProject(':RFToolsControl')
+    workspaceProject(':RFToolsDimensions')
+    workspaceProject(':RFToolsPower')
+    workspaceProject(':RFToolsBuilder')
+    workspaceProject(':RFToolsUtility')
+    workspaceProject(':Trinkets')
+//    workspaceProject(':ModBlocker')
+    workspaceProject(':ModXNet')
+    workspaceProject(':Hazardous')
 }
 
 // Example configuration to allow publishing using the maven-publish task

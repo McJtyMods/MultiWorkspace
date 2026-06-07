@@ -194,36 +194,40 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
 }
 
 ext.runs = { name ->
-    minecraft {
-        mappings channel: 'parchment', version: "2023.09.03-1.20.1"
-//        mappings channel: 'official', version: "${minecraft_version}"
-        accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    def configureProjectRuns = !(rootProject.findProject(":workspace") != null && project.name != "workspace" && !project.hasProperty("enable_individual_runs"))
 
-        runs {
-            client = {
-                property 'mixin.env.remapRefMap', 'true'
-                property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-                properties 'forge.logging.markers': ''
-                properties 'forge.logging.console.level': 'debug'
-                workingDirectory project.file('run').canonicalPath
-                source sourceSets.main
-            }
-            server = {
-                property 'mixin.env.remapRefMap', 'true'
-                property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-                properties 'forge.logging.markers': ''
-                properties 'forge.logging.console.level': 'debug'
-                workingDirectory project.file('run').canonicalPath
-                source sourceSets.main
-            }
-            data = {
-                property 'mixin.env.remapRefMap', 'true'
-                property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-                workingDirectory project.file('run').canonicalPath
-                property 'forge.logging.markers', ''
-                property 'forge.logging.console.level', 'debug'
-                args '--mod', name, '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
-                source sourceSets.main
+    minecraft {
+        mappings channel: "parchment", version: "2023.09.03-1.20.1"
+//        mappings channel: "official", version: "${minecraft_version}"
+        accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
+
+        if (configureProjectRuns) {
+            runs {
+                client = {
+                    property "mixin.env.remapRefMap", "true"
+                    property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+                    properties "forge.logging.markers": ""
+                    properties "forge.logging.console.level": "debug"
+                    workingDirectory project.file("run").canonicalPath
+                    source sourceSets.main
+                }
+                server = {
+                    property "mixin.env.remapRefMap", "true"
+                    property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+                    properties "forge.logging.markers": ""
+                    properties "forge.logging.console.level": "debug"
+                    workingDirectory project.file("run").canonicalPath
+                    source sourceSets.main
+                }
+                data = {
+                    property "mixin.env.remapRefMap", "true"
+                    property "mixin.env.refMapRemappingFile", "${projectDir}/build/createSrgToMcp/output.srg"
+                    workingDirectory project.file("run").canonicalPath
+                    property "forge.logging.markers", ""
+                    property "forge.logging.console.level", "debug"
+                    args "--mod", name, "--all", "--output", file("src/generated/resources/"), "--existing", sourceSets.main.resources.srcDirs[0]
+                    source sourceSets.main
+                }
             }
         }
     }
