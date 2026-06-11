@@ -1,0 +1,70 @@
+# Gradle output and caches
+.gradle/
+build/
+out/
+
+# Standalone mod repositories checked out for the workspace aggregator
+/DeepResonance/
+/InControl/
+/InteractionWheel/
+/LostCities/
+/LostSouls/
+/McJtyLib/
+/ModXNet/
+/NEW/
+/Nice/
+/RFToolsBase/
+/RFToolsBuilder/
+/RFToolsControl/
+/RFToolsDimensions/
+/RFToolsPower/
+/RFToolsStorage/
+/RFToolsUtility/
+/Radar/
+/Restrictions/
+/SignTastic/
+/TheOneProbe/
+/Trinkets/
+
+# NeoForge/Minecraft run directories
+run/
+runs/
+logs/
+crash-reports/
+
+# Datagen cache; generated resources themselves may be committed
+src/generated/resources/.cache/
+
+# IDE metadata
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.metadata/
+*.launch
+
+# Java/build artifacts
+*.class
+*.tmp
+*.bak
+*.orig
+
+# Local machine/config files
+local.properties
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+*.swp
+*.swo
