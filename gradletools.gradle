@@ -48,14 +48,13 @@ ext.repos = {
         maven { url 'https://maven.minecraftforge.net/' } // Serene Seasons
         maven { url "https://maven.theillusivec4.top/" } // Curios
         maven { url "https://cursemaven.com" }
-    }
-}
-
-maven {
-    url "https://modmaven.dev/"
-    content {
-        includeGroup "com.github.mcjty"
-        includeGroup "mcjty.theoneprobe"
+        maven {
+            url "https://modmaven.dev/"
+            content {
+                includeGroup "com.github.mcjty"
+                includeGroup "mcjty.theoneprobe"
+            }
+        }
     }
 }
 
