@@ -1,0 +1,14 @@
+/.gradle/
+/.idea/
+/.build/
+/build/
+/run/
+/logs/
+/workspace/build/
+/workspace/run/
+/McJtyLib/.gradle/
+/McJtyLib/build/
+/McJtyLib/out/
+/Nice/.gradle/
+/Nice/build/
+/Nice/out/
