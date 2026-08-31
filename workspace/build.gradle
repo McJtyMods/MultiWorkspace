@@ -114,6 +114,9 @@ minecraft {
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
+                TheOneProbe {
+                    source project(':TheOneProbe').sourceSets.main
+                }
                 ModXNet {
                     source project(':ModXNet').sourceSets.main
                 }
@@ -197,6 +200,9 @@ minecraft {
 //                }
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
+                }
+                TheOneProbe {
+                    source project(':TheOneProbe').sourceSets.main
                 }
 //                ModBlocker {
 //                    source project(':ModBlocker').sourceSets.main
@@ -287,6 +293,9 @@ minecraft {
                 Trinkets {
                     source project(':Trinkets').sourceSets.main
                 }
+                TheOneProbe {
+                    source project(':TheOneProbe').sourceSets.main
+                }
 //                ModBlocker {
 //                    source project(':ModBlocker').sourceSets.main
 //                }
@@ -339,6 +348,7 @@ dependencies {
     workspaceProject(':RFToolsBuilder')
     workspaceProject(':RFToolsUtility')
     workspaceProject(':Trinkets')
+    workspaceProject(':TheOneProbe')
 //    workspaceProject(':ModBlocker')
     workspaceProject(':ModXNet')
     workspaceProject(':Hazardous')

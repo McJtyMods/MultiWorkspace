@@ -29,6 +29,7 @@ include 'RFToolsPower'
 include 'RFToolsUtility'
 include 'RFToolsBuilder'
 include 'Trinkets'
+include 'TheOneProbe'
 include 'ModXNet'
 include 'Hazardous'
 

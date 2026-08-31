@@ -85,7 +85,13 @@ ext.sereneseasons = {
 
 ext.top = {
     if (findProject(':TheOneProbe') != null) {
-        dependencies.implementation project(':TheOneProbe')
+        dependencies.implementation(project(':TheOneProbe')) {
+            // Every mod already has its own Forge dependency. Letting TOP's
+            // Forge dependency leak transitively also leaks its access-
+            // transformer-specific artifact, which sibling ForgeGradle
+            // repositories cannot resolve in a multi-project build.
+            transitive = false
+        }
     } else {
         dependencies.implementation fg.deobf(project.dependencies.create("mcjty.theoneprobe:theoneprobe:${top_version}") {
             transitive = false
