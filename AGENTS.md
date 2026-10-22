@@ -1,10 +1,10 @@
 # AGENTS.md
 
 ## Big picture
-- `Multi21` is a **multi-mod NeoForge 1.21.1 workspace**: root `settings.gradle` includes many standalone mod repos plus a special `workspace` aggregator module.
+- `Multi_neo` is a **multi-mod NeoForge 26.2 workspace**: root `settings.gradle` includes available nested or sibling standalone mod repos plus a special `workspace` aggregator module.
 - Treat each top-level mod folder (`McJtyLib`, `RFToolsBase`, `RFToolsUtility`, `LostCities`, etc.) as a repo that should still build standalone. The root workspace is mainly for integrated development and debugging.
-- Shared Gradle behavior lives in `gradletools.gradle`; nearly every module `build.gradle` applies that local file, or falls back to the remote copy if opened standalone.
-- `workspace/build.gradle` is the dev runtime hub: it adds every mod as both `modSource` and `implementation`, so integrated playtesting should happen there.
+- Shared Gradle behavior lives in `gradletools.gradle`; nearly every module `build.gradle` applies that local file, or falls back to the 26.2 remote copy if opened standalone. McJtyLib also accepts an ignored local copy while the workspace is unpublished.
+- `workspace/build.gradle` is the dev runtime hub: it adds every included mod as both `modSource` and `implementation`, so integrated playtesting should happen there.
 
 ## Dependency / architecture map
 - `McJtyLib` is the common foundation library (`McJtyLib/README.md`, `McJtyLib/src/main/java/mcjty/lib/...`).
@@ -34,12 +34,12 @@
 - The One Probe is both a dependency and an API surface used by other mods; avoid changes that silently break `mcjty.theoneprobe.api` consumers.
 
 ## Developer workflow
-- Preferred IDE setup comes from the root README: open the **root empty `build.gradle`** in IntelliJ, run `genIntellijRuns`, then use the generated run config for the `workspace` module.
+- Preferred IDE setup comes from the root README: open the **root `build.gradle`** in IntelliJ, run `ideSync`, then use the generated run config for the `workspace` module.
 - Command-line work should usually be run from the repo root with project-qualified tasks, for example:
   - `./gradlew :workspace:runClient`
   - `./gradlew :RFToolsUtility:build`
-  - `./gradlew :RFToolsUtility:runData`
-- Important environment note: current builds require **Java 21+ to launch Gradle, and the scripts target Java toolchain 21** (`java.toolchain.languageVersion = 21`). A root `gradlew projects` run failed under Java 8 in this workspace, so fix `JAVA_HOME` first if Gradle dies early.
-- There are very few conventional tests (`McJtyLib/src/test/java/.../TestPackets.java` is mostly commented out). Validate changes mainly through targeted module builds, datagen runs, and `:workspace` game runs.
+  - `./gradlew :RFToolsUtility:runClientData`
+- Important environment note: current builds require **Java 25 to launch Gradle, and the scripts target Java toolchain 25** (`java.toolchain.languageVersion = 25`). A root `gradlew projects` run failed under Java 8 in this workspace, so fix `JAVA_HOME` first if Gradle dies early.
+- McJtyLib has JUnit regression checks for transactions, NBT conversion, and model JSON. Run `:McJtyLib:test` or `:McJtyLib:portingRegression`, plus targeted builds, datagen, and `:workspace` game runs.
 - Publishing tasks are conditional: `modrinth` needs `modrinth_token`, `curseforge` needs `curseforge_key`, and some modules publish to a local Maven repo when `local_maven` is set.
 

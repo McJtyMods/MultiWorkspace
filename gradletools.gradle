@@ -1,22 +1,23 @@
 project.ext.set("mod_group_id", 'com.github.mcjty')
 project.ext.set("mod_authors", 'McJty')
-project.ext.set("minecraft_version", '1.21.1')
-project.ext.set("minecraft_version_range", '[1.21,1.22)')
-project.ext.set("parchment_version", '2024.07.28')
-project.ext.set("parchment_minecraft_version", '1.21')
-project.ext.set("neo_version", '21.1.215')
-project.ext.set("neo_version_range", '[21.1,)')
+project.ext.set("minecraft_version", '26.2')
+project.ext.set("minecraft_version_range", '[26.2]')
+project.ext.set("neo_version", '26.2.0.75')
+project.ext.set("neo_version_range", '[26.2.0.75,)')
 project.ext.set("loader_version_range", '[4,)')
-project.ext.set("jei_version", '19.25.0.325')
-project.ext.set("patchouli_version", '1.21.1-92-NEOFORGE')
-project.ext.set("top_version", '1.21_neo-12.0.3-5')
-project.ext.set("mcjtylib_version", '1.21-9.0.21.20')
-project.ext.set("rftoolsbase_version", '1.21-6.0.11-11')
-project.ext.set("curios_version", '9.5.1+1.21.1')
-project.ext.set("lostcities_version", '1.21-8.3.5-7')
-project.ext.set("bookshelf_version", '1.20.1:20.0.2')
-project.ext.set("gamestages_version", '1.20.1:15.0.1')
-project.ext.set("sereneseasons_version", '1.21-10.0.0.2')
+project.ext.set("jei_version", '30.30.0.204')
+project.ext.set("top_version", '26.2_neo-15.0.1-2')
+project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.2-10.0.0')
+project.ext.set("sereneseasons_version", '26.2-26.1.2.0.6')
+// These integrations have no verified 26.2 release. Supply a version explicitly
+// when one becomes available; never resolve their old 1.21/Forge artifacts.
+ext.requireDependencyVersion = { name ->
+    def value = project.findProperty(name)
+    if (!value) {
+        throw new GradleException("No Minecraft 26.2 release configured for ${name}; set -P${name}=<compatible version>")
+    }
+    value
+}
 
 ext.getChangelogText =  {
     def changelogFile = file('changelog.txt')
@@ -51,23 +52,13 @@ ext.getChangelogText =  {
 ext.repos = {
     repositories {
         mavenLocal()
+        mavenCentral()
         maven { url "https://maven.blamejared.com" }    // Patchouli, bookshelf, gamestages, JEI
         //maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
         maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
         maven { url 'https://maven.minecraftforge.net/' } // Serene Seasons
         maven { url "https://maven.theillusivec4.top/" } // Curios
         maven { url "https://cursemaven.com" }
-    }
-}
-
-ext.parch = {
-    dependencies {
-        subsystems {
-            parchment {
-                minecraftVersion = ${parchment_minecraft_version}
-                mappingsVersion = ${parchment_version}
-            }
-        }
     }
 }
 
@@ -82,12 +73,12 @@ ext.jei = {
 }
 
 ext.patchouli = {
-    dependencies.implementation "vazkii.patchouli:Patchouli:${patchouli_version}"
+    dependencies.implementation "vazkii.patchouli:Patchouli:${requireDependencyVersion('patchouli_version')}"
 }
 
 ext.gamestages = {
-    dependencies.implementation "net.darkhax.bookshelf:Bookshelf-Forge-${bookshelf_version}"
-    dependencies.implementation "net.darkhax.gamestages:GameStages-Forge-${gamestages_version}"
+    dependencies.implementation "net.darkhax.bookshelf:Bookshelf-NeoForge-${minecraft_version}:${requireDependencyVersion('bookshelf_version')}"
+    dependencies.implementation "net.darkhax.gamestages:GameStages-NeoForge-${minecraft_version}:${requireDependencyVersion('gamestages_version')}"
 }
 
 ext.sereneseasons = {
@@ -114,20 +105,20 @@ ext.rftoolsbase = {
     if (findProject(':RFToolsBase') != null) {
         dependencies.implementation project(':RFToolsBase')
     } else {
-        dependencies.implementation "com.github.mcjty:rftoolsbase:${rftoolsbase_version}"
+        dependencies.implementation "com.github.mcjty:rftoolsbase:${requireDependencyVersion('rftoolsbase_version')}"
     }
 }
 
 ext.curios = {
-    dependencies.runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
-    dependencies.compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    dependencies.runtimeOnly "top.theillusivec4.curios:curios-neoforge:${requireDependencyVersion('curios_version')}"
+    dependencies.compileOnly "top.theillusivec4.curios:curios-neoforge:${requireDependencyVersion('curios_version')}:api"
 }
 
 ext.lostcities = {
     if (findProject(':LostCities') != null) {
         dependencies.implementation project(':LostCities')
     } else {
-        dependencies.implementation "com.github.mcjty:lostcities:${lostcities_version}"
+        dependencies.implementation "com.github.mcjty:lostcities:${requireDependencyVersion('lostcities_version')}"
     }
 }
 
@@ -196,7 +187,7 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
         gameVersions.set(allVersions)
         loaders.set(['neoforge'])
         curseEnvironment.set('both')
-        javaVersions.add(JavaVersion.VERSION_21)
+        javaVersions.add(JavaVersion.VERSION_25)
         artifact.set(jar)
 
         curseDepends {
@@ -227,19 +218,19 @@ ext.runs = {
         }
 
         client {
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             argument '--nogui'
         }
 
         gameTestServer {
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
-        data {
+        clientData {
             arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
     }
@@ -263,25 +254,14 @@ ext.jars = {
 }
 
 ext.publish = {
-    // Example configuration to allow publishing using the maven-publish task
-    // we define a custom artifact that is sourced from the reobfJar output task
-    // and then declare that to be published
-    // Note you'll need to add a repository here
-    def reobfFile = file("$buildDir/reobfJar/output.jar")
-    def reobfArtifact = artifacts.add('default', reobfFile) {
-        type 'jar'
-        builtBy 'reobfJar'
-    }
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                artifact reobfArtifact
+                from components.java
             }
         }
         repositories {
-            maven {
-                url "file:///${project.projectDir}/mcmodsrepo"
-            }
+            maven { url = layout.projectDirectory.dir('mcmodsrepo') }
         }
     }
 }

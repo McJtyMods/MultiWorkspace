@@ -8,36 +8,26 @@ pluginManagement {
 }
 
 plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
-rootProject.name = '1.21_neo'
-include 'DeepResonance'
-include 'LostCities'
-include 'LostSouls'
-//include 'LostRuins'
-//include 'LostEdit'
-//include 'LostWorlds'
-//include 'Wastify'
-include 'McJtyLib'
-include 'NEW'
-include 'Nice'
-include 'InteractionWheel'
-include 'Radar'
-include 'Restrictions'
-include 'SignTastic'
-include 'InControl'
-include 'TheOneProbe'
-include 'RFToolsStorage'
-include 'RFToolsBase'
-include 'RFToolsControl'
-include 'RFToolsDimensions'
-include 'RFToolsPower'
-include 'RFToolsUtility'
-include 'RFToolsBuilder'
-include 'Trinkets'
-include 'ModXNet'
+rootProject.name = '26.2_neo'
 
+// Include available checkouts. Both nested and sibling *_neo layouts work.
+def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
+            'Nice', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
+            'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
+            'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',
+            'Trinkets', 'ModXNet', 'NEW']
+mods.each { mod ->
+    def configured = providers.gradleProperty("mod.${mod}").orNull
+    def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_neo")]
+    def checkout = candidates.find {
+        new File(it, 'build.gradle').isFile()
+    }
+    if (checkout != null) {
+        include mod
+        project(":${mod}").projectDir = checkout
+    }
+}
 include 'workspace'
-include 'workspace:src:main:javca'
-findProject(':workspace:src:main:javca')?.name = 'javca'

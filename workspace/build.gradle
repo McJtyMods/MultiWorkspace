@@ -2,136 +2,32 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'idea'
-    id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.1.4'
+    id 'net.neoforged.gradle.userdev'
 }
 
-if (project.file('../gradletools.gradle').exists()) {
-    apply from: '../gradletools.gradle'
-} else {
-    apply from: 'https://raw.githubusercontent.com/McJtyMods/MultiWorkspace/1.21_neo/gradletools.gradle'
-}
-
+apply from: rootProject.file('gradletools.gradle')
 repos()
-
 version = '1.0'
-group = 'com.yourname.modid'
-archivesBaseName = 'modid'
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+group = 'com.github.mcjty'
+base.archivesName = 'workspace'
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
-minecraft {
-    accessTransformers {
-        file('src/main/resources/META-INF/accesstransformer.cfg')
+// The aggregator contains no mod of its own; load every included mod's sources.
+def mods = rootProject.subprojects.findAll { it != project }
+mods.each { evaluationDependsOn(it.path) }
+
+runs {
+    configureEach {
+        workingDirectory = project.file('run')
+        mods.each { mod -> modSource mod.sourceSets.main }
     }
+    client { }
+    server { argument '--nogui' }
 }
-
-    runs {
-        configureEach {
-            workingDirectory project.file('run')
-            systemProperty 'mixin.env.remapRefMap', 'true'
-            systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-
-                    modSource project(':McJtyLib').sourceSets.main
-                    modSource project(':DeepResonance').sourceSets.main
-                    modSource project(':NEW').sourceSets.main
-                    modSource project(':Nice').sourceSets.main
-                    modSource project(':InteractionWheel').sourceSets.main
-                    modSource project(':Restrictions').sourceSets.main
-                    modSource project(':SignTastic').sourceSets.main
-                    modSource project(':InControl').sourceSets.main
-                    modSource project(':RFToolsStorage').sourceSets.main
-                    modSource project(':RFToolsBase').sourceSets.main
-                    modSource project(':RFToolsControl').sourceSets.main
-                    modSource project(':RFToolsDimensions').sourceSets.main
-                    modSource project(':RFToolsPower').sourceSets.main
-                    modSource project(':RFToolsBuilder').sourceSets.main
-                    modSource project(':RFToolsUtility').sourceSets.main
-                    modSource project(':LostCities').sourceSets.main
-                    modSource project(':Radar').sourceSets.main
-                    modSource project(':TheOneProbe').sourceSets.main
-                    modSource project(':LostSouls').sourceSets.main
-                    //modSource project(':LostRuins').sourceSets.main
-                    //modSource project(':LostEdit').sourceSets.main
-                    //modSource project(':LostWorlds').sourceSets.main
-//                    modSource project(':Wastify').sourceSets.main
-                    modSource project(':Trinkets').sourceSets.main
-                    modSource project(':ModXNet').sourceSets.main
-        }
-
-
-        client {
-        }
-
-        server {
-        }
-
-        data {
-            arguments.addAll '--all', '--output', file('src/generated/resources/').absolutePath, '--existing', sourceSets.main.resources.srcDirs[0].absolutePath
-        }
-    }
-
-jars()
 
 dependencies {
     mc()
     jei()
     top()
-    //curios()
-    //patchouli()
-
-    implementation project(':McJtyLib')
-    implementation project(':DeepResonance')
-    implementation project(':LostCities')
-    implementation project(':Radar')
-    implementation project(':LostSouls')
-    //implementation project(':LostRuins')
-    //implementation project(':LostEdit')
-    //implementation project(':LostWorlds')
-//    implementation project(':Wastify')
-    implementation project(':NEW')
-    implementation project(':Nice')
-    implementation project(':InteractionWheel')
-    implementation project(':Restrictions')
-    implementation project(':SignTastic')
-    implementation project(':InControl')
-    implementation project(':TheOneProbe')
-    implementation project(':RFToolsStorage')
-    implementation project(':RFToolsBase')
-    implementation project(':RFToolsControl')
-    implementation project(':RFToolsDimensions')
-    implementation project(':RFToolsPower')
-    implementation project(':RFToolsBuilder')
-    implementation project(':RFToolsUtility')
-    implementation project(':Trinkets')
-    implementation project(':ModXNet')
-}
-
-// Example configuration to allow publishing using the maven-publish task
-// we define a custom artifact that is sourced from the reobfJar output task
-// and then declare that to be published
-// Note you'll need to add a repository here
-def reobfFile = file("$buildDir/reobfJar/output.jar")
-def reobfArtifact = artifacts.add('default', reobfFile) {
-    type 'jar'
-    builtBy 'reobfJar'
-}
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact reobfArtifact
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
-    }
-}
-
-
-subsystems {
-    parchment {
-        minecraftVersion = "${parchment_minecraft_version}"
-        mappingsVersion = "${parchment_version}"
-    }
+    mods.each { mod -> implementation project(mod.path) }
 }
