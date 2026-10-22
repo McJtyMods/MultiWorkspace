@@ -7,8 +7,8 @@ project.ext.set("fabric_version", '0.155.2+26.2')
 project.ext.set("forge_config_api_port_version", '26.2.1')
 project.ext.set("jei_version", '30.35.0.223')
 // TOP Fabric Jenkins build 1: https://jenkins.k-4u.nl/view/McJty/job/The%20One%20Probe%2026.2_fabric/1/
-project.ext.set("top_version", project.findProperty("top_version") ?: '26.2-15.0.1-fabric-1')
-project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.2-10.0.0-fabric')
+project.ext.set("top_version", '26.2-15.0.1-fabric-1')
+project.ext.set("mcjtylib_version", '26.2-10.0.0-fabric.3')
 // These integrations have no verified 26.2 release. Supply a version explicitly
 // when one becomes available; never resolve their old 1.21/Forge artifacts.
 ext.requireDependencyVersion = { name ->
