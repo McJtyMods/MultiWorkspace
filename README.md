@@ -37,14 +37,14 @@ Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the f
 | `mc()` | Minecraft 26.2, Fabric Loader 0.19.3, Fabric API 0.155.2+26.2 |
 | `config()` | Forge Config API Port 26.2.1 (Fabric artifact) |
 | `energy()` | Included Team Reborn Energy API 5.0.0 |
-| `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric` |
+| `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric-1` |
 | `jei()` | JEI common API and Fabric runtime 30.35.0.223 |
 | `mcjtylib()` | Source project when included; otherwise `com.github.mcjty:mcjtylib-fabric:26.2-10.0.0-fabric` after publication |
 | `rftoolsbase()`, `lostcities()` | Source project, otherwise an explicit compatible version property |
 | `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit version properties; no old NeoForge release fallback |
 | `curios()` | Rejected because the Curios API used by the NeoForge workspace is not a Fabric API |
 
-The local TOP 26.2 Fabric build supplies the API used by this port; common initialization and TOP plugin registration were also checked together in Fabric. Remote Maven availability for that TOP coordinate still needs verification outside the restricted environment; include the TOP source checkout when developing locally. [JEI's maintainer confirms Fabric 26.2 release 30.35.0.223](https://github.com/mezz/JustEnoughItems/issues/4491), including a datagen crash fix. The cached JEI common API 30.30.0.204 was used for direct source compilation; dependency resolution for the pinned release still needs a network-enabled Gradle run.
+The local TOP 26.2 Fabric build supplies the API used by this port; common initialization and TOP plugin registration were also checked together in Fabric. The standalone dependency pins [Jenkins Fabric build 1](https://jenkins.k-4u.nl/view/McJty/job/The%20One%20Probe%2026.2_fabric/1/artifact/build/libs/theoneprobe-26.2-15.0.1-fabric-1.jar). Its Maven version includes the Jenkins build-number suffix `-1`; the unsuffixed local build version is not the CI artifact version. The version can be overridden with `-Ptop_version=<published version>`. [JEI's maintainer confirms Fabric 26.2 release 30.35.0.223](https://github.com/mezz/JustEnoughItems/issues/4491), including a datagen crash fix. The cached JEI common API 30.30.0.204 was used for direct source compilation; dependency resolution for the pinned release still needs a network-enabled Gradle run.
 
 `gamestages()` requires `bookshelf_version` and `gamestages_version`. Other optional integrations require the correspondingly named version property.
 
