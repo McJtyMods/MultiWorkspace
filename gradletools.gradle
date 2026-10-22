@@ -1,14 +1,13 @@
 project.ext.set("mod_group_id", 'com.github.mcjty')
 project.ext.set("mod_authors", 'McJty')
 project.ext.set("minecraft_version", '26.2')
-project.ext.set("minecraft_version_range", '[26.2]')
-project.ext.set("neo_version", '26.2.0.75')
-project.ext.set("neo_version_range", '[26.2.0.75,)')
-project.ext.set("loader_version_range", '[4,)')
-project.ext.set("jei_version", '30.30.0.204')
-project.ext.set("top_version", '26.2_neo-15.0.1-2')
-project.ext.set("mcjtylib_version", '26.2-10.0.0.3')
-project.ext.set("sereneseasons_version", '26.2-26.1.2.0.6')
+project.ext.set("minecraft_version_range", '~26.2')
+project.ext.set("fabric_loader_version", '0.19.3')
+project.ext.set("fabric_version", '0.155.2+26.2')
+project.ext.set("forge_config_api_port_version", '26.2.1')
+project.ext.set("jei_version", '30.35.0.223')
+project.ext.set("top_version", project.findProperty("top_version") ?: '26.2-15.0.1-fabric')
+project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.2-10.0.0-fabric')
 // These integrations have no verified 26.2 release. Supply a version explicitly
 // when one becomes available; never resolve their old 1.21/Forge artifacts.
 ext.requireDependencyVersion = { name ->
@@ -56,33 +55,41 @@ ext.repos = {
         maven { url "https://maven.blamejared.com" }    // Patchouli, bookshelf, gamestages, JEI
         //maven { url "https://dvs1.progwml6.com/files/maven" } // JEI
         maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
-        maven { url 'https://maven.minecraftforge.net/' } // Serene Seasons
-        maven { url "https://maven.theillusivec4.top/" } // Curios
+        maven { url 'https://maven.fabricmc.net/' }
+        maven { url 'https://raw.githubusercontent.com/Fuzss/modresources/main/maven/' }
         maven { url "https://cursemaven.com" }
     }
 }
 
 ext.mc = {
-    dependencies.implementation "net.neoforged:neoforge:${neo_version}"
+    dependencies.minecraft "com.mojang:minecraft:${minecraft_version}"
+    dependencies.implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    dependencies.implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    dependencies.compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+
 }
 
+ext.config = {
+    dependencies.implementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
+}
+ext.energy = {
+    dependencies.add('include', dependencies.implementation('teamreborn:energy:5.0.0'))
+}
 ext.jei = {
     dependencies.compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    dependencies.compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
-    dependencies.runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    dependencies.runtimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
 }
-
 ext.patchouli = {
     dependencies.implementation "vazkii.patchouli:Patchouli:${requireDependencyVersion('patchouli_version')}"
 }
 
 ext.gamestages = {
-    dependencies.implementation "net.darkhax.bookshelf:Bookshelf-NeoForge-${minecraft_version}:${requireDependencyVersion('bookshelf_version')}"
-    dependencies.implementation "net.darkhax.gamestages:GameStages-NeoForge-${minecraft_version}:${requireDependencyVersion('gamestages_version')}"
+    dependencies.implementation "net.darkhax.bookshelf:Bookshelf-Fabric-${minecraft_version}:${requireDependencyVersion('bookshelf_version')}"
+    dependencies.implementation "net.darkhax.gamestages:GameStages-Fabric-${minecraft_version}:${requireDependencyVersion('gamestages_version')}"
 }
 
 ext.sereneseasons = {
-    dependencies.compileOnly "com.github.glitchfiend:SereneSeasons-neoforge:${sereneseasons_version}"
+    dependencies.compileOnly "com.github.glitchfiend:SereneSeasons-fabric:${requireDependencyVersion('sereneseasons_version')}"
 }
 
 ext.top = {
@@ -97,7 +104,7 @@ ext.mcjtylib = {
     if (findProject(':McJtyLib') != null) {
         dependencies.implementation project(':McJtyLib')
     } else {
-        dependencies.implementation "com.github.mcjty:mcjtylib:${mcjtylib_version}"
+        dependencies.implementation "com.github.mcjty:mcjtylib-fabric:${mcjtylib_version}"
     }
 }
 
@@ -110,8 +117,8 @@ ext.rftoolsbase = {
 }
 
 ext.curios = {
-    dependencies.runtimeOnly "top.theillusivec4.curios:curios-neoforge:${requireDependencyVersion('curios_version')}"
-    dependencies.compileOnly "top.theillusivec4.curios:curios-neoforge:${requireDependencyVersion('curios_version')}:api"
+    throw new GradleException('Curios is a NeoForge API; use an explicit Fabric accessory integration')
+
 }
 
 ext.lostcities = {
@@ -130,7 +137,7 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
     def curseKey = (project.findProperty('curseforge_key') ?: System.getenv('CURSEFORGE_TOKEN') ?: System.getenv('CURSE_TOKEN') ?: '').toString()
     def modrinthKey = (project.findProperty('modrinth_token') ?: System.getenv('MODRINTH_TOKEN') ?: '').toString()
     def allVersions = ([project.minecraft_version] + versions).collect { it.toString() }.unique()
-    def publishArtifactTask = tasks.findByName('reobfJar') ?: tasks.findByName('jar')
+    def publishArtifactTask = tasks.findByName('jar')
     def modrinthProjectIds = [
             'curios'          : 'vvuO3ImH',
             'game-stages'     : 'iAlZk5aS',
@@ -185,7 +192,7 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
         projectVersion.set(project.version.toString())
         displayName.set("${mod_name} - ${project.version}")
         gameVersions.set(allVersions)
-        loaders.set(['neoforge'])
+        loaders.set(['fabric'])
         curseEnvironment.set('both')
         javaVersions.add(JavaVersion.VERSION_25)
         artifact.set(jar)
@@ -201,37 +208,23 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
     }
 }
 
-ext.at = {
-    minecraft {
-        accessTransformers {
-            file('src/main/resources/META-INF/accesstransformer.cfg')
-        }
-    }
+ext.access = {
+    def accessFile = file("src/main/resources/${project.mod_id}.accesswidener")
+    if (accessFile.isFile()) loom { accessWidenerPath = accessFile }
+
 }
-
 ext.runs = {
-    runs {
-        configureEach {
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
-            systemProperty 'forge.logging.console.level', 'debug'
-            modSource project.sourceSets.main
-        }
-
-        client {
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-
-        server {
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            argument '--nogui'
-        }
-
-        gameTestServer {
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        }
-
-        clientData {
-            arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+    loom {
+        runs {
+            client { client(); runDir 'runs/client' }
+            server { server(); programArg '--nogui'; runDir 'runs/server' }
+            datagen {
+                server()
+                vmArg '-Dfabric-api.datagen'
+                vmArg '-Dfabric-api.datagen.output-dir=' + file('src/generated/resources').absolutePath
+                vmArg '-Dfabric-api.datagen.modid=' + project.mod_id
+                runDir 'build/datagen'
+            }
         }
     }
 }

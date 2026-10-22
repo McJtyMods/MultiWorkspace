@@ -1,33 +1,31 @@
 plugins {
     id 'java-library'
-    id 'eclipse'
-    id 'idea'
-    id 'net.neoforged.gradle.userdev'
+    id 'net.fabricmc.fabric-loom'
 }
-
 apply from: rootProject.file('gradletools.gradle')
 repos()
 version = '1.0'
 group = 'com.github.mcjty'
-base.archivesName = 'workspace'
+base.archivesName = 'workspace-fabric'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
-
-// The aggregator contains no mod of its own; load every included mod's sources.
-def mods = rootProject.subprojects.findAll { it != project }
-mods.each { evaluationDependsOn(it.path) }
-
-runs {
-    configureEach {
-        workingDirectory = project.file('run')
-        mods.each { mod -> modSource mod.sourceSets.main }
-    }
-    client { }
-    server { argument '--nogui' }
-}
-
+def includedMods = rootProject.subprojects.findAll { it != project }
+includedMods.each { evaluationDependsOn(it.path) }
 dependencies {
     mc()
     jei()
     top()
-    mods.each { mod -> implementation project(mod.path) }
+    includedMods.each { implementation project(it.path) }
+}
+loom {
+    mods {
+        includedMods.each { mod ->
+            register(mod.findProperty('mod_id') ?: mod.name.toLowerCase()) {
+                sourceSet mod.sourceSets.main
+            }
+        }
+    }
+    runs {
+        client { client(); runDir 'runs/client' }
+        server { server(); programArg '--nogui'; runDir 'runs/server' }
+    }
 }

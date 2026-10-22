@@ -3,7 +3,7 @@ pluginManagement {
         mavenLocal()
         gradlePluginPortal()
         maven { url = 'https://maven.firstdark.dev/releases' }
-        maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = 'https://maven.fabricmc.net' }
     }
 }
 
@@ -11,9 +11,9 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
-rootProject.name = '26.2_neo'
+rootProject.name = '26.2_fabric'
 
-// Include available checkouts. Both nested and sibling *_neo layouts work.
+// Include available checkouts. Both nested and sibling *_fabric layouts work.
 def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
             'Nice', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
             'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
@@ -21,7 +21,7 @@ def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
             'Trinkets', 'ModXNet', 'NEW']
 mods.each { mod ->
     def configured = providers.gradleProperty("mod.${mod}").orNull
-    def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_neo")]
+    def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_fabric")]
     def checkout = candidates.find {
         new File(it, 'build.gradle').isFile()
     }

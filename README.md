@@ -1,51 +1,55 @@
-# MultiWorkspace for Minecraft 26.2 / NeoForge
+# MultiWorkSpace for Minecraft 26.2 / Fabric
 
-Use Java 25. The wrapper runs Gradle 9.2.1 with NeoGradle 7.1.38.
+Use Java 25. The wrapper uses Gradle 9.5.1 and the build uses Fabric Loom 1.17.17.
 
-Open this directory's `build.gradle` in IntelliJ. Available mods are included automatically from either nested checkouts (`Multi_neo/McJtyLib`) or sibling checkouts (`../McJtyLib_neo`). Missing mods are skipped. Logical project names stay `:McJtyLib`, `:TheOneProbe`, etc., so shared dependency helpers resolve source projects consistently.
+Open the root `build.gradle` in IntelliJ. `settings.gradle` includes available nested checkouts such as `Multi_fabric/McJtyLib`, or sibling checkouts such as `../McJtyLib_fabric`. Missing mods are skipped. Logical names remain `:McJtyLib`, `:TheOneProbe`, etc. Only include Fabric ports in this workspace.
 
 For checkouts elsewhere, pass their location as a Gradle property:
 
 ```sh
 ./gradlew projects
-./gradlew :workspace:runClient -Pmod.TheOneProbe=/path/to/Top26_2
+./gradlew :workspace:runClient -Pmod.TheOneProbe=/data/Projects/Top26_2_fabric
 ./gradlew :workspace:runServer
 ./gradlew :McJtyLib:build
-./gradlew :McJtyLib:runClientData
+./gradlew :McJtyLib:runDatagen
+./gradlew -PtransferTests :McJtyLib:runTransferTest
 ```
 
-The `workspace` module adds every included mod as both `modSource` and `implementation`. It supplies client and dedicated server runs without an example mod. Individual repositories retain standalone builds. Additional mods can be added to the list in `settings.gradle`; the runtime aggregator follows that list automatically.
+The `workspace` module declares every included mod as a Loom mod source set and an implementation dependency. It provides client and dedicated server runs without a dummy mod. Individual repositories retain standalone builds. Additional mods can be added to `settings.gradle`; the runtime aggregator follows that list.
 
-## Shared build script
+## Shared script
 
-`gradletools.gradle` owns Minecraft/NeoForge versions, repositories, dependency helpers, development runs, jars, and publishing. A module should apply the root workspace script, then an optional standalone local copy, then the remote `26.2_neo` script. McJtyLib implements this order.
+`gradletools.gradle` centralizes versions, repositories, dependencies, development runs, access wideners, jars and publishing. Modules apply the workspace root script, then an optional standalone local copy, then the remote `26.2_fabric` script. The `access()` helper discovers `src/main/resources/<mod_id>.accesswidener` when present.
 
-While this branch is unpublished, copy the script into a standalone McJtyLib checkout:
+Until this branch is published, copy the script into the standalone library checkout:
 
 ```sh
-cp ../Multi_neo/gradletools.gradle gradletools.gradle
+# Run from McJtyLib_fabric
+cp ../Multi_fabric/gradletools.gradle gradletools.gradle
 ```
 
-Run that command inside `McJtyLib_neo`. Keep the copy byte-for-byte identical and exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`. The copy is a local build aid and must not be committed or pushed.
+Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the files identical and do not commit or push the copy.
 
 ## Dependencies
 
-The configured versions below are actual 26.2 artifacts verified in the local Maven/Gradle caches; they are pinned versions, not claims about the latest release.
-
-| Helper | 26.2 configuration |
+| Helper | Fabric 26.2 configuration |
 | --- | --- |
-| `mc()` | NeoForge `26.2.0.75` |
-| `top()` | `mcjty.theoneprobe:theoneprobe:26.2_neo-15.0.1-2` |
-| `jei()` | JEI common/NeoForge APIs and NeoForge runtime `30.30.0.204` |
-| `sereneseasons()` | `26.2-26.1.2.0.6` |
-| `mcjtylib()` | Source project when included; standalone version `26.2-10.0.0` once published |
-| `rftoolsbase()`, `lostcities()` | Source project, otherwise require an explicit compatible version |
-| `patchouli()`, `curios()`, `gamestages()` | No verified 26.2 release configured; requesting one fails with an explanation |
+| `mc()` | Minecraft 26.2, Fabric Loader 0.19.3, Fabric API 0.155.2+26.2 |
+| `config()` | Forge Config API Port 26.2.1 (Fabric artifact) |
+| `energy()` | Included Team Reborn Energy API 5.0.0 |
+| `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric` |
+| `jei()` | JEI common API and Fabric runtime 30.35.0.223 |
+| `mcjtylib()` | Source project when included; otherwise `com.github.mcjty:mcjtylib-fabric:26.2-10.0.0-fabric` after publication |
+| `rftoolsbase()`, `lostcities()` | Source project, otherwise an explicit compatible version property |
+| `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit version properties; no old NeoForge release fallback |
+| `curios()` | Rejected because the Curios API used by the NeoForge workspace is not a Fabric API |
 
-Published artifacts can be checked on [McJty's Maven](https://maven.k-4u.nl/mcjty/theoneprobe/theoneprobe/), [JEI's Maven](https://maven.blamejared.com/mezz/jei/), and [Serene Seasons' Maven](https://maven.minecraftforge.net/com/github/glitchfiend/SereneSeasons-neoforge/). [Patchouli's releases](https://github.com/VazkiiMods/Patchouli/releases) and [Curios' port PRs](https://github.com/TheIllusiveC4/Curios/pulls) do not establish a compatible 26.2 release. Old Forge/1.21 artifacts are never automatic fallbacks.
+The local TOP 26.2 Fabric build supplies the API used by this port; common initialization and TOP plugin registration were also checked together in Fabric. Remote Maven availability for that TOP coordinate still needs verification outside the restricted environment; include the TOP source checkout when developing locally. [JEI's maintainer confirms Fabric 26.2 release 30.35.0.223](https://github.com/mezz/JustEnoughItems/issues/4491), including a datagen crash fix. The cached JEI common API 30.30.0.204 was used for direct source compilation; dependency resolution for the pinned release still needs a network-enabled Gradle run.
 
-When another dependency becomes available, set the named version property explicitly or update this script after verifying its coordinates and API. `gamestages()` requires both `bookshelf_version` and `gamestages_version`.
+`gamestages()` requires `bookshelf_version` and `gamestages_version`. Other optional integrations require the correspondingly named version property.
 
 ## Validation
 
-Run `./gradlew :McJtyLib:build :workspace:classes` to check the library, regression checks, and aggregator. Game testing should use `:workspace:runClient` and `:workspace:runServer`. Datagen uses `runClientData` on 26.2.
+Run `./gradlew :McJtyLib:build :workspace:classes`, then use `:workspace:runClient` and `:workspace:runServer` for game testing. Fabric datagen uses `runDatagen`; mods must supply their own `fabric-datagen` entrypoint.
+
+During this port, direct Java compilation against cached Fabric 26.2 artifacts, four JUnit tests, native Fabric initialization and transfer checks, client class linking, and shared Gradle syntax/dependency checks passed. The sandbox's read-only Gradle cache prevented a complete Gradle build. Visual client testing, full workspace launches and a network-enabled dependency resolution remain necessary.
