@@ -11,7 +11,7 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
-rootProject.name = '26.2_neo'
+rootProject.name = '26.3_neo'
 
 // Include available checkouts. Both nested and sibling *_neo layouts work.
 def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',

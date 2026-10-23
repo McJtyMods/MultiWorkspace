@@ -1,20 +1,20 @@
 project.ext.set("mod_group_id", 'com.github.mcjty')
 project.ext.set("mod_authors", 'McJty')
-project.ext.set("minecraft_version", '26.2')
-project.ext.set("minecraft_version_range", '[26.2]')
-project.ext.set("neo_version", '26.2.0.75')
-project.ext.set("neo_version_range", '[26.2.0.75,)')
+project.ext.set("minecraft_version", '26.3')
+project.ext.set("minecraft_version_range", '[26.3]')
+project.ext.set("neo_version", '26.3.0.83')
+project.ext.set("neo_version_range", '[26.3.0.83,)')
 project.ext.set("loader_version_range", '[4,)')
-project.ext.set("jei_version", '30.30.0.204')
-project.ext.set("top_version", '26.2_neo-15.0.1-2')
-project.ext.set("mcjtylib_version", '26.2-10.0.0.3')
-project.ext.set("sereneseasons_version", '26.2-26.1.2.0.6')
-// These integrations have no verified 26.2 release. Supply a version explicitly
+project.ext.set("jei_version", '31.12.0.65')
+project.ext.set("top_version", '26.3_neo-16.0.0')
+project.ext.set("mcjtylib_version", '26.3-11.0.0')
+project.ext.set("sereneseasons_version", '26.3-26.1.2.0.7')
+// These integrations have no verified 26.3 release. Supply a version explicitly
 // when one becomes available; never resolve their old 1.21/Forge artifacts.
 ext.requireDependencyVersion = { name ->
     def value = project.findProperty(name)
     if (!value) {
-        throw new GradleException("No Minecraft 26.2 release configured for ${name}; set -P${name}=<compatible version>")
+        throw new GradleException("No Minecraft 26.3 release configured for ${name}; set -P${name}=<compatible version>")
     }
     value
 }
@@ -227,10 +227,15 @@ ext.runs = {
         }
 
         gameTestServer {
+            systemProperty 'neoforge.enableGameTest', 'true'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         clientData {
+            arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        serverData {
             arguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
     }
