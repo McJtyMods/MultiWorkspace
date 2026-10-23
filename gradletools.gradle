@@ -6,7 +6,8 @@ project.ext.set("neo_version", '26.3.0.83')
 project.ext.set("neo_version_range", '[26.3.0.83,)')
 project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '31.12.0.65')
-project.ext.set("top_version", '26.3_neo-16.0.0')
+// Maven build suffix only; keep TOP's mod dependency version unchanged.
+project.ext.set("top_version", '26.3_neo-16.0.0-1')
 project.ext.set("mcjtylib_version", '26.3-11.0.0')
 project.ext.set("sereneseasons_version", '26.3-26.1.2.0.7')
 // These integrations have no verified 26.3 release. Supply a version explicitly

@@ -24,7 +24,7 @@ The `workspace` module adds every included mod as both `modSource` and `implemen
 | Helper | 26.3 configuration |
 | --- | --- |
 | `mc()` | NeoForge `26.3.0.83` |
-| `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.3_neo-16.0.0` |
+| `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.3_neo-16.0.0-1` |
 | `jei()` | 26.3 common/NeoForge APIs and NeoForge runtime `31.12.0.65` |
 | `sereneseasons()` | `26.3-26.1.2.0.7` |
 | `mcjtylib()` | Source project when included; otherwise `26.3-11.0.0` once published |
