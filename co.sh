@@ -1,131 +1,41 @@
-git clone https://github.com/McJtyMods/DeepResonance DeepResonance
-pushd DeepResonance
-git checkout 26.2_fabric
-popd
+#!/usr/bin/env bash
+set -euo pipefail
 
-git clone https://github.com/McJtyMods/FancyTrinkets Trinkets
-pushd Trinkets
-git checkout 26.2_fabric
-popd
+branch=26.3_fabric
+repos=(
+    "DeepResonance=https://github.com/McJtyMods/DeepResonance"
+    "Trinkets=https://github.com/McJtyMods/FancyTrinkets"
+    "LostCities=https://github.com/McJtyMods/LostCities"
+    "McJtyLib=https://github.com/McJtyMods/McJtyLib"
+    "ModXNet=https://github.com/McJtyMods/XNet"
+    "NEW=https://github.com/romelo333/notenoughwands1.8.8"
+    "Nice=https://github.com/McJtyMods/Nice"
+    "Restrictions=https://github.com/McJtyMods/Restrictions"
+    "RFToolsBase=https://github.com/McJtyMods/RFToolsBase"
+    "RFToolsBuilder=https://github.com/McJtyMods/RFToolsBuilder"
+    "RFToolsControl=https://github.com/McJtyMods/RFToolsControl"
+    "RFToolsDimensions=https://github.com/McJtyMods/RFToolsDimensions"
+    "RFToolsPower=https://github.com/McJtyMods/RFToolsPower"
+    "RFToolsStorage=https://github.com/McJtyMods/RFToolsStorage"
+    "RFToolsUtility=https://github.com/McJtyMods/RFToolsUtility"
+    "SignTastic=https://github.com/McJtyMods/SignTastic"
+    "InControl=https://github.com/McJtyMods/InControl"
+    "LostSouls=https://github.com/McJtyMods/LostSouls"
+    "Radar=https://github.com/McJtyMods/LostRadar"
+    "InteractionWheel=https://github.com/McJtyMods/InteractionWheel"
+    "TheOneProbe=https://github.com/McJtyMods/TheOneProbe"
+)
 
-git clone https://github.com/McJtyMods/LostCities LostCities
-pushd LostCities
-git checkout 26.2_fabric
-popd
-
-#git clone https://github.com/McJtyMods/LostEdit LostEdit
-#pushd LostEdit
-#git checkout 26.2_fabric
-#popd
-
-git clone https://github.com/McJtyMods/McJtyLib McJtyLib
-pushd McJtyLib
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/XNet ModXNet
-pushd ModXNet
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/romelo333/notenoughwands1.8.8 NEW
-pushd NEW
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/Nice Nice
-pushd Nice
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/Restrictions Restrictions
-pushd Restrictions
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsBase RFToolsBase
-pushd RFToolsBase
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsBuilder RFToolsBuilder
-pushd RFToolsBuilder
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsControl RFToolsControl
-pushd RFToolsControl
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsDimensions RFToolsDimensions
-pushd RFToolsDimensions
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsPower RFToolsPower
-pushd RFToolsPower
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsStorage RFToolsStorage
-pushd RFToolsStorage
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/RFToolsUtility RFToolsUtility
-pushd RFToolsUtility
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/SignTastic SignTastic
-pushd SignTastic
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/InControl InControl
-pushd InControl
-git checkout 26.2_fabric
-popd
-
-#git clone https://github.com/McJtyMods/HoloGui ModHoloGui
-#pushd ModHoloGui
-#git checkout 26.2_fabric
-#popd
-
-git clone https://github.com/McJtyMods/LostSouls LostSouls
-pushd LostSouls
-git checkout 26.2_fabric
-popd
-
-#git clone https://github.com/McJtyMods/LostRuins LostRuins
-#pushd LostRuins
-#git checkout 26.2_fabric
-#popd
-
-#git clone https://github.com/McJtyMods/LostWorlds LostWorlds
-#pushd LostWorlds
-#git checkout 26.2_fabric
-#popd
-
-git clone https://github.com/McJtyMods/LostRadar Radar
-pushd LostRadar
-git checkout 26.2_fabric
-popd
-
-
-git clone https://github.com/McJtyMods/InteractionWheel
-pushd InteractionWheel
-git checkout 26.2_fabric
-popd
-
-git clone https://github.com/McJtyMods/TheOneProbe
-pushd TheOneProbe
-git checkout 26.2_fabric
-popd
-
-#git clone https://github.com/McJtyMods/ParsMinima ParsMinima
-#pushd ParsMinima
-#git checkout 26.2_fabric
-#popd
-
+for entry in "${repos[@]}"; do
+    name=${entry%%=*}
+    url=${entry#*=}
+    if [[ -e "$name" ]]; then
+        printf 'Keeping existing checkout: %s\n' "$name"
+        continue
+    fi
+    if git ls-remote --exit-code --heads "$url" "$branch" >/dev/null; then
+        git clone --branch "$branch" --single-branch "$url" "$name"
+    else
+        printf 'Skipping %s: %s is unavailable\n' "$name" "$branch"
+    fi
+done
