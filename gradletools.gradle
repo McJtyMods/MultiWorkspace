@@ -8,6 +8,7 @@ project.ext.set("forge_config_api_port_version", '26.2.1')
 project.ext.set("jei_version", '30.35.0.223')
 // TOP Fabric Jenkins build 1: https://jenkins.k-4u.nl/view/McJty/job/The%20One%20Probe%2026.2_fabric/1/
 project.ext.set("top_version", '26.2-15.0.1-fabric-1')
+project.ext.set("trinkets_version", '4.1.0-rc.1+26.2')
 project.ext.set("mcjtylib_version", '26.2-10.0.0-fabric.3')
 // These integrations have no verified 26.2 release. Supply a version explicitly
 // when one becomes available; never resolve their old 1.21/Forge artifacts.
@@ -59,6 +60,7 @@ ext.repos = {
         maven { url 'https://maven.fabricmc.net/' }
         maven { url 'https://raw.githubusercontent.com/Fuzss/modresources/main/maven/' }
         maven { url "https://cursemaven.com" }
+        maven { url "https://maven.nucleoid.xyz/releases" }
     }
 }
 
@@ -115,6 +117,10 @@ ext.rftoolsbase = {
     } else {
         dependencies.implementation "com.github.mcjty:rftoolsbase:${requireDependencyVersion('rftoolsbase_version')}"
     }
+}
+
+ext.trinkets = {
+    dependencies.implementation "eu.pb4:trinkets:${trinkets_version}"
 }
 
 ext.curios = {

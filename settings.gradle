@@ -18,7 +18,7 @@ def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
             'Nice', 'MeeCreeps', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
             'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
             'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',
-            'Trinkets', 'ModXNet', 'NEW']
+            'Trinkets', 'FancyTrinkets', 'ModXNet', 'NEW']
 mods.each { mod ->
     def configured = providers.gradleProperty("mod.${mod}").orNull
     def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_fabric")]
