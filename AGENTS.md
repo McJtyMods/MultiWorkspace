@@ -1,9 +1,9 @@
 # AGENTS.md
 
 ## Big picture
-- `Multi_neo` is a **multi-mod NeoForge 26.2 workspace**: root `settings.gradle` includes available nested or sibling standalone mod repos plus a special `workspace` aggregator module.
+- `Multi_neo` is a **multi-mod NeoForge 26.1.2 workspace**: root `settings.gradle` includes available nested or sibling standalone mod repos plus a special `workspace` aggregator module.
 - Treat each top-level mod folder (`McJtyLib`, `RFToolsBase`, `RFToolsUtility`, `LostCities`, etc.) as a repo that should still build standalone. The root workspace is mainly for integrated development and debugging.
-- Shared Gradle behavior lives in `gradletools.gradle`; nearly every module `build.gradle` applies that local file, or falls back to the 26.2 remote copy if opened standalone. McJtyLib also accepts an ignored local copy while the workspace is unpublished.
+- Shared Gradle behavior lives in `gradletools.gradle`; nearly every module `build.gradle` applies that local file, or falls back to the 26.1.2 remote copy if opened standalone. McJtyLib also accepts an ignored local copy while the workspace is unpublished.
 - `workspace/build.gradle` is the dev runtime hub: it adds every included mod as both `modSource` and `implementation`, so integrated playtesting should happen there.
 
 ## Dependency / architecture map
