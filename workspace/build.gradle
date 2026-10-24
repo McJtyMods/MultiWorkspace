@@ -11,10 +11,15 @@ version = '1.0'
 group = 'com.github.mcjty'
 base.archivesName = 'workspace'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+// The JEI version in the shared script requires NeoForge 26.1.2.99.
+neo_version = '26.1.2.99'
 
 // The aggregator contains no mod of its own; load every included mod's sources.
 def mods = rootProject.subprojects.findAll { it != project }
 mods.each { evaluationDependsOn(it.path) }
+
+// The aggregator is not itself a mod.
+subsystems.conventions.sourceSets.shouldMainSourceSetBeAutomaticallyAddedToRuns.set(false)
 
 runs {
     configureEach {
@@ -23,6 +28,7 @@ runs {
     }
     client { }
     server { argument '--nogui' }
+    gameTestServer { }
 }
 
 dependencies {
@@ -30,4 +36,21 @@ dependencies {
     jei()
     top()
     mods.each { mod -> implementation project(mod.path) }
+}
+
+// Source projects are already supplied through modSource. Loading their jars as
+// well makes FML choose the jar over the live classes because it has a version.
+tasks.withType(JavaExec).configureEach {
+    doFirst {
+        def sourceModJars = mods.collect { it.tasks.named('jar', Jar).get().archiveFile.get().asFile } as Set
+        classpath = classpath.filter { !sourceModJars.contains(it) }
+    }
+}
+
+// With no aggregator modSource, configure its SDK explicitly so run arguments
+// resolve the asset index, asset directory, native libraries, and download tasks.
+afterEvaluate {
+    project.extensions.getByName('runs').configureEach { run ->
+        userDevRuntime.definitions.values().each { it.configureRun(run) }
+    }
 }

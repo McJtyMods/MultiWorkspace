@@ -8,7 +8,8 @@ project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '29.43.0.106')
 // The published TOP 26.1.2 release has a verified Curse Maven coordinate.
 project.ext.set("top_file_id", '8797594')
-project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.1.2-10.0.0')
+project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.1.2-10.0.0.1')
+project.ext.set("rftoolsbase_version", project.findProperty("rftoolsbase_version") ?: '26.1.2-7.0.0-1')
 project.ext.set("curios_version", project.findProperty("curios_version") ?: '15.0.0+26.1.2')
 // Integrations without a pinned artifact require an explicit compatible version;
 // never resolve their old 1.21/Forge artifacts as an automatic fallback.
@@ -106,7 +107,7 @@ ext.rftoolsbase = {
     if (findProject(':RFToolsBase') != null) {
         dependencies.implementation project(':RFToolsBase')
     } else {
-        dependencies.implementation "com.github.mcjty:rftoolsbase:${requireDependencyVersion('rftoolsbase_version')}"
+        dependencies.implementation "com.github.mcjty:rftoolsbase:${rftoolsbase_version}"
     }
 }
 

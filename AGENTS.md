@@ -40,6 +40,7 @@
   - `./gradlew :RFToolsUtility:build`
   - `./gradlew :RFToolsUtility:runClientData`
 - Important environment note: current builds require **Java 25 to launch Gradle, and the scripts target Java toolchain 25** (`java.toolchain.languageVersion = 25`). A root `gradlew projects` run failed under Java 8 in this workspace, so fix `JAVA_HOME` first if Gradle dies early.
+- Every available source checkout is included normally. The `mcjtylib()` and `rftoolsbase()` helpers use source projects when present and the shared script's Maven defaults otherwise (`26.1.2-10.0.0.1` and `26.1.2-7.0.0-1`). RFToolsBase, RFToolsPower, XNet, and the workspace runtime use NeoForge 26.1.2.99 because the shared JEI runtime requires it.
 - McJtyLib has JUnit regression checks for transactions, NBT conversion, and model JSON. Run `:McJtyLib:test` or `:McJtyLib:portingRegression`, plus targeted builds, datagen, and `:workspace` game runs.
 - Publishing tasks are conditional: `modrinth` needs `modrinth_token`, `curseforge` needs `curseforge_key`, and some modules publish to a local Maven repo when `local_maven` is set.
 
