@@ -115,7 +115,7 @@ ext.rftoolsbase = {
     if (findProject(':RFToolsBase') != null) {
         dependencies.implementation project(':RFToolsBase')
     } else {
-        dependencies.implementation "com.github.mcjty:rftoolsbase:${requireDependencyVersion('rftoolsbase_version')}"
+        dependencies.implementation "com.github.mcjty:rftoolsbase-fabric:${requireDependencyVersion('rftoolsbase_version')}"
     }
 }
 

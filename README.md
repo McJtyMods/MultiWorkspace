@@ -19,16 +19,7 @@ The `workspace` module declares every included mod as a Loom mod source set and 
 
 ## Shared script
 
-`gradletools.gradle` centralizes versions, repositories, dependencies, development runs, access wideners, jars and publishing. Modules apply the workspace root script, then an optional standalone local copy, then the remote `26.2_fabric` script. The `access()` helper discovers `src/main/resources/<mod_id>.accesswidener` when present.
-
-Until this branch is published, copy the script into the standalone library checkout:
-
-```sh
-# Run from McJtyLib_fabric
-cp ../Multi_fabric/gradletools.gradle gradletools.gradle
-```
-
-Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the files identical and do not commit or push the copy.
+`gradletools.gradle` centralizes versions, repositories, dependencies, development runs, access wideners, jars and publishing. Mods apply the [remote `26.2_fabric` script](https://github.com/McJtyMods/MultiWorkSpace/blob/26.2_fabric/gradletools.gradle) directly, both standalone and in this workspace. Do not keep copies in individual mod repositories. The workspace aggregator uses this repository's root script. The `access()` helper discovers `src/main/resources/<mod_id>.accesswidener` when present.
 
 ## Dependencies
 
