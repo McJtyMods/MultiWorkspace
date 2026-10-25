@@ -38,7 +38,8 @@ The configured dependencies target Minecraft 26.1.2. The shared script defaults 
 | `mcjtylib()` | Source project when included; this workspace pins published artifact `26.1.2-10.0.0.1` |
 | `rftoolsbase()` | Source project when included; default Maven artifact `26.1.2-7.0.0-1` |
 | `lostcities()` | Source project, otherwise requires an explicit compatible version |
-| `patchouli()`, `gamestages()` | Require explicit compatible versions |
+| `patchouli()` | Patchouli NeoForge API and development runtime `26.1-94`, overridable with `-Ppatchouli_version` |
+| `gamestages()` | Requires explicit compatible versions |
 
 Published artifacts can be checked on [TOP's 26.1.2 release](https://www.curseforge.com/minecraft/mc-mods/the-one-probe/files/8797594), [JEI's Maven](https://maven.blamejared.com/mezz/jei/jei-26.1.2-neoforge/), [Curios' Maven](https://maven.theillusivec4.top/top/theillusivec4/curios/curios-neoforge/15.0.0+26.1.2/), and [NeoForge's Maven](https://maven.neoforged.net/releases/net/neoforged/neoforge/26.1.2.94/). Old Forge/1.21 artifacts are never automatic fallbacks.
 

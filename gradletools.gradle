@@ -11,6 +11,7 @@ project.ext.set("top_file_id", '8797594')
 project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.1.2-10.0.0.2')
 project.ext.set("rftoolsbase_version", project.findProperty("rftoolsbase_version") ?: '26.1.2-7.0.0-1')
 project.ext.set("curios_version", project.findProperty("curios_version") ?: '15.0.0+26.1.2')
+project.ext.set("patchouli_version", project.findProperty("patchouli_version") ?: '26.1-94')
 // Integrations without a pinned artifact require an explicit compatible version;
 // never resolve their old 1.21/Forge artifacts as an automatic fallback.
 ext.requireDependencyVersion = { name ->
@@ -75,7 +76,8 @@ ext.jei = {
 }
 
 ext.patchouli = {
-    dependencies.implementation "vazkii.patchouli:Patchouli:${requireDependencyVersion('patchouli_version')}"
+    dependencies.compileOnly "vazkii.patchouli:patchouli-neoforge:${patchouli_version}:api"
+    dependencies.runtimeOnly "vazkii.patchouli:patchouli-neoforge:${patchouli_version}"
 }
 
 ext.gamestages = {
