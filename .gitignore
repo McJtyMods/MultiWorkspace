@@ -5,11 +5,13 @@ out/
 
 # Standalone mod repositories checked out for the workspace aggregator
 /DeepResonance/
+/FancyTrinkets/
 /InControl/
 /InteractionWheel/
 /LostCities/
 /LostSouls/
 /McJtyLib/
+/MeeCreeps/
 /ModXNet/
 /NEW/
 /Nice/
