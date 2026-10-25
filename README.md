@@ -46,7 +46,7 @@ Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the f
 
 Version pins are backed by [Fabric's Maven repository](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.155.3%2B26.1.2/), [Forge Config API Port's Maven POM](https://raw.githubusercontent.com/Fuzss/modresources/main/maven/fuzs/forgeconfigapiport/forgeconfigapiport-fabric/26.1.5/forgeconfigapiport-fabric-26.1.5.pom) and [JEI's Fabric Maven repository](https://maven.blamejared.com/mezz/jei/jei-26.1.2-fabric/). Team Reborn Energy 5.0.0 targets the 26.1 API and is bundled by `energy()`.
 
-There is no published 26.1.2 Fabric TOP branch at the time of this backport. Its optional integration compiles against the API from `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric-1`; that artifact is never added to the default runtime. Supply a compatible source checkout with `-Pmod.TheOneProbe=<path>`, or a compatible published Fabric version with `-Ptop_version=<version>`. The compile-only API pin can be overridden with `-Ptop_api_version=<version>`.
+The sibling `../TheOneProbe_fabric` checkout contains TOP `26.1.2-15.0.1-fabric` on its local `26.1.2_fabric` branch. It is included automatically, so McJtyLib and the workspace use the 26.1.2 source project at compile time and runtime. Override the source location with `-Pmod.TheOneProbe=<path>`. Standalone checkouts without that source project still compile against the published API from `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric-1` without loading that 26.2 mod at runtime. After a compatible Fabric release is published, select it with `-Ptop_version=<version>`. The standalone API pin can be overridden with `-Ptop_api_version=<version>`.
 
 `gamestages()` requires `bookshelf_version` and `gamestages_version`. Other optional integrations require the correspondingly named version property.
 
@@ -54,6 +54,15 @@ There is no published 26.1.2 Fabric TOP branch at the time of this backport. Its
 
 Run `./gradlew :McJtyLib:build :workspace:classes`, then use `:workspace:runClient` and `:workspace:runServer` for game testing. Fabric datagen uses `runDatagen`; mods must supply their own `fabric-datagen` entrypoint.
 
-Direct Java 25 compilation of all McJtyLib main sources and both test source sets against cached Minecraft 26.1.2 classes passed, together with all four JUnit regression tests and checks of the five mixin targets. Fabric API signatures used by the library were compared with upstream 26.1.2 sources; the changed tag provider was compiled from those sources, while other Fabric APIs and Forge Config API Port used cached 26.2 binaries. Gradle script syntax, source-project dependency selection, optional TOP dependency behavior, sibling checkout discovery and standalone shared-script equality also passed isolated checks. This is source validation rather than a complete dependency or runtime validation.
+The full integrated build now passes with Java 25 and the pinned Minecraft 26.1.2 Fabric dependencies:
 
-The full Gradle build could not start in this sandbox: the default Gradle cache is read-only, and an isolated writable cache fails when Gradle attempts to open its lock-coordination socket. Shell network access is also unavailable. Dependency resolution for the pinned Fabric 26.1.2 artifacts, full builds, datagen, native transfer tests and client/server runs must still be checked in a normal environment.
+```sh
+./gradlew :TheOneProbe:build :TheOneProbe:gametestClasses :McJtyLib:build :workspace:classes
+./gradlew :TheOneProbe:runClientGameTest
+```
+
+Both mods build, their access wideners validate, TOP's game-test sources compile, and all four McJtyLib JUnit tests pass. TOP's client game test also passes with a real client and integrated server, checking packet exchange, chest contents, fluid components, the welcome note and command screens. The McJtyLib block-entity supplier and constructor have explicit access-widener entries required by Fabric 26.1.2; they no longer rely on the broader access supplied by the 26.2 API during the earlier offline check.
+
+Native Fabric transfer regression checks also passed with both McJtyLib and TOP loaded, including registration of McJtyLib's TOP provider. Run `./gradlew -PtransferTests :McJtyLib:runTransferTest`.
+
+TOP's client game test also passed with McJtyLib and JEI added to its runtime through a temporary Gradle init script, confirming the combined client/server runtime and TOP addon registration.

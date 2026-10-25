@@ -16,7 +16,7 @@
 - Separate server and client payload receivers. TOP discovers plugins via the `theoneprobe` entrypoint.
 - Datagen uses Fabric's `DataGeneratorEntrypoint`, `FabricPackOutput` and registry lookup future. Generated resources remain under `src/generated/resources`.
 - Only include Fabric ports; this workspace does not convert other sibling mods automatically.
-- `top()` uses an included Fabric source project, an explicit compatible `top_version` runtime, or a compile-only TOP API dependency. Keep the 26.2 API fallback off the runtime classpath until a 26.1.2 Fabric port is supplied.
+- `top()` uses an included Fabric source project, an explicit compatible `top_version` runtime, or a compile-only TOP API dependency. The sibling `../TheOneProbe_fabric` checkout supplies the 26.1.2 port. The 26.2 API fallback is only for standalone builds without that source project and must stay off the runtime classpath.
 
 ## Checks
 

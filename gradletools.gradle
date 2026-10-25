@@ -6,8 +6,8 @@ project.ext.set("fabric_loader_version", '0.19.3')
 project.ext.set("fabric_version", '0.155.3+26.1.2')
 project.ext.set("forge_config_api_port_version", '26.1.5')
 project.ext.set("jei_version", '29.35.0.95')
-// Only the API is used from this published Fabric artifact. There is no
-// 26.1.2 Fabric TOP release yet; never put the 26.2 mod on the runtime classpath.
+// Standalone builds without a TOP source project use this published API only
+// until a 26.1.2 Fabric release is available. Keep the 26.2 mod off the runtime classpath.
 project.ext.set("top_api_version", project.findProperty('top_api_version') ?: '26.2-15.0.1-fabric-1')
 project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.1-fabric')
 // Supply compatible versions explicitly for optional integrations.
