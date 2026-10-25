@@ -1,4 +1,4 @@
-# MultiWorkSpace for Minecraft 26.2 / Fabric
+# MultiWorkSpace for Minecraft 26.1.2 / Fabric
 
 Use Java 25. The wrapper uses Gradle 9.5.1 and the build uses Fabric Loom 1.17.17.
 
@@ -8,7 +8,7 @@ For checkouts elsewhere, pass their location as a Gradle property:
 
 ```sh
 ./gradlew projects
-./gradlew :workspace:runClient -Pmod.TheOneProbe=/data/Projects/Top26_2_fabric
+./gradlew :workspace:runClient -Pmod.TheOneProbe=/path/to/TheOneProbe_fabric
 ./gradlew :workspace:runServer
 ./gradlew :McJtyLib:build
 ./gradlew :McJtyLib:runDatagen
@@ -19,7 +19,7 @@ The `workspace` module declares every included mod as a Loom mod source set and 
 
 ## Shared script
 
-`gradletools.gradle` centralizes versions, repositories, dependencies, development runs, access wideners, jars and publishing. Modules apply the workspace root script, then an optional standalone local copy, then the remote `26.2_fabric` script. The `access()` helper discovers `src/main/resources/<mod_id>.accesswidener` when present.
+`gradletools.gradle` centralizes versions, repositories, dependencies, development runs, access wideners, jars and publishing. Modules apply the workspace root script, then an optional standalone local copy, then the remote `26.1.2_fabric` script. The `access()` helper discovers `src/main/resources/<mod_id>.accesswidener` when present.
 
 Until this branch is published, copy the script into the standalone library checkout:
 
@@ -32,19 +32,21 @@ Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the f
 
 ## Dependencies
 
-| Helper | Fabric 26.2 configuration |
+| Helper | Fabric 26.1.2 configuration |
 | --- | --- |
-| `mc()` | Minecraft 26.2, Fabric Loader 0.19.3, Fabric API 0.155.2+26.2 |
-| `config()` | Forge Config API Port 26.2.1 (Fabric artifact) |
+| `mc()` | Minecraft 26.1.2, Fabric Loader 0.19.3, Fabric API 0.155.3+26.1.2 |
+| `config()` | Forge Config API Port 26.1.5 (Fabric artifact) |
 | `energy()` | Included Team Reborn Energy API 5.0.0 |
-| `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric-1` |
-| `jei()` | JEI common API and Fabric runtime 30.35.0.223 |
-| `mcjtylib()` | Source project when included; otherwise `com.github.mcjty:mcjtylib-fabric:26.2-10.0.0-fabric` after publication |
+| `top()` | Source project when included; explicit `top_version` for a compatible published runtime; otherwise the published 26.2 Fabric API on `compileOnly` with transitive dependencies disabled |
+| `jei()` | JEI common API and Fabric runtime 29.35.0.95 |
+| `mcjtylib()` | Source project when included; otherwise `com.github.mcjty:mcjtylib-fabric:26.1.2-10.0.1-fabric` after publication |
 | `rftoolsbase()`, `lostcities()` | Source project, otherwise an explicit compatible version property |
-| `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit version properties; no old NeoForge release fallback |
+| `patchouli()`, `gamestages()`, `sereneseasons()`, `trinkets()` | Require explicit compatible version properties |
 | `curios()` | Rejected because the Curios API used by the NeoForge workspace is not a Fabric API |
 
-The local TOP 26.2 Fabric build supplies the API used by this port; common initialization and TOP plugin registration were also checked together in Fabric. The standalone dependency pins [Jenkins Fabric build 1](https://jenkins.k-4u.nl/view/McJty/job/The%20One%20Probe%2026.2_fabric/1/artifact/build/libs/theoneprobe-26.2-15.0.1-fabric-1.jar). Its Maven version includes the Jenkins build-number suffix `-1`; the unsuffixed local build version is not the CI artifact version. The version can be overridden with `-Ptop_version=<published version>`. [JEI's maintainer confirms Fabric 26.2 release 30.35.0.223](https://github.com/mezz/JustEnoughItems/issues/4491), including a datagen crash fix. The cached JEI common API 30.30.0.204 was used for direct source compilation; dependency resolution for the pinned release still needs a network-enabled Gradle run.
+Version pins are backed by [Fabric's Maven repository](https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/0.155.3%2B26.1.2/), [Forge Config API Port's Maven POM](https://raw.githubusercontent.com/Fuzss/modresources/main/maven/fuzs/forgeconfigapiport/forgeconfigapiport-fabric/26.1.5/forgeconfigapiport-fabric-26.1.5.pom) and [JEI's Fabric Maven repository](https://maven.blamejared.com/mezz/jei/jei-26.1.2-fabric/). Team Reborn Energy 5.0.0 targets the 26.1 API and is bundled by `energy()`.
+
+There is no published 26.1.2 Fabric TOP branch at the time of this backport. Its optional integration compiles against the API from `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric-1`; that artifact is never added to the default runtime. Supply a compatible source checkout with `-Pmod.TheOneProbe=<path>`, or a compatible published Fabric version with `-Ptop_version=<version>`. The compile-only API pin can be overridden with `-Ptop_api_version=<version>`.
 
 `gamestages()` requires `bookshelf_version` and `gamestages_version`. Other optional integrations require the correspondingly named version property.
 
@@ -52,4 +54,6 @@ The local TOP 26.2 Fabric build supplies the API used by this port; common initi
 
 Run `./gradlew :McJtyLib:build :workspace:classes`, then use `:workspace:runClient` and `:workspace:runServer` for game testing. Fabric datagen uses `runDatagen`; mods must supply their own `fabric-datagen` entrypoint.
 
-During this port, direct Java compilation against cached Fabric 26.2 artifacts, four JUnit tests, native Fabric initialization and transfer checks, client class linking, and shared Gradle syntax/dependency checks passed. The sandbox's read-only Gradle cache prevented a complete Gradle build. Visual client testing, full workspace launches and a network-enabled dependency resolution remain necessary.
+Direct Java 25 compilation of all McJtyLib main sources and both test source sets against cached Minecraft 26.1.2 classes passed, together with all four JUnit regression tests and checks of the five mixin targets. Fabric API signatures used by the library were compared with upstream 26.1.2 sources; the changed tag provider was compiled from those sources, while other Fabric APIs and Forge Config API Port used cached 26.2 binaries. Gradle script syntax, source-project dependency selection, optional TOP dependency behavior, sibling checkout discovery and standalone shared-script equality also passed isolated checks. This is source validation rather than a complete dependency or runtime validation.
+
+The full Gradle build could not start in this sandbox: the default Gradle cache is read-only, and an isolated writable cache fails when Gradle attempts to open its lock-coordination socket. Shell network access is also unavailable. Dependency resolution for the pinned Fabric 26.1.2 artifacts, full builds, datagen, native transfer tests and client/server runs must still be checked in a normal environment.
