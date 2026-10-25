@@ -16,6 +16,8 @@ For checkouts elsewhere, pass their location as a Gradle property:
 
 The `workspace` module adds every included mod as both `modSource` and `implementation`. It supplies client and dedicated server runs without an example mod. Individual repositories retain standalone builds. Additional mods can be added to the list in `settings.gradle`; the runtime aggregator follows that list automatically.
 
+The aggregator disables NeoGradle's automatic inclusion of its own empty sources as a mod and configures its NeoForge runtime explicitly. This keeps mod discovery valid while resolving client assets and native libraries.
+
 ## Shared build script
 
 `gradletools.gradle` owns Minecraft/NeoForge versions, repositories, dependency helpers, development runs, jars, and publishing. A module should apply the root workspace script, then an optional standalone local copy, then the remote `26.2_neo` script. McJtyLib implements this order.

@@ -12,6 +12,9 @@ group = 'com.github.mcjty'
 base.archivesName = 'workspace'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
+// This project is only a runtime hub; its empty sources are not a mod.
+subsystems.conventions.sourceSets.shouldMainSourceSetBeAutomaticallyAddedToRuns = false
+
 // The aggregator contains no mod of its own; load every included mod's sources.
 def mods = rootProject.subprojects.findAll { it != project }
 mods.each { evaluationDependsOn(it.path) }
@@ -23,6 +26,14 @@ runs {
     }
     client { }
     server { argument '--nogui' }
+}
+
+// NeoGradle configures the SDK from a run's own mod sources. With no hub mod,
+// configure it explicitly so client asset paths and native libraries resolve.
+gradle.projectsEvaluated {
+    userDevRuntime.definitions.values().each { runtime ->
+        extensions.getByName('runs').configureEach { run -> runtime.configureRun(run) }
+    }
 }
 
 dependencies {
