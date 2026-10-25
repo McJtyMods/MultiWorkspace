@@ -41,7 +41,8 @@ The configured versions below are actual 26.2 artifacts verified in the local Ma
 | `jei()` | JEI common/NeoForge APIs and NeoForge runtime `30.30.0.204` |
 | `sereneseasons()` | `26.2-26.1.2.0.6` |
 | `mcjtylib()` | Source project when included; standalone version `26.2-10.0.0` once published |
-| `rftoolsbase()`, `lostcities()` | Source project, otherwise require an explicit compatible version |
+| `rftoolsbase()` | Source project when included; standalone artifact `26.2-8.0.0-1` (runtime mod version `26.2-8.0.0`) |
+| `lostcities()` | Source project, otherwise require an explicit compatible version |
 | `patchouli()`, `curios()`, `gamestages()` | No verified 26.2 release configured; requesting one fails with an explanation |
 
 Published artifacts can be checked on [McJty's Maven](https://maven.k-4u.nl/mcjty/theoneprobe/theoneprobe/), [JEI's Maven](https://maven.blamejared.com/mezz/jei/), and [Serene Seasons' Maven](https://maven.minecraftforge.net/com/github/glitchfiend/SereneSeasons-neoforge/). [Patchouli's releases](https://github.com/VazkiiMods/Patchouli/releases) and [Curios' port PRs](https://github.com/TheIllusiveC4/Curios/pulls) do not establish a compatible 26.2 release. Old Forge/1.21 artifacts are never automatic fallbacks.
