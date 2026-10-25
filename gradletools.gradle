@@ -6,10 +6,10 @@ project.ext.set("fabric_loader_version", '0.19.3')
 project.ext.set("fabric_version", '0.155.3+26.1.2')
 project.ext.set("forge_config_api_port_version", '26.1.5')
 project.ext.set("jei_version", '29.35.0.95')
-// Standalone builds without a TOP source project use this published API only
-// until a 26.1.2 Fabric release is available. Keep the 26.2 mod off the runtime classpath.
-project.ext.set("top_api_version", project.findProperty('top_api_version') ?: '26.2-15.0.1-fabric-1')
-project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.1-fabric')
+// Jenkins artifact revisions; fabric.mod.json dependencies use unsuffixed base versions.
+project.ext.set("top_version", project.findProperty('top_version') ?: '26.1.2-14.0.0-fabric-4')
+project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.1-fabric.2')
+project.ext.set("rftoolsbase_version", project.findProperty('rftoolsbase_version') ?: '26.1.2-7.0.0-fabric')
 // Supply compatible versions explicitly for optional integrations.
 ext.requireDependencyVersion = { name ->
     def value = project.findProperty(name)
@@ -97,12 +97,8 @@ ext.sereneseasons = {
 ext.top = {
     if (findProject(':TheOneProbe') != null) {
         dependencies.implementation project(':TheOneProbe')
-    } else if (project.findProperty('top_version')) {
-        dependencies.implementation "mcjty.theoneprobe:theoneprobe:${project.property('top_version')}"
     } else {
-        dependencies.compileOnly("mcjty.theoneprobe:theoneprobe:${top_api_version}") {
-            transitive = false
-        }
+        dependencies.implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
     }
 }
 
@@ -118,7 +114,7 @@ ext.rftoolsbase = {
     if (findProject(':RFToolsBase') != null) {
         dependencies.implementation project(':RFToolsBase')
     } else {
-        dependencies.implementation "com.github.mcjty:rftoolsbase:${requireDependencyVersion('rftoolsbase_version')}"
+        dependencies.implementation "com.github.mcjty:rftoolsbase-fabric:${rftoolsbase_version}"
     }
 }
 
