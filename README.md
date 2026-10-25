@@ -27,7 +27,7 @@ The `workspace` module adds every included mod as both `modSource` and `implemen
 | `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.3_neo-16.0.0-1` |
 | `jei()` | 26.3 common/NeoForge APIs and NeoForge runtime `31.12.0.65` |
 | `sereneseasons()` | `26.3-26.1.2.0.7` |
-| `mcjtylib()` | Source project when included; otherwise `26.3-11.0.0` once published |
+| `mcjtylib()` | Source project when included; otherwise published artifact `26.3-11.0.1.4` |
 | `rftoolsbase()`, `lostcities()` | Source project, otherwise require an explicit compatible version |
 | `patchouli()`, `curios()`, `gamestages()` | Require explicit compatible versions |
 
