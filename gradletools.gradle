@@ -8,8 +8,8 @@ project.ext.set("forge_config_api_port_version", '26.1.5')
 project.ext.set("jei_version", '29.35.0.95')
 // Jenkins artifact revisions; fabric.mod.json dependencies use unsuffixed base versions.
 project.ext.set("top_version", project.findProperty('top_version') ?: '26.1.2-14.0.0-fabric-4')
-project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.1-fabric.2')
-project.ext.set("rftoolsbase_version", project.findProperty('rftoolsbase_version') ?: '26.1.2-7.0.0-fabric')
+project.ext.set("mcjtylib_version", '26.1.2-10.0.1-fabric.2')
+project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-fabric-1')
 // Supply compatible versions explicitly for optional integrations.
 ext.requireDependencyVersion = { name ->
     def value = project.findProperty(name)
