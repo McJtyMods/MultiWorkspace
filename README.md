@@ -31,7 +31,8 @@ The `workspace` module declares every included mod as a Loom mod source set and 
 | `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.2-15.0.1-fabric-1` |
 | `jei()` | JEI common API and Fabric runtime 30.35.0.223 |
 | `mcjtylib()` | Source project when included; otherwise `com.github.mcjty:mcjtylib-fabric:26.2-10.0.0-fabric` after publication |
-| `rftoolsbase()`, `lostcities()` | Source project, otherwise an explicit compatible version property |
+| `rftoolsbase()` | Source project when included; otherwise `com.github.mcjty:rftoolsbase-fabric:26.2-8.0.0-fabric-1` (runtime mod version `26.2-8.0.0-fabric`) |
+| `lostcities()` | Source project, otherwise an explicit compatible version property |
 | `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit version properties; no old NeoForge release fallback |
 | `curios()` | Rejected because the Curios API used by the NeoForge workspace is not a Fabric API |
 
