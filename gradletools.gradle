@@ -8,7 +8,7 @@ project.ext.set("forge_config_api_port_version", '26.3.1')
 project.ext.set("jei_version", '31.12.0.65')
 // Maven artifact suffix identifies the Jenkins build, not TOP's mod version.
 project.ext.set("top_version", '26.3-16.0.0-fabric-1')
-project.ext.set("mcjtylib_version", '26.3-11.0.1-fabric.2')
+project.ext.set("mcjtylib_version", '26.3-11.0.2-fabric.4')
 // Expected Jenkins coordinate; the included local port takes precedence.
 project.ext.set("rftoolsbase_version", '26.3-9.0.0-fabric-1')
 // These integrations have no verified 26.3 release. Supply a version explicitly
