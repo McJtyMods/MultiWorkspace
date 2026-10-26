@@ -12,8 +12,8 @@ group = 'com.github.mcjty'
 base.archivesName = 'workspace'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
-// The aggregator contains no mod of its own; load every included mod's sources.
-def mods = rootProject.subprojects.findAll { it != project }
+// The library comes from Jenkins; loading its checkout too would duplicate its mod ID.
+def mods = rootProject.subprojects.findAll { it != project && it.name != 'McJtyLib' }
 mods.each { evaluationDependsOn(it.path) }
 
 runs {
@@ -27,6 +27,7 @@ runs {
 
 dependencies {
     mc()
+    mcjtylib()
     jei()
     top()
     mods.each { mod -> implementation project(mod.path) }
