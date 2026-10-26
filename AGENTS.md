@@ -5,6 +5,7 @@
 - Treat each top-level mod folder (`McJtyLib`, `RFToolsBase`, `RFToolsUtility`, `LostCities`, etc.) as a repo that should still build standalone. The root workspace is mainly for integrated development and debugging.
 - Shared Gradle behavior lives in `gradletools.gradle`; nearly every module `build.gradle` applies that local file, or falls back to the 26.3 remote copy if opened standalone. Standalone McJtyLib applies the sibling `../Multi_neo/gradletools.gradle` directly (or the parent script for nested checkouts).
 - `workspace/build.gradle` is the dev runtime hub: it adds included mods other than the McJtyLib checkout as both `modSource` and `implementation`; McJtyLib resolves from the Jenkins-published version in `gradletools.gradle`, so integrated playtesting should happen there.
+- The workspace coordinator is excluded from NeoGradle's automatic mod sources. Its IDE and Gradle run classpaths filter out jars for included source mods; keep this filtering when changing run configuration to avoid invalid coordinator metadata and duplicate mod discovery.
 
 ## Dependency / architecture map
 - `McJtyLib` is the common foundation library (`McJtyLib/README.md`, `McJtyLib/src/main/java/mcjty/lib/...`).

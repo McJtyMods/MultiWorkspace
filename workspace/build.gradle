@@ -12,13 +12,23 @@ group = 'com.github.mcjty'
 base.archivesName = 'workspace'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 
+// This project coordinates runs and has no mod descriptor of its own.
+subsystems.conventions.sourceSets.shouldMainSourceSetBeAutomaticallyAddedToRuns.set(false)
+
 // The library comes from Jenkins; loading its checkout too would duplicate its mod ID.
 def mods = rootProject.subprojects.findAll { it != project && it.name != 'McJtyLib' }
 mods.each { evaluationDependsOn(it.path) }
 
+// FML otherwise finds both MOD_CLASSES and project dependency jars, preferring
+// the jars over the source outputs. Keep the workspace's IDE classpath on sources.
+def sourceModJars = files(mods.collect { mod -> mod.tasks.named('jar').flatMap { it.archiveFile } })
+def workspaceRuntime = sourceSets.main.runtimeClasspath
+sourceSets.main.runtimeClasspath = workspaceRuntime.filter { !sourceModJars.contains(it) }
+
 runs {
     configureEach {
         workingDirectory = project.file('run')
+        modSources.primary sourceSets.main
         mods.each { mod -> modSource mod.sourceSets.main }
     }
     client { }
@@ -31,4 +41,11 @@ dependencies {
     jei()
     top()
     mods.each { mod -> implementation project(mod.path) }
+}
+
+// NeoGradle also adds each mod source set's runtime classpath to Gradle runs.
+tasks.withType(JavaExec).configureEach {
+    doFirst {
+        classpath = classpath.filter { !sourceModJars.contains(it) }
+    }
 }
