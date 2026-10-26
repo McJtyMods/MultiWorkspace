@@ -8,10 +8,11 @@ version = '1.0'
 group = 'com.github.mcjty'
 base.archivesName = 'workspace-fabric'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
-def includedMods = rootProject.subprojects.findAll { it != project }
+def includedMods = rootProject.subprojects.findAll { it != project && it.name != 'McJtyLib' }
 includedMods.each { evaluationDependsOn(it.path) }
 dependencies {
     mc()
+    mcjtylib()
     jei()
     top()
     includedMods.each { implementation project(it.path) }
