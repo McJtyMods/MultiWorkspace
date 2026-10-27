@@ -43,6 +43,15 @@ dependencies {
     mods.each { mod -> implementation project(mod.path) }
 }
 
+// Run types must be configured first, but SDK interpolation must finish before
+// NeoGradle captures the IntelliJ run arguments in its IDE import callbacks.
+afterEvaluate {
+    configurations.runtimeClasspath.resolve()
+    extensions.getByName('runs').configureEach { run ->
+        userDevRuntime.definitions.values().each { runtime -> runtime.configureRun(run) }
+    }
+}
+
 // NeoGradle also adds each mod source set's runtime classpath to Gradle runs.
 tasks.withType(JavaExec).configureEach {
     doFirst {

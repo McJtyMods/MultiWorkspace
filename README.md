@@ -17,6 +17,8 @@ For checkouts elsewhere, pass `-Pmod.TheOneProbe=/path/to/TheOneProbe_neo` (or t
 
 The `workspace` module loads every included mod, including McJtyLib, from its local main source outputs. It provides client and dedicated server runs. The coordinator itself is excluded from `MOD_CLASSES` because it has no mod descriptor. Its runtime classpath excludes jars for mods already loaded from source, so FML does not select a built jar over the source output during debugging. McJtyLib's separate game-test source set is loaded only by its own `runGameTestServer` task. The historical `co.sh` and version-switch scripts predate this branch; use the layout above to provision current checkouts.
 
+The workspace SDK is configured before IDE launch arguments are captured. Asset index and directory arguments must contain resolved values, not literal `{asset_index}` or `{assets_root}` placeholders; unresolved values cause missing menu backgrounds, icons, and sounds. Reload the Gradle projects after changing this configuration to refresh the IntelliJ runs.
+
 After changing workspace run settings, use **Reload All Gradle Projects** in IntelliJ, then run `./gradlew ideSync` from this directory and select **Workspace: Client**. Regenerate existing configurations so their `MOD_CLASSES` no longer contains `workspace%%...`. A launch that reports `workspace/build/resources/main is not a valid mod file` is still using the old configuration; subsequent scan cancellations are a consequence of the loader shutting down.
 
 ## Shared build settings
