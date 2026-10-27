@@ -19,21 +19,20 @@ subsystems.conventions.sourceSets.shouldMainSourceSetBeAutomaticallyAddedToRuns 
 def mods = rootProject.subprojects.findAll { it != project }
 mods.each { evaluationDependsOn(it.path) }
 
+// FML otherwise discovers both source outputs and project jars, and can prefer
+// a built jar over the current classes. Apply this to the IDE runtime as well.
+def sourceModJars = files(mods.collect { mod -> mod.tasks.named('jar').flatMap { it.archiveFile } })
+def workspaceRuntime = sourceSets.main.runtimeClasspath
+sourceSets.main.runtimeClasspath = workspaceRuntime.filter { !sourceModJars.contains(it) }
+
 runs {
     configureEach {
         workingDirectory = project.file('run')
+        modSources.primary sourceSets.main
         mods.each { mod -> modSource mod.sourceSets.main }
     }
     client { }
     server { argument '--nogui' }
-}
-
-// NeoGradle configures the SDK from a run's own mod sources. With no hub mod,
-// configure it explicitly so client asset paths and native libraries resolve.
-gradle.projectsEvaluated {
-    userDevRuntime.definitions.values().each { runtime ->
-        extensions.getByName('runs').configureEach { run -> runtime.configureRun(run) }
-    }
 }
 
 dependencies {
@@ -41,4 +40,20 @@ dependencies {
     jei()
     top()
     mods.each { mod -> implementation project(mod.path) }
+}
+
+// Run types must be configured first, but SDK interpolation must finish before
+// NeoGradle captures the IntelliJ run arguments in its IDE import callbacks.
+afterEvaluate {
+    configurations.runtimeClasspath.resolve()
+    extensions.getByName('runs').configureEach { run ->
+        userDevRuntime.definitions.values().each { runtime -> runtime.configureRun(run) }
+    }
+}
+
+// NeoGradle adds the runtime classpaths of modSource projects to Gradle runs too.
+tasks.withType(JavaExec).configureEach {
+    doFirst {
+        classpath = classpath.filter { !sourceModJars.contains(it) }
+    }
 }

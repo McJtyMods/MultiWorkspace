@@ -16,7 +16,9 @@ For checkouts elsewhere, pass their location as a Gradle property:
 
 The `workspace` module adds every included mod as both `modSource` and `implementation`. It supplies client and dedicated server runs without an example mod. Individual repositories retain standalone builds. Additional mods can be added to the list in `settings.gradle`; the runtime aggregator follows that list automatically.
 
-The aggregator disables NeoGradle's automatic inclusion of its own empty sources as a mod and configures its NeoForge runtime explicitly. This keeps mod discovery valid while resolving client assets and native libraries.
+The aggregator disables NeoGradle's automatic inclusion of its own empty sources as a mod and configures its NeoForge runtime before IDE run configurations are finalized. Its primary source set supplies the runtime classpath without adding an empty mod to `MOD_CLASSES`. Client asset index, asset directory, and native-library arguments must contain resolved values in both Gradle and IntelliJ launches; literal `{asset_index}` or `{assets_root}` values cause missing menu backgrounds, icons, and sounds. Reload the Gradle projects after changing this configuration to regenerate existing IntelliJ run arguments.
+
+Both the IDE runtime classpath and Gradle runs exclude jars for mods already supplied through `modSource`. This keeps development runs on the local classes instead of letting FML select a previously built jar. After changing this configuration, reload all Gradle projects in IntelliJ before launching the workspace again.
 
 ## Shared build script
 
