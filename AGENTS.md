@@ -4,14 +4,14 @@
 - `Multi_neo` is a **multi-mod NeoForge 26.3 workspace**: root `settings.gradle` includes available nested or sibling standalone mod repos plus a special `workspace` aggregator module.
 - Treat each top-level mod folder (`McJtyLib`, `RFToolsBase`, `RFToolsUtility`, `LostCities`, etc.) as a repo that should still build standalone. The root workspace is mainly for integrated development and debugging.
 - Shared Gradle behavior lives in `gradletools.gradle`; nearly every module `build.gradle` applies that local file, or falls back to the 26.3 remote copy if opened standalone. Standalone McJtyLib applies the sibling `../Multi_neo/gradletools.gradle` directly (or the parent script for nested checkouts).
-- `workspace/build.gradle` is the dev runtime hub: it adds included mods other than the McJtyLib checkout as both `modSource` and `implementation`; McJtyLib resolves from the Jenkins-published version in `gradletools.gradle`, so integrated playtesting should happen there.
+- `workspace/build.gradle` is the dev runtime hub: it adds every included mod as both `modSource` and `implementation`, so integrated playtesting uses the local checkouts.
 - The workspace coordinator is excluded from NeoGradle's automatic mod sources. Its IDE and Gradle run classpaths filter out jars for included source mods; keep this filtering when changing run configuration to avoid invalid coordinator metadata and duplicate mod discovery.
 
 ## Dependency / architecture map
 - `McJtyLib` is the common foundation library (`McJtyLib/README.md`, `McJtyLib/src/main/java/mcjty/lib/...`).
 - RFTools-family mods generally layer as **`McJtyLib` -> `RFToolsBase` -> feature mod** (see `RFToolsUtility/build.gradle`, `RFToolsPower/build.gradle`, `RFToolsStorage/build.gradle`).
 - Build dependencies are declared through helper functions from `gradletools.gradle` such as `mc()`, `mcjtylib()`, `rftoolsbase()`, `top()`, `jei()`, `patchouli()`, `curios()`, `lostcities()` instead of repeating Maven coordinates.
-- `mcjtylib()` always resolves the published library. `rftoolsbase()` uses the included local checkout when present, with `rftoolsbase_version` as its Maven fallback.
+- Dependency helpers always prefer included local checkouts (including McJtyLib, RFToolsBase, and TheOneProbe); published Maven artifacts are standalone fallbacks.
 - External integrations worth preserving: The One Probe API, JEI, Patchouli, Curios, and LostCities; publishing hooks for Modrinth/CurseForge are also centralized in `gradletools.gradle`.
 
 ## Code structure patterns to follow

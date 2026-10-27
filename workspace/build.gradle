@@ -15,8 +15,8 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(25)
 // This project coordinates runs and has no mod descriptor of its own.
 subsystems.conventions.sourceSets.shouldMainSourceSetBeAutomaticallyAddedToRuns.set(false)
 
-// The library comes from Jenkins; loading its checkout too would duplicate its mod ID.
-def mods = rootProject.subprojects.findAll { it != project && it.name != 'McJtyLib' }
+// Load every included mod from its local source checkout.
+def mods = rootProject.subprojects.findAll { it != project }
 mods.each { evaluationDependsOn(it.path) }
 
 // FML otherwise finds both MOD_CLASSES and project dependency jars, preferring
