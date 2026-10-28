@@ -8,8 +8,8 @@ project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '29.43.0.106')
 // The published TOP 26.1.2 release has a verified Curse Maven coordinate.
 project.ext.set("top_file_id", '8797594')
-project.ext.set("mcjtylib_version", project.findProperty("mcjtylib_version") ?: '26.1.2-10.0.0.2')
-project.ext.set("rftoolsbase_version", project.findProperty("rftoolsbase_version") ?: '26.1.2-7.0.0-1')
+project.ext.set("mcjtylib_version", '26.1.2-10.0.1.4')
+project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-1')
 project.ext.set("curios_version", project.findProperty("curios_version") ?: '15.0.0+26.1.2')
 project.ext.set("patchouli_version", project.findProperty("patchouli_version") ?: '26.1-94')
 // Integrations without a pinned artifact require an explicit compatible version;
