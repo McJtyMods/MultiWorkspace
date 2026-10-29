@@ -3,7 +3,7 @@
 ## Workspace
 
 - This is the Fabric 26.1.2 MultiWorkSpace. Use Java 25, Gradle 9.5.1 and Fabric Loom 1.17.17.
-- Root settings include available nested or sibling `*_fabric` repositories. McJtyLib and TOP source projects require `-PsourceLibraries`; default builds use Jenkins artifacts. Each mod must also build standalone. Override checkout paths with `-Pmod.<Name>=<path>`.
+- Root settings include available nested or sibling `*_fabric` repositories. Always include local McJtyLib and TOP checkouts when available; published dependencies are standalone fallbacks. Each mod must also build standalone. Override checkout paths with `-Pmod.<Name>=<path>`.
 - Shared behavior lives in `gradletools.gradle`. Ports apply the root copy, an ignored standalone copy, or the remote `26.1.2_fabric` copy in that order. Keep temporary standalone copies identical and excluded from Git.
 - `workspace/build.gradle` collects all included mods through Loom mod source sets and implementation dependencies; it has no dummy mod entrypoint.
 - Keep `generateRunConfig` enabled for workspace runs: Loom disables IDE generation in subprojects by default. IntelliJ Gradle sync generates the combined `Client` and `Server` configurations; `:workspace:ideaSyncTask` generates them explicitly.
@@ -18,15 +18,15 @@
 - Separate server and client payload receivers. TOP discovers plugins via the `theoneprobe` entrypoint.
 - Datagen uses Fabric's `DataGeneratorEntrypoint`, `FabricPackOutput` and registry lookup future. Generated resources remain under `src/generated/resources`.
 - Only include Fabric ports; this workspace does not convert other sibling mods automatically.
-- `top()` defaults to `26.1.2-14.0.0-fabric-4`; `mcjtylib()` defaults to `26.1.2-10.0.1-fabric.2`. Both are Fabric Jenkins artifacts used at compile time and runtime. Source projects override them only when included explicitly. Minimum mod dependency versions omit artifact revision suffixes.
+- `top()` defaults to `26.1.2-14.0.0-fabric-4`; `mcjtylib()` defaults to `26.1.2-10.0.1-fabric.2`. These are Fabric Jenkins fallbacks for standalone builds. Workspace builds and development runs always prefer the included source projects. Minimum mod dependency versions omit artifact revision suffixes.
 - `rftoolsbase()` prefers included Fabric sources and otherwise resolves `com.github.mcjty:rftoolsbase-fabric`. Isolated CI needs a published version selected with `-Prftoolsbase_version=<version>`.
 
 ## Checks
 
 - `./gradlew :RFToolsBase:build :RFToolsPower:build :ModXNet:build :workspace:classes`
 - `./gradlew -PfabricPortTests :RFToolsBase:runClientGameTest` covers native transfers, generation, menus, facade removal and model geometry against Jenkins libraries.
-- `./gradlew -PsourceLibraries :McJtyLib:build :workspace:classes`
-- `./gradlew -PsourceLibraries -PtransferTests :McJtyLib:runTransferTest` runs item/fluid transaction checks in Fabric and exits.
+- `./gradlew :McJtyLib:build :workspace:classes`
+- `./gradlew -PtransferTests :McJtyLib:runTransferTest` runs item/fluid transaction checks in Fabric and exits.
 - `./gradlew :workspace:runClient` and `:workspace:runServer` cover game behavior.
 - `./gradlew :<Mod>:runDatagen` requires that mod's datagen entrypoint.
 - Do not publish or push without the user's instruction. The user's staging preference includes additions, modifications and deletions; the temporary local shared script stays excluded.

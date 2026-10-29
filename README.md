@@ -6,7 +6,7 @@ Refreshing Gradle in IntelliJ generates `Client` and `Server` run configurations
 
 The Gradle root name is `26_1_2_fabric` so Loom and IntelliJ agree on the module `26_1_2_fabric.workspace.main`. Dots in the root name cause IntelliJ to normalize the name differently from Loom. Existing generated Application configurations retain their module selection on refresh; if migrating from the dotted name, select this module in both configurations or remove their generated XML files under `.idea/runConfigurations` and regenerate them.
 
-McJtyLib and The One Probe resolve from Jenkins artifacts by default. Add `-PsourceLibraries` to include their local source projects instead. Logical project names remain `:RFToolsBase`, `:RFToolsPower`, `:ModXNet`, `:McJtyLib` and `:TheOneProbe`.
+McJtyLib, The One Probe, and other included mods always use local source checkouts. Published artifacts are standalone fallbacks. Logical project names remain `:RFToolsBase`, `:RFToolsPower`, `:ModXNet`, `:McJtyLib` and `:TheOneProbe`.
 
 ```sh
 ./gradlew projects
@@ -55,9 +55,9 @@ All three RFTools/XNet builds, their datagen runs and seven JUnit tests pass aga
 Library source development uses the same workspace with an explicit opt-in:
 
 ```sh
-./gradlew -PsourceLibraries :TheOneProbe:build :TheOneProbe:gametestClasses :McJtyLib:build :workspace:classes
-./gradlew -PsourceLibraries :TheOneProbe:runClientGameTest
-./gradlew -PsourceLibraries -PtransferTests :McJtyLib:runTransferTest
+./gradlew :TheOneProbe:build :TheOneProbe:gametestClasses :McJtyLib:build :workspace:classes
+./gradlew :TheOneProbe:runClientGameTest
+./gradlew -PtransferTests :McJtyLib:runTransferTest
 ```
 
 The earlier TOP client test covered packet exchange, chest contents, fluid components, welcome note and command screens. McJtyLib's transfer checks covered native item/fluid rollback and TOP provider registration. Fabric datagen uses `runDatagen` and each mod's `fabric-datagen` entrypoint.

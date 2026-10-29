@@ -21,9 +21,6 @@ def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
             'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',
             'Trinkets', 'FancyTrinkets', 'ModXNet', 'NEW']
 mods.each { mod ->
-    // Use the Jenkins library jars by default; opt into library development explicitly.
-    if (mod in ['McJtyLib', 'TheOneProbe'] && !providers.gradleProperty('sourceLibraries').isPresent()) return
-
     def configured = providers.gradleProperty("mod.${mod}").orNull
     def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_fabric")]
     def checkout = candidates.find {
