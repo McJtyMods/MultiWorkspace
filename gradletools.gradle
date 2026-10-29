@@ -9,7 +9,7 @@ project.ext.set("jei_version", '30.35.0.223')
 // TOP Fabric Jenkins build 1: https://jenkins.k-4u.nl/view/McJty/job/The%20One%20Probe%2026.2_fabric/1/
 project.ext.set("top_version", '26.2-15.0.1-fabric-1')
 project.ext.set("trinkets_version", '4.1.0-rc.1+26.2')
-project.ext.set("mcjtylib_version", '26.2-10.0.1-fabric.4')
+project.ext.set("mcjtylib_version", '26.2-10.0.2-fabric.6')
 // Maven artifact revision; the runtime mod version remains 26.2-8.0.0-fabric.
 project.ext.set("rftoolsbase_version", '26.2-8.0.0-fabric-1')
 // These integrations have no verified 26.2 release. Supply a version explicitly
