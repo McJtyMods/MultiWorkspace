@@ -8,7 +8,7 @@ version = '1.0'
 group = 'com.github.mcjty'
 base.archivesName = 'workspace-fabric'
 java.toolchain.languageVersion = JavaLanguageVersion.of(25)
-def includedMods = rootProject.subprojects.findAll { it != project && it.name != 'McJtyLib' }
+def includedMods = rootProject.subprojects.findAll { it != project }
 includedMods.each { evaluationDependsOn(it.path) }
 dependencies {
     mc()
@@ -26,7 +26,21 @@ loom {
         }
     }
     runs {
-        client { client(); runDir 'runs/client' }
-        server { server(); programArg '--nogui'; runDir 'runs/server' }
+        configureEach {
+            // Loom defaults to generating IDE configurations only for root projects.
+            generateRunConfig = true
+            appendProjectPathToDisplayName = false
+        }
+        client {
+            client()
+            displayName = 'Client'
+            runDir 'runs/client'
+        }
+        server {
+            server()
+            displayName = 'Server'
+            programArg '--nogui'
+            runDir 'runs/server'
+        }
     }
 }

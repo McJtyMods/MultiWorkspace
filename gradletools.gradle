@@ -104,13 +104,12 @@ ext.top = {
     }
 }
 
-// Keep standalone and integrated builds on the Jenkins-published library.
+// Workspace builds use local sources; standalone builds use the published fallback.
 ext.mcjtylib = {
-    def localProbe = findProject(':TheOneProbe')
-    dependencies.implementation("com.github.mcjty:mcjtylib-fabric:${mcjtylib_version}") {
-        if (localProbe != null) {
-            exclude group: 'mcjty.theoneprobe', module: 'theoneprobe'
-        }
+    if (findProject(':McJtyLib') != null) {
+        dependencies.implementation project(':McJtyLib')
+    } else {
+        dependencies.implementation "com.github.mcjty:mcjtylib-fabric:${mcjtylib_version}"
     }
 }
 

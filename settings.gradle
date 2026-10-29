@@ -11,7 +11,8 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
-rootProject.name = '26.3_fabric'
+// IntelliJ normalizes dots to underscores in module names; Loom uses this name verbatim.
+rootProject.name = '26_3_fabric'
 
 // Include available checkouts. Both nested and sibling *_fabric layouts work.
 def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',

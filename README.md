@@ -8,9 +8,18 @@ checkouts such as `Multi_fabric/McJtyLib`, or sibling checkouts such as
 `../McJtyLib_fabric`. Missing mods are skipped. Logical project names remain
 `:McJtyLib`, `:TheOneProbe`, etc. Override paths with `-Pmod.<Name>=<path>`.
 
-`workspace` collects included mods except the McJtyLib source project through Loom mod source sets and project
+`workspace` collects every included local mod through Loom mod source sets and project
 dependencies. Its client and server runs use those mods without a dummy mod
-entrypoint. Only include Fabric ports. `co.sh` clones repositories only when their
+entrypoint. IntelliJ Gradle sync generates the combined `Client` and `Server`
+Application configurations. Select `Client` to launch all included mods. Generate
+them explicitly with `./gradlew :workspace:ideaSyncTask` if needed.
+
+The Gradle root name is `26_3_fabric` so Loom's generated module names match
+IntelliJ's imported modules. Reload the Gradle project after updating this setup.
+For an existing configuration with an invalid module, choose
+`26_3_fabric.workspace.main` in its **Use classpath of module** field.
+
+Only include Fabric ports. `co.sh` clones repositories only when their
 `26.3_fabric` branch exists and preserves existing checkout directories.
 
 ```sh
@@ -42,7 +51,7 @@ without a local workspace require the remote branch to have been published.
 | `energy()` | Included Team Reborn Energy API 5.0.0 |
 | `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.3-16.0.0-fabric-1` |
 | `jei()` | JEI common API and Fabric runtime 31.12.0.65 |
-| `mcjtylib()` | Always Jenkins `com.github.mcjty:mcjtylib-fabric:26.3-11.0.1-fabric.2`; excludes the TOP Maven dependency when TOP source is included |
+| `mcjtylib()` | Local source project when included; otherwise Jenkins `com.github.mcjty:mcjtylib-fabric:26.3-11.0.1-fabric.2` |
 | `rftoolsbase()` | Local source project for the unpublished port; eventual Jenkins fallback uses `rftoolsbase_version=26.3-9.0.0-fabric-1` |
 | `lostcities()` | Source project, otherwise an explicit compatible version property |
 | `trinkets()`, `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit compatible version properties |
@@ -51,8 +60,7 @@ without a local workspace require the remote branch to have been published.
 TOP's trailing `-1` identifies the Maven build, rather than its mod dependency
 version. Override CI artifact coordinates with `-Ptop_version=<version>` or
 `-Pmcjtylib_version=<version>` when a different build is published. Integrated builds
-also use the published McJtyLib artifact. After publishing the Fabric overlay pipeline
-fix, update `mcjtylib_version` to the new Jenkins build. Power and XNet include the
+always prefer included local mod projects and load their source outputs, including McJtyLib. Power and XNet include the
 sibling RFToolsBase source project for standalone builds until its port is published. JEI's pinned
 Fabric artifact is listed in its [Maven repository](https://maven.blamejared.com/mezz/jei/jei-26.3-fabric/).
 Trinkets has no default version configured for this branch; an older 26.2 artifact
@@ -69,8 +77,7 @@ facade block properties and attachment persistence.
 
 The in-world client integration test passes with the patched library source via
 a temporary Gradle dependency substitution used only for validation. Release
-build dependencies remain on Jenkins; publish the library fix and update its
-shared version before running the same test with the published artifact.
+standalone builds use Jenkins, while integrated development runs use the local library.
 
 ```sh
 ./gradlew :RFToolsBase:build :RFToolsPower:build :ModXNet:build :workspace:classes
