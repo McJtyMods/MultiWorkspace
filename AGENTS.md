@@ -7,6 +7,8 @@
 - Shared behavior lives in `gradletools.gradle`. Mods apply the remote `26.2_fabric` script directly, both standalone and in the workspace. Do not keep mod-local copies. The workspace aggregator uses this repository's root script.
 - `workspace/build.gradle` collects all included mods through Loom mod source sets and implementation dependencies; it has no dummy mod entrypoint.
 
+- Keep `generateRunConfig` enabled for workspace runs; Loom disables IDE generation for subprojects by default. Use the dot-free Gradle root name `26_2_fabric` to match IntelliJ module names. `:workspace:ideaSyncTask` generates the combined `Client` and `Server` configurations.
+
 ## Fabric conventions
 
 - Use separate `ModInitializer` and `ClientModInitializer` entrypoints in `fabric.mod.json`.

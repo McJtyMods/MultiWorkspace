@@ -28,8 +28,18 @@ loom {
         configureEach {
             // Loom otherwise generates IDE configurations only for root projects.
             generateRunConfig = true
+            appendProjectPathToDisplayName = false
         }
-        client { client(); runDir 'runs/client' }
-        server { server(); programArg '--nogui'; runDir 'runs/server' }
+        client {
+            client()
+            displayName = 'Client'
+            runDir 'runs/client'
+        }
+        server {
+            server()
+            displayName = 'Server'
+            programArg '--nogui'
+            runDir 'runs/server'
+        }
     }
 }

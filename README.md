@@ -4,6 +4,13 @@ Use Java 25. The wrapper uses Gradle 9.5.1 and the build uses Fabric Loom 1.17.1
 
 Open the root `build.gradle` in IntelliJ. `settings.gradle` includes available nested checkouts such as `Multi_fabric/McJtyLib`, or sibling checkouts such as `../McJtyLib_fabric`. Missing mods are skipped. Logical names remain `:McJtyLib`, `:TheOneProbe`, etc. Only include Fabric ports in this workspace.
 
+IntelliJ Gradle sync generates the combined `Client` and `Server` Application
+configurations. Select `Client` to launch all included mods. Generate them explicitly
+with `./gradlew :workspace:ideaSyncTask` if needed. The dot-free Gradle root name
+`26_2_fabric` keeps generated module names consistent with IntelliJ. Reload Gradle
+after updating; an existing configuration should use `26_2_fabric.workspace.main`
+in its **Use classpath of module** field.
+
 For checkouts elsewhere, pass their location as a Gradle property:
 
 ```sh
