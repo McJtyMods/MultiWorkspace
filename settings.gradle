@@ -34,3 +34,7 @@ include 'ModXNet'
 include 'Hazardous'
 
 include 'workspace'
+
+include 'ModHoloGui'
+include 'Ariente'
+include 'ArienteWorld'

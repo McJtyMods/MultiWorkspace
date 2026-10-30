@@ -26,6 +26,12 @@ repositories {
     maven { url "https://maven.blamejared.com" } // Patchouli
     maven { url "https://maven.k-4u.nl" } // McJtyLib, TOP
     maven { url "https://maven.theillusivec4.top/" } // Curios
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 version = '1.0'
@@ -45,6 +51,15 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
+                ModHoloGui {
+                    source project(':ModHoloGui').sourceSets.main
+                }
+                Ariente {
+                    source project(':Ariente').sourceSets.main
+                }
+                ArienteWorld {
+                    source project(':ArienteWorld').sourceSets.main
+                }
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
@@ -132,6 +147,15 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
+                ModHoloGui {
+                    source project(':ModHoloGui').sourceSets.main
+                }
+                Ariente {
+                    source project(':Ariente').sourceSets.main
+                }
+                ArienteWorld {
+                    source project(':ArienteWorld').sourceSets.main
+                }
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
@@ -224,6 +248,15 @@ minecraft {
             args '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
 
             mods {
+                ModHoloGui {
+                    source project(':ModHoloGui').sourceSets.main
+                }
+                Ariente {
+                    source project(':Ariente').sourceSets.main
+                }
+                ArienteWorld {
+                    source project(':ArienteWorld').sourceSets.main
+                }
                 McJtyLib {
                     source project(':McJtyLib').sourceSets.main
                 }
@@ -325,6 +358,15 @@ dependencies {
     curios()
     patchouli()
 
+    // Shader support for the combined workspace (Minecraft 1.20.1).
+    // Project dependencies below are non-transitive, so Hazardous's shader
+    // dependencies must also be declared here. Remap them for development runs.
+    runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725") // 0.3.31
+    runtimeOnly fg.deobf("curse.maven:oculus-581495:6020952") // 1.8.0
+
+    workspaceProject(':ModHoloGui')
+    workspaceProject(':Ariente')
+    workspaceProject(':ArienteWorld')
     workspaceProject(':McJtyLib')
     workspaceProject(':DeepResonance')
     workspaceProject(':LostCities')
@@ -395,4 +437,20 @@ tasks.register('fixIntellijRunModules') {
 
 tasks.matching { it.name == 'genIntellijRuns' }.configureEach {
     finalizedBy 'fixIntellijRunModules'
+}
+
+// Forge otherwise prefers the versioned local jars over the supplied source folders.
+// Keep compilation dependencies, but use source outputs in development launches.
+tasks.withType(JavaExec).configureEach {
+    if (name.startsWith('run')) {
+        doFirst {
+            def localJarDirs = rootProject.subprojects.collect { it.layout.buildDirectory.dir('libs').get().asFile.toPath() }
+            def useInRun = { File entry -> !localJarDirs.any { entry.toPath().startsWith(it) } }
+            classpath = classpath.filter(useInRun)
+            if (systemProperties['legacyClassPath']) {
+                systemProperty 'legacyClassPath', systemProperties['legacyClassPath'].toString()
+                        .split(File.pathSeparator).findAll { useInRun(new File(it)) }.join(File.pathSeparator)
+            }
+        }
+    }
 }
