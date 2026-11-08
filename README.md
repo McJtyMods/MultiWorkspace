@@ -18,6 +18,12 @@ To setup this project, just open the root (empty) build.gradle as a project in I
 
 This branch targets Minecraft 1.21.1 / NeoForge with Java 21. HoloGui (`ModHoloGui`), Ariente and ArienteWorld are included in the workspace client/server and use local McJtyLib and The One Probe sources.
 
+NeoGradle's generated library lists contain absolute paths to the current
+checkout. The shared `gradletools.gradle` includes the project directory in those
+tasks' cache keys, preventing Jenkins jobs from restoring another job's paths
+while retaining caching for repeated builds in the same checkout. Standalone
+builds receive this configuration through their normal shared-script lookup.
+
 Focused checks:
 
 ```sh

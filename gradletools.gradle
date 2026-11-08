@@ -1,3 +1,13 @@
+// NeoGradle's library lists contain absolute paths, but its cache key ignores the
+// checkout location. Include it so Jenkins jobs cannot restore each other's paths.
+plugins.withId('net.neoforged.gradle.userdev') { neoGradle ->
+    // Applied scripts cannot import classes from the plugins DSL classpath.
+    def listLibrariesType = neoGradle.class.classLoader.loadClass('net.neoforged.gradle.common.runtime.tasks.ListLibraries')
+    tasks.withType(listLibrariesType).configureEach {
+        inputs.property('libraryListProjectDirectory', project.projectDir.absolutePath)
+    }
+}
+
 project.ext.set("mod_group_id", 'com.github.mcjty')
 project.ext.set("mod_authors", 'McJty')
 project.ext.set("minecraft_version", '1.21.1')
