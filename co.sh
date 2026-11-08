@@ -129,3 +129,18 @@ popd
 #git checkout 1.21_neo
 #popd
 
+
+git clone https://github.com/McJtyMods/HoloGui ModHoloGui
+pushd ModHoloGui
+git checkout 1.21_neo
+popd
+
+git clone https://github.com/McJtyMods/Ariente Ariente
+pushd Ariente
+git checkout 1.21_neo
+popd
+
+git clone https://github.com/McJtyMods/ArienteWorld ArienteWorld
+pushd ArienteWorld
+git checkout 1.21_neo
+popd

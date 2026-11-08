@@ -144,6 +144,10 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
             'curios'          : 'vvuO3ImH',
             'game-stages'     : 'iAlZk5aS',
             'mcjtylib'        : '1Zu0uTEE',
+            'hologui'         : 'Uz48yWr1',
+            'ariente'         : 'JZNKzzmT',
+            'ariente-world'   : 'tNpARtmT',
+            'patchouli'       : 'nU0bVIaL',
             'rftools-base'    : 'hIO8IsD8',
             'the-lost-cities' : '8VDCUS3b',
             'the-one-probe'   : 'Eyw0UxEx',
@@ -283,5 +287,51 @@ ext.publish = {
                 url "file:///${project.projectDir}/mcmodsrepo"
             }
         }
+    }
+}
+
+// Each mod resolves its own NeoForge libraries. Local mod projects contribute their
+// classes, while their development Minecraft artifacts must stay out of the consumer.
+configurations.configureEach {
+    dependencies.withType(ProjectDependency).configureEach {
+        transitive = false
+    }
+}
+
+// NeoGradle combines runtime classpaths for every modSource. Normalize its per-
+// project copies of the same Minecraft artifact before FML inspects resources.
+tasks.withType(JavaExec).configureEach {
+    if (name.startsWith('run')) {
+        doFirst {
+            def generatedArtifact = { File entry ->
+                def path = entry.toPath().toString().replace('\\', '/')
+                def marker = '/.gradle/repositories/ng_dummy_ng/'
+                def index = path.indexOf(marker)
+                index < 0 ? null : path.substring(index + marker.length())
+            }
+            def localJarDirectories = rootProject.allprojects.collect { it.layout.buildDirectory.dir('libs').get().asFile.toPath() }
+            def isLocalJar = { File entry -> localJarDirectories.any { entry.toPath().startsWith(it) } }
+            def uniqueArtifacts = new HashSet<String>()
+            classpath = files(classpath.files.findAll { entry ->
+                def key = generatedArtifact(entry)
+                !isLocalJar(entry) && (key == null || uniqueArtifacts.add(key))
+            })
+            if (systemProperties['legacyClassPath']) {
+                def uniqueLegacyArtifacts = new HashSet<String>()
+                systemProperty 'legacyClassPath', systemProperties['legacyClassPath'].toString()
+                        .split(File.pathSeparator).findAll { path ->
+                            def key = generatedArtifact(new File(path))
+                            !isLocalJar(new File(path)) && (key == null || uniqueLegacyArtifacts.add(key))
+                        }.join(File.pathSeparator)
+            }
+        }
+    }
+}
+
+// NeoGradle 7 otherwise shares one mutable "asset-index.json" across Minecraft
+// versions, which can load another workspace's fonts, sounds and built-in packs.
+tasks.configureEach { task ->
+    if (task.name.endsWith('DownloadAssets')) {
+        task.assetIndex.set(project.minecraft_version)
     }
 }

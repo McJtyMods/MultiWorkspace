@@ -32,6 +32,9 @@ minecraft {
             systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
                     modSource project(':McJtyLib').sourceSets.main
+                    modSource project(':ModHoloGui').sourceSets.main
+                    modSource project(':Ariente').sourceSets.main
+                    modSource project(':ArienteWorld').sourceSets.main
                     modSource project(':DeepResonance').sourceSets.main
                     modSource project(':NEW').sourceSets.main
                     modSource project(':Nice').sourceSets.main
@@ -80,6 +83,9 @@ dependencies {
     //patchouli()
 
     implementation project(':McJtyLib')
+    implementation project(':ModHoloGui')
+    implementation project(':Ariente')
+    implementation project(':ArienteWorld')
     implementation project(':DeepResonance')
     implementation project(':LostCities')
     implementation project(':Radar')

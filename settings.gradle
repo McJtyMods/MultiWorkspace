@@ -38,6 +38,10 @@ include 'RFToolsBuilder'
 include 'Trinkets'
 include 'ModXNet'
 
+include 'ModHoloGui'
+include 'Ariente'
+include 'ArienteWorld'
+
 include 'workspace'
 include 'workspace:src:main:javca'
 findProject(':workspace:src:main:javca')?.name = 'javca'
