@@ -72,3 +72,6 @@ Desktop.ini
 /ModHoloGui/
 /Ariente/
 /ArienteWorld/
+
+# Private Gradle user home for this Minecraft version and loader
+/.gradle-user-home/
