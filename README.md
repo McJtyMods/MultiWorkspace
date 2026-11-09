@@ -39,6 +39,7 @@ The `workspace` module declares every included mod as a Loom mod source set and 
 | `jei()` | JEI common API and Fabric runtime 30.35.0.223 |
 | `mcjtylib()` | Source project when included; otherwise `com.github.mcjty:mcjtylib-fabric:26.2-10.0.3-fabric.7` |
 | `hologui()` | Local source project when included; otherwise `com.github.mcjty:hologui-fabric:26.2-0.0.10-beta-fabric-1` |
+| `ariente()` | Local source project when included; otherwise `com.github.mcjty:ariente-fabric:26.2-0.0.31-alpha-fabric-1` |
 | `rftoolsbase()` | Source project when included; otherwise `com.github.mcjty:rftoolsbase-fabric:26.2-8.0.0-fabric-1` (runtime mod version `26.2-8.0.0-fabric`) |
 | `lostcities()` | Source project, otherwise an explicit compatible version property |
 | `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit version properties; no old NeoForge release fallback |
@@ -108,9 +109,10 @@ The workspace includes sibling `ModHoloGui_fabric`, `Ariente_fabric` and
 `./gradlew :ModHoloGui:build :Ariente:build :ArienteWorld:build :workspace:classes`.
 Development runs load every included mod's compiled source directories.
 
-The `hologui()` helper selects the HoloGui Jenkins fallback when `ModHoloGui` is
-not included. Override its artifact version with `-Phologui_version=<version>`;
-included local sources always take precedence.
+The `hologui()` and `ariente()` helpers select Jenkins fallbacks when `ModHoloGui`
+and `Ariente` are not included. Override their artifact versions with
+`-Phologui_version=<version>` and `-Pariente_version=<version>`; included local
+sources always take precedence.
 
 Create and validate the tutorial from `ArienteWorld_fabric` with
 `python3 tools/create_tutorial.py`, then reload and install it with
