@@ -82,6 +82,10 @@ done
 
 APP_HOME=$( cd "${APP_HOME:-./}" && pwd -P ) || exit
 
+# Keep Minecraft versions and loaders in separate Gradle user homes.
+: "${GRADLE_USER_HOME:=$APP_HOME/.gradle-user-home}"
+export GRADLE_USER_HOME
+
 APP_NAME="Gradle"
 APP_BASE_NAME=${0##*/}
 
@@ -203,6 +207,7 @@ set -- \
         "-Dorg.gradle.appname=$APP_BASE_NAME" \
         -classpath "$CLASSPATH" \
         org.gradle.wrapper.GradleWrapperMain \
+        --init-script "$APP_HOME/gradle/gradle-home.init.gradle" \
         "$@"
 
 # Use "xargs" to parse quoted args.
