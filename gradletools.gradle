@@ -8,7 +8,7 @@ project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '29.43.0.106')
 // The published TOP 26.1.2 release has a verified Curse Maven coordinate.
 project.ext.set("top_file_id", '8797594')
-project.ext.set("mcjtylib_version", '26.1.2-10.0.1.4')
+project.ext.set("mcjtylib_version", '26.1.2-10.0.2.5')
 project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-1')
 project.ext.set("curios_version", project.findProperty("curios_version") ?: '15.0.0+26.1.2')
 project.ext.set("patchouli_version", project.findProperty("patchouli_version") ?: '26.1-94')
@@ -137,6 +137,10 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
     def publishArtifactTask = tasks.findByName('reobfJar') ?: tasks.findByName('jar')
     def modrinthProjectIds = [
             'curios'          : 'vvuO3ImH',
+            'hologui'         : 'Uz48yWr1',
+            'ariente'         : 'JZNKzzmT',
+            'arienteworld'    : 'tNpARtmT',
+            'patchouli'       : 'nU0bVIaL',
             'game-stages'     : 'iAlZk5aS',
             'mcjtylib'        : '1Zu0uTEE',
             'rftools-base'    : 'hIO8IsD8',
@@ -242,6 +246,7 @@ ext.runs = {
 
 ext.jars = {
     jar {
+        exclude '.cache/**'
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
         manifest {
             attributes([
@@ -267,5 +272,64 @@ ext.publish = {
         repositories {
             maven { url = layout.projectDirectory.dir('mcmodsrepo') }
         }
+    }
+}
+
+// NeoGradle restores the shared objects directory as a complete cache entry.
+// Keep a versioned copy so another Minecraft workspace cannot remove our assets.
+def clientAssetsDirectory = layout.dir(providers.provider {
+    new File(gradle.gradleUserHomeDir, "caches/minecraft/assets/${minecraft_version}")
+})
+tasks.configureEach { task ->
+    if (!task.name.endsWith('DownloadAssets')) {
+        return
+    }
+    task.assetIndex.set(project.minecraft_version)
+    task.assetIndexTargetFile.set(clientAssetsDirectory.map { it.file("indexes/${project.minecraft_version}.json") })
+    task.outputs.dir(clientAssetsDirectory.map { it.dir('objects') })
+    task.doLast {
+        project.copy {
+            from new File(gradle.gradleUserHomeDir, 'caches/minecraft/assets/objects')
+            into clientAssetsDirectory.map { it.dir('objects') }
+        }
+    }
+}
+
+// Resolve included projects to their compiled classes in both Gradle and IDEA.
+// Runtime jars would otherwise compete with the same mods supplied by modSource.
+afterEvaluate {
+    def localMods = new LinkedHashSet<Project>()
+    def collectLocalMods
+    collectLocalMods = { Project owner ->
+        owner.configurations.findByName('runtimeClasspath')?.allDependencies?.withType(ProjectDependency)?.each { dependency ->
+            def local = rootProject.findProject(dependency.path)
+            if (local != null && local != project && localMods.add(local)) {
+                evaluationDependsOn(local.path)
+                collectLocalMods(local)
+            }
+        }
+    }
+    collectLocalMods(project)
+    project.extensions.getByName('runs').configureEach { run ->
+        localMods.each { local ->
+            if (!run.modSources.all().get().values().contains(local.sourceSets.main)) {
+                run.modSource(local.sourceSets.main)
+            }
+        }
+        def arguments = objects.listProperty(String)
+        arguments.set(run.arguments.map { original ->
+            def result = new ArrayList<String>(original)
+            for (int index = 0; index + 1 < result.size(); index++) {
+                if (result[index] == '--assetsDir') {
+                    result[index + 1] = clientAssetsDirectory.get().asFile.absolutePath
+                }
+            }
+            result
+        })
+        run.overrideArguments(arguments)
+    }
+
+    configurations.matching { it.canBeResolved && (it.name == 'runtimeClasspath' || it.name.endsWith('RuntimeClasspath')) }.configureEach {
+        attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements, LibraryElements.CLASSES))
     }
 }
