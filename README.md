@@ -52,6 +52,7 @@ without a local workspace require the remote branch to have been published.
 | `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.3-16.0.0-fabric-1` |
 | `jei()` | JEI common API and Fabric runtime 31.12.0.65 |
 | `mcjtylib()` | Local source project when included; otherwise Jenkins `com.github.mcjty:mcjtylib-fabric:26.3-11.0.4-fabric.7` |
+| `hologui()` | Local source project when included; otherwise `com.github.mcjty:hologui-fabric:26.3-0.0.10-beta-fabric-1` |
 | `rftoolsbase()` | Local source project for the unpublished port; eventual Jenkins fallback uses `rftoolsbase_version=26.3-9.0.0-fabric-1` |
 | `lostcities()` | Source project, otherwise an explicit compatible version property |
 | `trinkets()`, `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit compatible version properties |
@@ -143,6 +144,10 @@ The workspace includes sibling `ModHoloGui_fabric`, `Ariente_fabric` and
 `ArienteWorld_fabric` checkouts on `26.3_fabric`. Build them with
 `./gradlew :ModHoloGui:build :Ariente:build :ArienteWorld:build :workspace:classes`.
 Development runs load every included mod's compiled source directories.
+
+The `hologui()` helper selects the HoloGui Jenkins fallback when `ModHoloGui` is
+not included. Override its artifact version with `-Phologui_version=<version>`;
+included local sources always take precedence.
 
 Create and validate the tutorial from `ArienteWorld_fabric` with
 `python3 tools/create_tutorial.py`, then reload and install it with
