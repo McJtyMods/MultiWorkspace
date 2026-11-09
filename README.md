@@ -57,5 +57,4 @@ distributing standalone builds of these ports.
 The verified Tutorial save is installed under `workspace/run/saves/Tutorial`.
 Launch `:workspace:runClient` and select **Tutorial**. Creation, restart checks,
 camera/tank pixel checks and standalone builds are described in the
-[26.3 port report](../ArienteWorld_neo/PORT_26_3.md). All task changes remain local
-and uncommitted.
+[26.3 port report](../ArienteWorld_neo/PORT_26_3.md).
