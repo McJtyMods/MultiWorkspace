@@ -45,3 +45,17 @@ Datagen runs are `runClientData` and `runServerData`; output goes to each mod's 
 McJtyLib's main sources compiled against cached 26.3 Minecraft/NeoForge artifacts. Four JUnit checks and eight NeoForge game tests passed, including a runtime load alongside TOP. The sandbox prevented Gradle startup because local networking was unavailable, and blocked dependency downloads. The configured 26.3 JEI artifacts were not cached; compile validation used the cached 26.2 API. Full standalone/workspace Gradle builds, JEI runtime, datagen, and interactive client validation remain to be checked outside that restriction.
 
 The workspace startup fix was checked by evaluating its run configuration and directly launching a headless NeoForge game-test server with all eight currently included source mods and Jenkins McJtyLib `26.3-11.0.1.4`. All seven XNet port regression tests passed. Interactive client startup and Gradle regeneration of IntelliJ run configurations still require verification in the desktop environment.
+
+## HoloGui, Ariente and ArienteWorld
+
+The 26.3 NeoForge workspace includes sibling `ModHoloGui_neo`, `Ariente_neo` and
+`ArienteWorld_neo` checkouts. Their dependency chain uses the local McJtyLib,
+The One Probe, HoloGui and Ariente source sets. The McJtyLib standalone fallback
+is now `26.3-11.0.4`; publish that library and the updated shared script before
+distributing standalone builds of these ports.
+
+The verified Tutorial save is installed under `workspace/run/saves/Tutorial`.
+Launch `:workspace:runClient` and select **Tutorial**. Creation, restart checks,
+camera/tank pixel checks and standalone builds are described in the
+[26.3 port report](../ArienteWorld_neo/PORT_26_3.md). All task changes remain local
+and uncommitted.

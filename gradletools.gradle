@@ -8,7 +8,7 @@ project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '31.12.0.65')
 // Maven build suffix only; keep TOP's mod dependency version unchanged.
 project.ext.set("top_version", '26.3_neo-16.0.0-1')
-project.ext.set("mcjtylib_version", '26.3-11.0.3.7')
+project.ext.set("mcjtylib_version", '26.3-11.0.4')
 // Published Jenkins build.
 project.ext.set("rftoolsbase_version", '26.3-9.0.0-1')
 project.ext.set("sereneseasons_version", '26.3-26.1.2.0.7')
@@ -139,6 +139,9 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
             'curios'          : 'vvuO3ImH',
             'game-stages'     : 'iAlZk5aS',
             'mcjtylib'        : '1Zu0uTEE',
+            'hologui'         : 'Uz48yWr1',
+            'ariente'         : 'JZNKzzmT',
+            'arienteworld'    : 'tNpARtmT',
             'rftools-base'    : 'hIO8IsD8',
             'the-lost-cities' : '8VDCUS3b',
             'the-one-probe'   : 'Eyw0UxEx',
@@ -246,6 +249,7 @@ ext.runs = {
 }
 
 ext.jars = {
+    sourceSets.main.resources.exclude '.cache/**'
     jar {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
         manifest {
