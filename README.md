@@ -43,6 +43,7 @@ Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the f
 | `jei()` | JEI common API and Fabric runtime 29.35.0.95 |
 | `mcjtylib()` | `com.github.mcjty:mcjtylib-fabric:26.1.2-10.0.3-fabric.4`, or an included source project |
 | `hologui()` | Local source project when included; otherwise `com.github.mcjty:hologui-fabric:26.1.2-0.0.10-beta-fabric-1` |
+| `ariente()` | Local source project when included; otherwise `com.github.mcjty:ariente-fabric:26.1.2-0.0.31-alpha-fabric-1` |
 | `rftoolsbase()` | Included source project; otherwise `com.github.mcjty:rftoolsbase-fabric:${rftoolsbase_version}` (default `26.1.2-7.0.0-fabric`) |
 | `lostcities()`, `patchouli()`, `gamestages()`, `sereneseasons()`, `trinkets()` | Require explicit compatible version properties unless the helper supports an included source project |
 | `curios()` | Rejected because the Curios API used by the NeoForge workspace is not a Fabric API |
@@ -117,9 +118,10 @@ The workspace includes sibling `ModHoloGui_fabric`, `Ariente_fabric` and
 `./gradlew :ModHoloGui:build :Ariente:build :ArienteWorld:build :workspace:classes`.
 Development runs load every included mod's compiled source directories.
 
-The `hologui()` helper selects the HoloGui Jenkins fallback when `ModHoloGui` is
-not included. Override its artifact version with `-Phologui_version=<version>`;
-included local sources always take precedence.
+The `hologui()` and `ariente()` helpers select Jenkins fallbacks when `ModHoloGui`
+and `Ariente` are not included. Override their artifact versions with
+`-Phologui_version=<version>` and `-Pariente_version=<version>`; included local
+sources always take precedence.
 
 Create and validate the tutorial from `ArienteWorld_fabric` with
 `python3 tools/create_tutorial.py`, then reload and install it with

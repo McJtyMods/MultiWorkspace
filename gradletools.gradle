@@ -10,6 +10,7 @@ project.ext.set("jei_version", '29.35.0.95')
 project.ext.set("top_version", project.findProperty('top_version') ?: '26.1.2-14.0.0-fabric-4')
 project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.3-fabric.4')
 project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '26.1.2-0.0.10-beta-fabric-1')
+project.ext.set("ariente_version", project.findProperty('ariente_version') ?: '26.1.2-0.0.31-alpha-fabric-1')
 project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-fabric-1')
 // Supply compatible versions explicitly for optional integrations.
 ext.requireDependencyVersion = { name ->
@@ -116,6 +117,14 @@ ext.hologui = {
         dependencies.implementation project(':ModHoloGui')
     } else {
         dependencies.implementation("com.github.mcjty:hologui-fabric:${hologui_version}") { transitive = false }
+    }
+}
+
+ext.ariente = {
+    if (findProject(':Ariente') != null) {
+        dependencies.implementation project(':Ariente')
+    } else {
+        dependencies.implementation("com.github.mcjty:ariente-fabric:${ariente_version}") { transitive = false }
     }
 }
 
