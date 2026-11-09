@@ -4,7 +4,7 @@
 
 - This is the Fabric 26.3 MultiWorkSpace. Use Java 25, Gradle 9.6.0 and Fabric Loom 1.17.21.
 - Root settings include available nested or sibling `*_fabric` repositories. Each mod must also build standalone. Override checkout paths with `-Pmod.<Name>=<path>`.
-- Shared behavior lives in `gradletools.gradle`. McJtyLib applies the integrated root script, the sibling `../Multi_fabric/gradletools.gradle`, a nested parent script, or the remote `26.3_fabric` script. Do not keep a copied script inside McJtyLib.
+- Shared behavior lives in `gradletools.gradle`. New ports and McJtyLib look for an explicit `gradletools_path`, the integrated root script, the sibling `../Multi_fabric/gradletools.gradle`, then a standalone local script before the matching remote Fabric branch. Keep local copies excluded from Git.
 - `workspace/build.gradle` collects every included mod through Loom mod source sets and implementation dependencies; it has no dummy mod entrypoint.
 - Keep `generateRunConfig` enabled for workspace runs; Loom disables IDE generation for subprojects by default. Use the dot-free Gradle root name `26_3_fabric` to match IntelliJ module names. `:workspace:ideaSyncTask` generates the combined `Client` and `Server` configurations.
 - Dependency helpers and aggregate runs always prefer included local checkouts of McJtyLib, RFToolsBase, TheOneProbe, and other mods. Published artifacts are standalone fallbacks.
@@ -19,6 +19,7 @@
 - Separate server and client payload receivers. TOP discovers plugins via the `theoneprobe` entrypoint.
 - Datagen uses Fabric's `DataGeneratorEntrypoint`, `FabricPackOutput` and registry lookup future. Generated resources remain under `src/generated/resources`.
 - Only include Fabric ports; this workspace does not convert other sibling mods automatically.
+- HoloGui, Ariente and ArienteWorld use sibling Fabric checkouts. Their development runs load the included class directories; the opt-in tutorial harness lives in `ArienteWorld_fabric/tools/`.
 
 ## Checks
 

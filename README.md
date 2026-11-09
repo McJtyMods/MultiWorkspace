@@ -89,3 +89,62 @@ menus, legacy facade persistence, facade removal, cable/antenna models and cable
 outlines while holding a connector. JEI starts alongside the mods; recipe transfer
 interactions were not tested. Use Java 25 for the Gradle JVM and launch tests
 from a desktop session with an available SDL video device.
+
+## Gradle cache isolation
+
+The workspace wrappers default to `./.gradle-user-home`, keeping this Minecraft
+version and loader's assets, NeoGradle/Loom caches, dependencies, and daemons
+separate from other workspaces. An explicit `GRADLE_USER_HOME` or
+`--gradle-user-home` is supported, but must belong to this same target. The
+`.minecraft-target` marker rejects reuse by another version or loader, including
+through symlinks. The shared `~/.gradle` home is rejected before project setup.
+Keep private cache directories separate; do not symlink their mutable contents.
+NeoGradle library-list cache keys include the home and checkout paths so moving
+to a new home regenerates lists containing absolute dependency paths.
+
+Install the home guard for standalone builds after checkout or recreating the
+private home:
+
+```sh
+python3 tools/configure-gradle-home.py
+```
+
+In each IntelliJ project, open **Settings > Build, Execution, Deployment >
+Build Tools > Gradle** and set **Gradle user home** to the absolute
+`.gradle-user-home` path printed by the helper. Click **Apply**, then reload all
+Gradle projects to regenerate the Minecraft run configurations before launching.
+The field sits above the per-Gradle-build settings and applies to all Gradle
+builds linked in the current IntelliJ project/window. Open different Minecraft
+workspaces as separate IntelliJ projects, each with its own home. IntelliJ stores
+this value per IDE project, but also updates an application default that projects
+without their own value can inherit. Set each workspace's home explicitly; the
+target guard rejects an incorrectly inherited home. Setting
+`serviceDirectoryPath` in `.idea/gradle.xml` is ignored
+by current IntelliJ versions. The helper prepares the home and prints these
+instructions. IntelliJ does not execute the `gradlew` shell script. Old
+Application configurations still reference old absolute cache paths until
+regenerated.
+
+For standalone mod builds, use this workspace's wrapper with `-p /path/to/mod`,
+or use the mod's wrapper with
+`--gradle-user-home /path/to/workspace/.gradle-user-home`. The installed init
+script also checks standalone and IDE builds using that home. CI should allocate
+one Gradle user home per Minecraft version and loader (or per checkout). A fresh
+home downloads its own dependencies; do not copy old NeoGradle execution caches
+or generated absolute-path library lists into it. User-level `gradle.properties`
+and credentials are not copied; supply any required settings separately.
+When porting the workspace, update `minecraftTarget` in
+`gradle/gradle-home.init.gradle` and use a fresh home for the new target.
+Preserve the wrapper customizations when upgrading Gradle.
+
+## Ariente Fabric ports
+
+The workspace includes sibling `ModHoloGui_fabric`, `Ariente_fabric` and
+`ArienteWorld_fabric` checkouts on `26.3_fabric`. Build them with
+`./gradlew :ModHoloGui:build :Ariente:build :ArienteWorld:build :workspace:classes`.
+Development runs load every included mod's compiled source directories.
+
+Create and validate the tutorial from `ArienteWorld_fabric` with
+`python3 tools/create_tutorial.py`, then reload and install it with
+`python3 tools/create_tutorial.py --verify --saves ../Multi_fabric/workspace/runs/client/saves`.
+The combined Client run finds the world under **Tutorial**.

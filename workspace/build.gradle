@@ -44,3 +44,11 @@ loom {
         }
     }
 }
+
+// Load all included source checkouts directly in the combined development runs.
+tasks.withType(JavaExec).configureEach {
+    def localJars = includedMods.collect { it.tasks.named('jar', Jar).get().archiveFile.get().asFile } as Set
+    dependsOn tasks.named('classes'), includedMods.collect { it.tasks.named('classes') }
+    def launchClasspath = files(classpath.files)
+    classpath = launchClasspath.filter { !localJars.contains(it) } + files(includedMods.collect { it.sourceSets.main.output })
+}
