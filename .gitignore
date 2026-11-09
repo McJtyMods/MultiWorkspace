@@ -68,3 +68,6 @@ Desktop.ini
 *~
 *.swp
 *.swo
+
+# Private Gradle user home for this Minecraft version and loader
+/.gradle-user-home/
