@@ -1,4 +1,5 @@
 pluginManagement {
+    settings.apply from: new File(settings.settingsDir, 'gradle/gradle-home.init.gradle')
     repositories {
         mavenLocal()
         gradlePluginPortal()
@@ -19,7 +20,7 @@ def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
             'Nice', 'MeeCreeps', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
             'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
             'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',
-            'Trinkets', 'FancyTrinkets', 'ModXNet', 'NEW']
+            'Trinkets', 'FancyTrinkets', 'ModXNet', 'ModHoloGui', 'Ariente', 'ArienteWorld', 'NEW']
 mods.each { mod ->
     def configured = providers.gradleProperty("mod.${mod}").orNull
     def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_fabric")]

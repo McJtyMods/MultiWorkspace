@@ -4,7 +4,7 @@
 
 - This is the Fabric 26.2 MultiWorkSpace. Use Java 25, Gradle 9.5.1 and Fabric Loom 1.17.17.
 - Root settings include available nested or sibling `*_fabric` repositories. Each mod must also build standalone. Override checkout paths with `-Pmod.<Name>=<path>`.
-- Shared behavior lives in `gradletools.gradle`. Mods apply the remote `26.2_fabric` script directly, both standalone and in the workspace. Do not keep mod-local copies. The workspace aggregator uses this repository's root script.
+- Shared behavior lives in `gradletools.gradle`. New ports and McJtyLib look for an explicit `gradletools_path`, the integrated root script, the sibling `../Multi_fabric/gradletools.gradle`, then a standalone local script before the matching remote Fabric branch. Keep local copies excluded from Git.
 - `workspace/build.gradle` collects all included mods through Loom mod source sets and implementation dependencies; it has no dummy mod entrypoint.
 
 - Keep `generateRunConfig` enabled for workspace runs; Loom disables IDE generation for subprojects by default. Use the dot-free Gradle root name `26_2_fabric` to match IntelliJ module names. `:workspace:ideaSyncTask` generates the combined `Client` and `Server` configurations.
@@ -18,6 +18,7 @@
 - Separate server and client payload receivers. TOP discovers plugins via the `theoneprobe` entrypoint.
 - Datagen uses Fabric's `DataGeneratorEntrypoint`, `FabricPackOutput` and registry lookup future. Generated resources remain under `src/generated/resources`.
 - Only include Fabric ports; this workspace does not convert other sibling mods automatically.
+- HoloGui, Ariente and ArienteWorld use sibling Fabric checkouts. Their development runs load the included class directories; the opt-in tutorial harness lives in `ArienteWorld_fabric/tools/`.
 
 ## Checks
 
