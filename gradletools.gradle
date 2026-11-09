@@ -9,6 +9,7 @@ project.ext.set("jei_version", '29.35.0.95')
 // Jenkins artifact revisions; fabric.mod.json dependencies use unsuffixed base versions.
 project.ext.set("top_version", project.findProperty('top_version') ?: '26.1.2-14.0.0-fabric-4')
 project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.3-fabric.4')
+project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '26.1.2-0.0.10-beta-fabric-1')
 project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-fabric-1')
 // Supply compatible versions explicitly for optional integrations.
 ext.requireDependencyVersion = { name ->
@@ -107,6 +108,14 @@ ext.mcjtylib = {
         dependencies.implementation project(':McJtyLib')
     } else {
         dependencies.implementation "com.github.mcjty:mcjtylib-fabric:${mcjtylib_version}"
+    }
+}
+
+ext.hologui = {
+    if (findProject(':ModHoloGui') != null) {
+        dependencies.implementation project(':ModHoloGui')
+    } else {
+        dependencies.implementation("com.github.mcjty:hologui-fabric:${hologui_version}") { transitive = false }
     }
 }
 
