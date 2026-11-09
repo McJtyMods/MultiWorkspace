@@ -10,6 +10,7 @@ project.ext.set("jei_version", '31.12.0.65')
 project.ext.set("top_version", '26.3-16.0.0-fabric-1')
 project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.3-11.0.4-fabric.7')
 project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '26.3-0.0.10-beta-fabric-1')
+project.ext.set("ariente_version", project.findProperty('ariente_version') ?: '26.3-0.0.31-alpha-fabric-1')
 // Expected Jenkins coordinate; the included local port takes precedence.
 project.ext.set("rftoolsbase_version", '26.3-9.0.0-fabric-2')
 // These integrations have no verified 26.3 release. Supply a version explicitly
@@ -119,6 +120,14 @@ ext.hologui = {
         dependencies.implementation project(':ModHoloGui')
     } else {
         dependencies.implementation("com.github.mcjty:hologui-fabric:${hologui_version}") { transitive = false }
+    }
+}
+
+ext.ariente = {
+    if (findProject(':Ariente') != null) {
+        dependencies.implementation project(':Ariente')
+    } else {
+        dependencies.implementation("com.github.mcjty:ariente-fabric:${ariente_version}") { transitive = false }
     }
 }
 
