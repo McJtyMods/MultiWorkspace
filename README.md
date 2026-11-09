@@ -14,15 +14,15 @@ For checkouts elsewhere, pass their location as a Gradle property:
 ./gradlew :McJtyLib:runClientData
 ```
 
-The `workspace` module adds every included mod as both `modSource` and `implementation`. It supplies client and dedicated server runs without an example mod. Individual repositories retain standalone builds. Additional mods can be added to the list in `settings.gradle`; the runtime aggregator follows that list automatically.
+The `workspace` module adds every included mod as both `modSource` and `implementation`. It supplies client and dedicated server runs without an example mod. Individual repositories retain standalone builds. HoloGui (`:ModHoloGui`), Ariente and ArienteWorld are included when their checkouts exist. Additional mods can be added to the list in `settings.gradle`; the runtime aggregator follows that list automatically.
 
-The aggregator disables NeoGradle's automatic inclusion of its own empty sources as a mod and configures its NeoForge runtime before IDE run configurations are finalized. Its primary source set supplies the runtime classpath without adding an empty mod to `MOD_CLASSES`. Client asset index, asset directory, and native-library arguments must contain resolved values in both Gradle and IntelliJ launches; literal `{asset_index}` or `{assets_root}` values cause missing menu backgrounds, icons, and sounds. Reload the Gradle projects after changing this configuration to regenerate existing IntelliJ run arguments.
+The aggregator disables NeoGradle's automatic inclusion of its own empty sources as a mod and configures its NeoForge runtime before IDE run configurations are finalized. Its primary source set supplies the runtime classpath without adding an empty mod to `MOD_CLASSES`. The shared script keeps client assets in a Minecraft-version-specific directory so preparing another workspace cannot remove them. Client asset index, asset directory, and native-library arguments must contain resolved values in both Gradle and IntelliJ launches; literal `{asset_index}` or `{assets_root}` values cause missing menu backgrounds, icons, and sounds. Reload the Gradle projects after changing this configuration to regenerate existing IntelliJ run arguments.
 
-Both the IDE runtime classpath and Gradle runs exclude jars for mods already supplied through `modSource`. This keeps development runs on the local classes instead of letting FML select a previously built jar. After changing this configuration, reload all Gradle projects in IntelliJ before launching the workspace again.
+Both the IDE runtime classpath and Gradle runs exclude jars for mods already supplied through `modSource`. The shared script also selects class directories for included runtime projects and loads their transitive sources. This keeps development runs on the local classes instead of letting FML select a previously built jar. After changing this configuration, reload all Gradle projects in IntelliJ before launching the workspace again.
 
 ## Shared build script
 
-`gradletools.gradle` owns Minecraft/NeoForge versions, repositories, dependency helpers, development runs, jars, and publishing. A module should apply the root workspace script, then an optional standalone local copy, then the remote `26.2_neo` script. McJtyLib implements this order.
+`gradletools.gradle` owns Minecraft/NeoForge versions, repositories, dependency helpers, development runs, jars, and publishing. A module should apply the root workspace script, then an optional standalone local copy, then the remote `26.2_neo` script. McJtyLib and the Ariente-family mods also accept `-Pgradletools_path` and the sibling `../Multi_neo/gradletools.gradle` before a standalone local copy or the remote script.
 
 While this branch is unpublished, copy the script into a standalone McJtyLib checkout:
 
@@ -42,7 +42,7 @@ The configured versions below are actual 26.2 artifacts verified in the local Ma
 | `top()` | `mcjty.theoneprobe:theoneprobe:26.2_neo-15.0.1-2` |
 | `jei()` | JEI common/NeoForge APIs and NeoForge runtime `30.30.0.204` |
 | `sereneseasons()` | `26.2-26.1.2.0.6` |
-| `mcjtylib()` | Source project when included; standalone version `26.2-10.0.0` once published |
+| `mcjtylib()` | Source project when included; standalone version `26.2-10.0.3` once published |
 | `rftoolsbase()` | Source project when included; standalone artifact `26.2-8.0.0-1` (runtime mod version `26.2-8.0.0`) |
 | `lostcities()` | Source project, otherwise require an explicit compatible version |
 | `patchouli()`, `curios()`, `gamestages()` | No verified 26.2 release configured; requesting one fails with an explanation |
@@ -54,3 +54,10 @@ When another dependency becomes available, set the named version property explic
 ## Validation
 
 Run `./gradlew :McJtyLib:build :workspace:classes` to check the library, regression checks, and aggregator. Game testing should use `:workspace:runClient` and `:workspace:runServer`. Datagen uses `runClientData` on 26.2.
+
+The Ariente-family 26.2 port was also checked with all five targeted builds,
+standalone dependency resolution, eleven library JUnit tests, ten native
+GameTests, both data generators and an integrated client smoke. Camera/tank
+pixel checks pass with Fancy and Fabulous. See
+[ArienteWorld's port notes](../ArienteWorld_neo/README.md#minecraft-262-port).
+The verified Tutorial save is available in `workspace/run/saves/Tutorial`.
