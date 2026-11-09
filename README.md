@@ -41,7 +41,7 @@ Exclude `/gradletools.gradle` in that checkout's `.git/info/exclude`, keep the f
 | `energy()` | Included Team Reborn Energy API 5.0.0 |
 | `top()` | `mcjty.theoneprobe:theoneprobe:26.1.2-14.0.0-fabric-4`, or an included source project |
 | `jei()` | JEI common API and Fabric runtime 29.35.0.95 |
-| `mcjtylib()` | `com.github.mcjty:mcjtylib-fabric:26.1.2-10.0.1-fabric.2`, or an included source project |
+| `mcjtylib()` | `com.github.mcjty:mcjtylib-fabric:26.1.2-10.0.3-fabric.4`, or an included source project |
 | `rftoolsbase()` | Included source project; otherwise `com.github.mcjty:rftoolsbase-fabric:${rftoolsbase_version}` (default `26.1.2-7.0.0-fabric`) |
 | `lostcities()`, `patchouli()`, `gamestages()`, `sereneseasons()`, `trinkets()` | Require explicit compatible version properties unless the helper supports an included source project |
 | `curios()` | Rejected because the Curios API used by the NeoForge workspace is not a Fabric API |

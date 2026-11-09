@@ -19,7 +19,7 @@
 - Datagen uses Fabric's `DataGeneratorEntrypoint`, `FabricPackOutput` and registry lookup future. Generated resources remain under `src/generated/resources`.
 - Only include Fabric ports; this workspace does not convert other sibling mods automatically.
 - HoloGui, Ariente and ArienteWorld use sibling Fabric checkouts. Their development runs load the included class directories; the opt-in tutorial harness lives in `ArienteWorld_fabric/tools/`.
-- `top()` defaults to `26.1.2-14.0.0-fabric-4`; `mcjtylib()` defaults to `26.1.2-10.0.2-fabric.3`. These are Fabric Jenkins fallbacks for standalone builds. Workspace builds and development runs always prefer the included source projects. Minimum mod dependency versions omit artifact revision suffixes.
+- `top()` defaults to `26.1.2-14.0.0-fabric-4`; `mcjtylib()` defaults to `26.1.2-10.0.3-fabric.4`. These are Fabric Jenkins fallbacks for standalone builds. Workspace builds and development runs always prefer the included source projects. Minimum mod dependency versions omit artifact revision suffixes.
 - `rftoolsbase()` prefers included Fabric sources and otherwise resolves `com.github.mcjty:rftoolsbase-fabric`. Isolated CI needs a published version selected with `-Prftoolsbase_version=<version>`.
 
 ## Checks
