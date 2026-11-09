@@ -1,0 +1,70 @@
+// A Gradle user home belongs to one Minecraft version and loader. This also
+// works as an init script for standalone mod builds and IDE tooling clients.
+def minecraftTarget = '1.20.1-forge'
+def gradleHome = gradle.gradleUserHomeDir.canonicalFile
+def sharedHome = new File(System.getProperty('user.home'), '.gradle').canonicalFile
+if (gradleHome == sharedHome) {
+    throw new GradleException("Minecraft ${minecraftTarget} requires an isolated Gradle user home. " +
+            'Use the workspace wrapper, or set Gradle user home in IntelliJ to the workspace .gradle-user-home directory. ' +
+            'For standalone builds, pass --gradle-user-home <workspace>/.gradle-user-home.')
+}
+if (!gradleHome.isDirectory() && !gradleHome.mkdirs()) {
+    throw new GradleException("Cannot create Gradle user home: ${gradleHome}")
+}
+
+// Lock the marker so simultaneous first builds cannot claim the same home for
+// different targets. Canonical paths also cover symlinks to the shared home.
+def marker = new File(gradleHome, '.minecraft-target')
+new RandomAccessFile(marker, 'rw').withCloseable { file ->
+    file.channel.lock().withCloseable {
+        def existingTarget = file.readLine()
+        if (existingTarget != null && existingTarget != minecraftTarget) {
+            throw new GradleException("Gradle user home ${gradleHome} belongs to Minecraft ${existingTarget}, " +
+                    "but this build targets ${minecraftTarget}. Choose a separate Gradle user home.")
+        }
+        if (existingTarget == null) {
+            file.writeBytes(minecraftTarget + '\n')
+        }
+    }
+}
+
+// A standalone mod can use its own wrapper with this home's installed init
+// script. Check the actual project too, so selecting the wrong home fails
+// before any Minecraft preparation tasks execute.
+def guardKey = "minecraftGradleHomeGuard_${minecraftTarget}"
+if (gradle.extensions.extraProperties.has(guardKey)) {
+    return
+}
+gradle.extensions.extraProperties.set(guardKey, true)
+// NeoGradle's generated library lists contain absolute paths. A home migration
+// must invalidate old lists even when the dependency contents are identical.
+gradle.beforeProject { project ->
+    project.plugins.withId('net.neoforged.gradle.userdev') { plugin ->
+        def listLibraries = plugin.class.classLoader.loadClass('net.neoforged.gradle.common.runtime.tasks.ListLibraries')
+        project.tasks.withType(listLibraries).configureEach {
+            inputs.property('libraryListGradleUserHome', gradleHome.absolutePath)
+            inputs.property('libraryListProjectDirectory', project.projectDir.absolutePath)
+        }
+    }
+}
+def expectedVersion = minecraftTarget.substring(0, minecraftTarget.lastIndexOf('-'))
+def expectedLoader = minecraftTarget.substring(minecraftTarget.lastIndexOf('-') + 1)
+gradle.afterProject { project ->
+    def version = project.findProperty('minecraft_version')?.toString()
+    if (version != null && version != expectedVersion) {
+        throw new GradleException("Project ${project.path} targets Minecraft ${version}, " +
+                "but Gradle user home ${gradleHome} belongs to ${minecraftTarget}.")
+    }
+    def loaderPlugins = [
+            'net.minecraftforge.gradle'     : 'forge',
+            'net.neoforged.gradle.userdev'  : 'neo',
+            'fabric-loom'                  : 'fabric',
+            'net.fabricmc.fabric-loom'     : 'fabric'
+    ]
+    loaderPlugins.each { pluginId, loader ->
+        if (project.plugins.hasPlugin(pluginId) && loader != expectedLoader) {
+            throw new GradleException("Project ${project.path} uses ${loader}, " +
+                    "but Gradle user home ${gradleHome} belongs to ${minecraftTarget}.")
+        }
+    }
+}

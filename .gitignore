@@ -9839,3 +9839,6 @@
 /LostSouls/out/production/resources/META-INF/accesstransformer.cfg
 /LostSouls/out/production/resources/META-INF/mods.toml
 /LostSouls/out/production/resources/pack.mcmeta
+
+# Private Gradle user home for this Minecraft version and loader
+/.gradle-user-home/

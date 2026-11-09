@@ -1,4 +1,5 @@
 pluginManagement {
+    settings.apply from: new File(settings.settingsDir, 'gradle/gradle-home.init.gradle')
     repositories {
         gradlePluginPortal()
         maven { url "https://maven.firstdark.dev/releases" }
@@ -14,6 +15,7 @@ include 'LostEdit'
 include 'LostWorlds'
 //include 'Wastify'
 include 'McJtyLib'
+//include 'ModBlocker'
 include 'NEW'
 include 'Nice'
 include 'InteractionWheel'
