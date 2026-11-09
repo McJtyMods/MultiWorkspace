@@ -51,7 +51,7 @@ without a local workspace require the remote branch to have been published.
 | `energy()` | Included Team Reborn Energy API 5.0.0 |
 | `top()` | Source project when included; otherwise `mcjty.theoneprobe:theoneprobe:26.3-16.0.0-fabric-1` |
 | `jei()` | JEI common API and Fabric runtime 31.12.0.65 |
-| `mcjtylib()` | Local source project when included; otherwise Jenkins `com.github.mcjty:mcjtylib-fabric:26.3-11.0.1-fabric.2` |
+| `mcjtylib()` | Local source project when included; otherwise Jenkins `com.github.mcjty:mcjtylib-fabric:26.3-11.0.4-fabric.7` |
 | `rftoolsbase()` | Local source project for the unpublished port; eventual Jenkins fallback uses `rftoolsbase_version=26.3-9.0.0-fabric-1` |
 | `lostcities()` | Source project, otherwise an explicit compatible version property |
 | `trinkets()`, `patchouli()`, `gamestages()`, `sereneseasons()` | Require explicit compatible version properties |
