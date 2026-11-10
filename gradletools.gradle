@@ -10,8 +10,8 @@ project.ext.set("jei_version", '30.35.0.223')
 project.ext.set("top_version", '26.2-15.0.1-fabric-1')
 project.ext.set("trinkets_version", '4.1.0-rc.1+26.2')
 project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.2-10.0.3-fabric.7')
-project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '26.2-0.0.10-beta-fabric-1')
-project.ext.set("ariente_version", project.findProperty('ariente_version') ?: '26.2-0.0.31-alpha-fabric-1')
+project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '26.2-4.0.0-fabric+')
+project.ext.set("ariente_version", project.findProperty('ariente_version') ?: '26.2-4.0.0-fabric+')
 // Maven artifact revision; the runtime mod version remains 26.2-8.0.0-fabric.
 project.ext.set("rftoolsbase_version", '26.2-8.0.0-fabric-1')
 // These integrations have no verified 26.2 release. Supply a version explicitly
@@ -169,6 +169,11 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
             'curios'          : 'vvuO3ImH',
             'game-stages'     : 'iAlZk5aS',
             'mcjtylib'        : '1Zu0uTEE',
+            'forge-config-api-port': 'ohNO6lps',
+            'fabric-api'      : 'P7dR8mSH',
+            'ariente-world'   : 'tNpARtmT',
+            'ariente'         : 'JZNKzzmT',
+            'hologui'         : 'Uz48yWr1',
             'rftools-base'    : 'hIO8IsD8',
             'the-lost-cities' : '8VDCUS3b',
             'the-one-probe'   : 'Eyw0UxEx',
