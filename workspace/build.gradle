@@ -1,20 +1,22 @@
 plugins {
     id 'java-library'
-    id 'net.fabricmc.fabric-loom'
+    id 'fabric-loom'
 }
 apply from: rootProject.file('gradletools.gradle')
 repos()
 version = '1.0'
 group = 'com.github.mcjty'
 base.archivesName = 'workspace-fabric'
-java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 def includedMods = rootProject.subprojects.findAll { it != project }
 includedMods.each { evaluationDependsOn(it.path) }
 dependencies {
     mc()
+    config()
+    energy()
     jei()
     top()
-    includedMods.each { implementation project(it.path) }
+    includedMods.each { implementation project(path: it.path, configuration: 'namedElements') }
 }
 loom {
     mods {
@@ -27,18 +29,14 @@ loom {
     runs {
         configureEach {
             // Loom defaults to generating IDE configurations only for root projects.
-            generateRunConfig = true
-            appendProjectPathToDisplayName = false
+            ideConfigGenerated = true
         }
         client {
-            client()
-            displayName = 'Client'
+            name 'Client'
             runDir 'runs/client'
         }
         server {
-            server()
-            displayName = 'Server'
-            programArg '--nogui'
+            name 'Server'
             runDir 'runs/server'
         }
     }
@@ -49,5 +47,5 @@ tasks.withType(JavaExec).configureEach {
     def localJars = includedMods.collect { it.tasks.named('jar', Jar).get().archiveFile.get().asFile } as Set
     dependsOn tasks.named('classes'), includedMods.collect { it.tasks.named('classes') }
     def launchClasspath = files(classpath.files)
-    classpath = launchClasspath.filter { !localJars.contains(it) } + files(includedMods.collect { it.sourceSets.main.output })
+    classpath = launchClasspath.filter { it.exists() && !localJars.contains(it) } + files(includedMods.collect { it.sourceSets.main.output })
 }

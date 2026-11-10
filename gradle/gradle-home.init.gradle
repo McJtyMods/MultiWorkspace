@@ -1,6 +1,6 @@
 // A Gradle user home belongs to one Minecraft version and loader. This also
 // works as an init script for standalone mod builds and IDE tooling clients.
-def minecraftTarget = '26.1.2-fabric'
+def minecraftTarget = '1.21.1-fabric'
 def gradleHome = gradle.gradleUserHomeDir.canonicalFile
 def sharedHome = new File(System.getProperty('user.home'), '.gradle').canonicalFile
 if (gradleHome == sharedHome) {
@@ -58,8 +58,7 @@ gradle.afterProject { project ->
     def loaderPlugins = [
             'net.minecraftforge.gradle'     : 'forge',
             'net.neoforged.gradle.userdev'  : 'neo',
-            'fabric-loom'                  : 'fabric',
-            'net.fabricmc.fabric-loom'     : 'fabric'
+            'fabric-loom'                  : 'fabric'
     ]
     loaderPlugins.each { pluginId, loader ->
         if (project.plugins.hasPlugin(pluginId) && loader != expectedLoader) {

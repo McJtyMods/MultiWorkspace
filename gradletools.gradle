@@ -1,23 +1,22 @@
 project.ext.set("mod_group_id", 'com.github.mcjty')
 project.ext.set("mod_authors", 'McJty')
-project.ext.set("minecraft_version", '26.1.2')
-project.ext.set("minecraft_version_range", '=26.1.2')
-project.ext.set("fabric_loader_version", '0.19.3')
-project.ext.set("fabric_version", '0.155.3+26.1.2')
-project.ext.set("forge_config_api_port_version", '26.1.5')
-project.ext.set("jei_version", '29.35.0.95')
+project.ext.set("minecraft_version", '1.21.1')
+project.ext.set("minecraft_version_range", '=1.21.1')
+project.ext.set("fabric_loader_version", '0.16.14')
+project.ext.set("fabric_version", '0.116.6+1.21.1')
+project.ext.set("forge_config_api_port_version", '21.1.6')
+project.ext.set("jei_version", '19.21.2.313')
 // Jenkins artifact revisions; fabric.mod.json dependencies use unsuffixed base versions.
-project.ext.set("top_version", project.findProperty('top_version') ?: '26.1.2-14.0.0-fabric-4')
+project.ext.set("top_version", project.findProperty('top_version') ?: '1.21.1-12.0.9-fabric-1')
 // Published compilation artifacts; runtime minimums are declared in mod metadata.
-project.ext.set("mcjtylib_version", '26.1.2-10.0.3-fabric.4')
-project.ext.set("hologui_version", '26.1.2-0.0.10-beta-fabric-1')
-project.ext.set("ariente_version", '26.1.2-0.0.31-alpha-fabric-1')
-project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-fabric-1')
+project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '1.21.1-9.0.22-fabric.1')
+project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '1.21.1-2.0.0-fabric-1')
+project.ext.set("ariente_version", project.findProperty('ariente_version') ?: '1.21.1-2.0.0-fabric-1')
 // Supply compatible versions explicitly for optional integrations.
 ext.requireDependencyVersion = { name ->
     def value = project.findProperty(name)
     if (!value) {
-        throw new GradleException("No Minecraft 26.1.2 release configured for ${name}; set -P${name}=<compatible version>")
+        throw new GradleException("No Minecraft 1.21.1 release configured for ${name}; set -P${name}=<compatible version>")
     }
     value
 }
@@ -68,24 +67,25 @@ ext.repos = {
 
 ext.mc = {
     dependencies.minecraft "com.mojang:minecraft:${minecraft_version}"
-    dependencies.implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    dependencies.implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    dependencies.mappings loom.officialMojangMappings()
+    dependencies.modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    dependencies.modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     dependencies.compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
 
 }
 
 ext.config = {
-    dependencies.implementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
+    dependencies.modImplementation "fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_port_version}"
 }
 ext.energy = {
-    dependencies.add('include', dependencies.implementation('teamreborn:energy:5.0.0'))
+    dependencies.add('include', dependencies.modImplementation('teamreborn:energy:4.1.0'))
 }
 ext.jei = {
-    dependencies.compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
-    dependencies.runtimeOnly "mezz.jei:jei-${minecraft_version}-fabric:${jei_version}"
+    dependencies.modCompileOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}") { transitive = false }
+    dependencies.modRuntimeOnly("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}") { transitive = false }
 }
 ext.patchouli = {
-    dependencies.implementation "vazkii.patchouli:Patchouli:${requireDependencyVersion('patchouli_version')}"
+    dependencies.modCompileOnly "vazkii.patchouli:Patchouli:1.21.1-92-FABRIC"
 }
 
 ext.gamestages = {
@@ -99,33 +99,33 @@ ext.sereneseasons = {
 
 ext.top = {
     if (findProject(':TheOneProbe') != null) {
-        dependencies.implementation project(':TheOneProbe')
+        dependencies.implementation dependencies.project(path: ':TheOneProbe', configuration: 'namedElements')
     } else {
-        dependencies.implementation "mcjty.theoneprobe:theoneprobe:${top_version}"
+        dependencies.modImplementation "mcjty.theoneprobe:theoneprobe:${top_version}"
     }
 }
 
 ext.mcjtylib = {
     if (findProject(':McJtyLib') != null) {
-        dependencies.implementation project(':McJtyLib')
+        dependencies.implementation dependencies.project(path: ':McJtyLib', configuration: 'namedElements')
     } else {
-        dependencies.implementation "com.github.mcjty:mcjtylib-fabric:${mcjtylib_version}"
+        dependencies.modImplementation "com.github.mcjty:mcjtylib-fabric:${mcjtylib_version}"
     }
 }
 
 ext.hologui = {
     if (findProject(':ModHoloGui') != null) {
-        dependencies.implementation project(':ModHoloGui')
+        dependencies.implementation dependencies.project(path: ':ModHoloGui', configuration: 'namedElements')
     } else {
-        dependencies.implementation("com.github.mcjty:hologui-fabric:${hologui_version}") { transitive = false }
+        dependencies.modImplementation("com.github.mcjty:hologui-fabric:${hologui_version}") { transitive = false }
     }
 }
 
 ext.ariente = {
     if (findProject(':Ariente') != null) {
-        dependencies.implementation project(':Ariente')
+        dependencies.implementation dependencies.project(path: ':Ariente', configuration: 'namedElements')
     } else {
-        dependencies.implementation("com.github.mcjty:ariente-fabric:${ariente_version}") { transitive = false }
+        dependencies.modImplementation("com.github.mcjty:ariente-fabric:${ariente_version}") { transitive = false }
     }
 }
 
@@ -133,7 +133,7 @@ ext.rftoolsbase = {
     if (findProject(':RFToolsBase') != null) {
         dependencies.implementation project(':RFToolsBase')
     } else {
-        dependencies.implementation "com.github.mcjty:rftoolsbase-fabric:${rftoolsbase_version}"
+        dependencies.modImplementation "com.github.mcjty:rftoolsbase-fabric:${requireDependencyVersion('rftoolsbase_version')}"
     }
 }
 
@@ -150,7 +150,7 @@ ext.lostcities = {
     if (findProject(':LostCities') != null) {
         dependencies.implementation project(':LostCities')
     } else {
-        dependencies.implementation "com.github.mcjty:lostcities:${requireDependencyVersion('lostcities_version')}"
+        dependencies.modImplementation "com.github.mcjty:lostcities:${requireDependencyVersion('lostcities_version')}"
     }
 }
 
@@ -162,7 +162,7 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
     def curseKey = (project.findProperty('curseforge_key') ?: System.getenv('CURSEFORGE_TOKEN') ?: System.getenv('CURSE_TOKEN') ?: '').toString()
     def modrinthKey = (project.findProperty('modrinth_token') ?: System.getenv('MODRINTH_TOKEN') ?: '').toString()
     def allVersions = ([project.minecraft_version] + versions).collect { it.toString() }.unique()
-    def publishArtifactTask = tasks.findByName('jar')
+    def publishArtifactTask = tasks.named('remapJar')
     def modrinthProjectIds = [
             'curios'          : 'vvuO3ImH',
             'game-stages'     : 'iAlZk5aS',
@@ -224,8 +224,8 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
         gameVersions.set(allVersions)
         loaders.set(['fabric'])
         curseEnvironment.set('both')
-        javaVersions.add(JavaVersion.VERSION_25)
-        artifact.set(jar)
+        javaVersions.add(JavaVersion.VERSION_21)
+        artifact.set(publishArtifactTask)
 
         curseDepends {
             curseOptional.each { lib -> optional lib }
@@ -246,8 +246,8 @@ ext.access = {
 ext.runs = {
     loom {
         runs {
-            client { client(); runDir 'runs/client' }
-            server { server(); programArg '--nogui'; runDir 'runs/server' }
+            client { runDir 'runs/client' }
+            server { runDir 'runs/server' }
             datagen {
                 server()
                 vmArg '-Dfabric-api.datagen'
@@ -260,8 +260,10 @@ ext.runs = {
 }
 
 ext.jars = {
+    tasks.withType(JavaCompile).configureEach { options.release = 21 }
     jar {
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        exclude '.cache/**'
         manifest {
             attributes([
                     "Specification-Title"     : project.mod_id,

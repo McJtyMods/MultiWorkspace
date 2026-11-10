@@ -13,7 +13,7 @@ plugins {
 }
 
 // IntelliJ normalizes dots to underscores in module names; Loom uses this name verbatim.
-rootProject.name = '26_1_2_fabric'
+rootProject.name = '1_21_fabric'
 
 // Include available checkouts. Both nested and sibling *_fabric layouts work.
 def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
