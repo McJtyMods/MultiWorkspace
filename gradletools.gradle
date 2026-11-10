@@ -145,8 +145,10 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
     def curseKey = (project.findProperty('curseforge_key') ?: System.getenv('CURSEFORGE_TOKEN') ?: System.getenv('CURSE_TOKEN') ?: '').toString()
     def modrinthKey = (project.findProperty('modrinth_token') ?: System.getenv('MODRINTH_TOKEN') ?: '').toString()
     def allVersions = ([project.minecraft_version] + versions).collect { it.toString() }.unique()
+    // ModPublisher 2.0.4 treats alphanumeric slugs as IDs; map them explicitly.
     def modrinthProjectIds = [
             'curios'          : 'vvuO3ImH',
+            'patchouli'       : 'nU0bVIaL',
             'game-stages'     : 'iAlZk5aS',
             'mcjtylib'        : '1Zu0uTEE',
             'ariente-world'   : 'tNpARtmT',
