@@ -7,7 +7,7 @@ project.ext.set("neo_version_range", '[26.2.0.75,)')
 project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '30.30.0.204')
 project.ext.set("top_version", '26.2_neo-15.0.1-2')
-project.ext.set("mcjtylib_version", '26.2-10.0.3.7')
+project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.2-10.0.3.7')
 // Maven artifact revision; the runtime mod version remains 26.2-8.0.0.
 project.ext.set("rftoolsbase_version", '26.2-8.0.0-1')
 project.ext.set("sereneseasons_version", '26.2-26.1.2.0.6')
@@ -143,6 +143,7 @@ ext.modpublisher = { curseOptional, curseRequired, modrinthOptional, modrinthReq
             'patchouli'       : 'nU0bVIaL',
             'game-stages'     : 'iAlZk5aS',
             'mcjtylib'        : '1Zu0uTEE',
+            'ariente-world'   : 'tNpARtmT',
             'rftools-base'    : 'hIO8IsD8',
             'the-lost-cities' : '8VDCUS3b',
             'the-one-probe'   : 'Eyw0UxEx',
