@@ -8,7 +8,10 @@ project.ext.set("loader_version_range", '[4,)')
 project.ext.set("jei_version", '29.43.0.106')
 // The published TOP 26.1.2 release has a verified Curse Maven coordinate.
 project.ext.set("top_file_id", '8797594')
-project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '26.1.2-10.0.2.5')
+// Published compilation artifacts; runtime minimums are declared in mod metadata.
+project.ext.set("mcjtylib_version", '26.1.2-10.0.2.5')
+project.ext.set("hologui_version", '26.1.2-0.0.10-beta-1')
+project.ext.set("ariente_version", '26.1.2-0.0.31-alpha-2')
 project.ext.set("rftoolsbase_version", '26.1.2-7.0.0-1')
 project.ext.set("curios_version", project.findProperty("curios_version") ?: '15.0.0+26.1.2')
 project.ext.set("patchouli_version", project.findProperty("patchouli_version") ?: '26.1-94')
