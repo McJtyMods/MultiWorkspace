@@ -9,7 +9,7 @@ project.ext.set("jei_version", '19.21.2.313')
 // Jenkins artifact revisions; fabric.mod.json dependencies use unsuffixed base versions.
 project.ext.set("top_version", project.findProperty('top_version') ?: '1.21.1-12.0.9-fabric-1')
 // Published compilation artifacts; runtime minimums are declared in mod metadata.
-project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '1.21.1-9.0.22-fabric.1')
+project.ext.set("mcjtylib_version", project.findProperty('mcjtylib_version') ?: '1.21.1-9.0.22-fabric.2')
 project.ext.set("hologui_version", project.findProperty('hologui_version') ?: '1.21.1-2.0.0-fabric-1')
 project.ext.set("ariente_version", project.findProperty('ariente_version') ?: '1.21.1-2.0.0-fabric-1')
 // Supply compatible versions explicitly for optional integrations.
