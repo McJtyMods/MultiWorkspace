@@ -82,7 +82,7 @@ a temporary Gradle dependency substitution used only for validation. Release
 standalone builds use Jenkins, while integrated development runs use the local library.
 
 ```sh
-./gradlew :RFToolsBase:build :RFToolsPower:build :ModXNet:build :workspace:classes
+./gradlew :RFToolsBase:build :RFToolsPower:build :RFToolsUtility:build :ModXNet:build :workspace:classes
 ./gradlew -PfabricPortTests :RFToolsBase:runClientGameTest
 ```
 
@@ -155,3 +155,15 @@ Create and validate the tutorial from `ArienteWorld_fabric` with
 `python3 tools/create_tutorial.py`, then reload and install it with
 `python3 tools/create_tutorial.py --verify --saves ../Multi_fabric/workspace/runs/client/saves`.
 The combined Client run finds the world under **Tutorial**.
+
+## RFToolsUtility Fabric
+
+The sibling `RFToolsUtility_fabric` checkout is included as `:RFToolsUtility` by
+`settings.gradle` and loaded from source in the combined Client and Server runs.
+It uses the included McJtyLib, RFToolsBase, and The One Probe projects.
+
+```sh
+./gradlew :RFToolsUtility:build :workspace:classes
+./gradlew :RFToolsUtility:runDatagen
+./gradlew -PutilityPortTests :RFToolsUtility:runClientGameTest
+```

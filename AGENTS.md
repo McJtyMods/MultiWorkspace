@@ -23,10 +23,12 @@
 
 ## Checks
 
-- `./gradlew :McJtyLib:build :workspace:classes`
+- `./gradlew :McJtyLib:build :RFToolsUtility:build :workspace:classes`
 - `./gradlew -PtransferTests :McJtyLib:runTransferTest` runs item/fluid transaction checks in Fabric and exits.
 - `./gradlew -PtransferTests :McJtyLib:runDatagenTest` checks recipe, advancement, loot and model generation.
 - `./gradlew -PtransferTests -PclientTests :McJtyLib:runClient` checks pipelines, SDL input and text focus, then exits.
 - `./gradlew :workspace:runClient` and `:workspace:runServer` cover game behavior.
 - `./gradlew :<Mod>:runDatagen` requires that mod's datagen entrypoint.
 - Do not publish or push without the user's instruction. The user's staging preference includes additions, modifications and deletions; do not add a copied shared script to McJtyLib.
+
+- RFToolsUtility uses the sibling `RFToolsUtility_fabric` checkout. Run `./gradlew -PutilityPortTests :RFToolsUtility:runClientGameTest` for its native transfer, module installation, recipe and menu checks.
