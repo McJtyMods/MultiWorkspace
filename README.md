@@ -1,16 +1,16 @@
 # MultiWorkSpace for Minecraft 26.1.2 / Fabric
 
-Use Java 25, Gradle 9.5.1 and Fabric Loom 1.17.17. Open the root `build.gradle` in IntelliJ. Settings include available nested checkouts or sibling `*_fabric` checkouts, including `RFToolsBase_fabric`, `RFToolsPower_fabric` and `ModXNet_fabric`. Missing mods are skipped. Override a checkout location with `-Pmod.<Name>=<path>`.
+Use Java 25, Gradle 9.5.1 and Fabric Loom 1.17.17. Open the root `build.gradle` in IntelliJ. Settings include available nested checkouts or sibling `*_fabric` checkouts, including `RFToolsBase_fabric`, `RFToolsPower_fabric`, `RFToolsUtility_fabric` and `ModXNet_fabric`. Missing mods are skipped. Override a checkout location with `-Pmod.<Name>=<path>`.
 
 Refreshing Gradle in IntelliJ generates `Client` and `Server` run configurations for the combined workspace. To generate them from the command line, run `./gradlew :workspace:ideaSyncTask`. Loom's IDE configuration generation is explicitly enabled for this subproject.
 
 The Gradle root name is `26_1_2_fabric` so Loom and IntelliJ agree on the module `26_1_2_fabric.workspace.main`. Dots in the root name cause IntelliJ to normalize the name differently from Loom. Existing generated Application configurations retain their module selection on refresh; if migrating from the dotted name, select this module in both configurations or remove their generated XML files under `.idea/runConfigurations` and regenerate them.
 
-McJtyLib, The One Probe, and other included mods always use local source checkouts. Published artifacts are standalone fallbacks. Logical project names remain `:RFToolsBase`, `:RFToolsPower`, `:ModXNet`, `:McJtyLib` and `:TheOneProbe`.
+McJtyLib, The One Probe, and other included mods always use local source checkouts. Published artifacts are standalone fallbacks. Logical project names remain `:RFToolsBase`, `:RFToolsPower`, `:RFToolsUtility`, `:ModXNet`, `:McJtyLib` and `:TheOneProbe`.
 
 ```sh
 ./gradlew projects
-./gradlew :RFToolsBase:build :RFToolsPower:build :ModXNet:build :workspace:classes
+./gradlew :RFToolsBase:build :RFToolsPower:build :RFToolsUtility:build :ModXNet:build :workspace:classes
 ./gradlew :workspace:runClient
 ./gradlew :workspace:runServer
 ./gradlew :RFToolsBase:runDatagen :RFToolsPower:runDatagen :ModXNet:runDatagen
@@ -127,3 +127,15 @@ Create and validate the tutorial from `ArienteWorld_fabric` with
 `python3 tools/create_tutorial.py`, then reload and install it with
 `python3 tools/create_tutorial.py --verify --saves ../Multi_fabric/workspace/runs/client/saves`.
 The combined Client run finds the world under **Tutorial**.
+
+## RFToolsUtility Fabric
+
+The sibling `RFToolsUtility_fabric` checkout is included as `:RFToolsUtility` by
+`settings.gradle` and loaded from source in the combined Client and Server runs.
+It uses the included McJtyLib, RFToolsBase, and The One Probe projects.
+
+```sh
+./gradlew :RFToolsUtility:build :workspace:classes
+./gradlew :RFToolsUtility:runDatagen
+./gradlew -PutilityPortTests :RFToolsUtility:runClientGameTest
+```
