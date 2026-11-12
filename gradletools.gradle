@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurper
+import java.security.MessageDigest
+
 // NeoGradle's library lists contain absolute paths, but its cache key ignores the
 // checkout location. Include it so Jenkins jobs cannot restore each other's paths.
 plugins.withId('net.neoforged.gradle.userdev') { neoGradle ->
@@ -341,10 +344,75 @@ tasks.withType(JavaExec).configureEach {
     }
 }
 
+def completeVanillaAssets = { download ->
+    def indexFile = download.assetIndexTargetFile.get().asFile
+    if (!indexFile.isFile()) {
+        return false
+    }
+    def actualHash = MessageDigest.getInstance('SHA-1').digest(indexFile.bytes).encodeHex().toString()
+    if (actualHash != download.versionJson.get().assetIndex.sha1) {
+        return false
+    }
+    def objectsDirectory = new File(indexFile.parentFile.parentFile, 'objects')
+    def index = new JsonSlurper().parse(indexFile)
+    return index.objects.every { name, asset ->
+        def objectFile = new File(objectsDirectory, asset.hash.substring(0, 2) + '/' + asset.hash)
+        objectFile.isFile() && objectFile.length() == asset.size
+    }
+}
+
 // NeoGradle 7 otherwise shares one mutable "asset-index.json" across Minecraft
 // versions, which can load another workspace's fonts, sounds and built-in packs.
 tasks.configureEach { task ->
     if (task.name.endsWith('DownloadAssets')) {
         task.assetIndex.set(project.minecraft_version)
+        // NeoGradle clears the shared objects directory on an execution-cache
+        // miss, even offline. Reuse complete assets and fail before that cleanup.
+        task.onlyIf { !completeVanillaAssets(task) }
+        task.doFirst {
+            if (task.isOffline.get() && !completeVanillaAssets(task)) {
+                throw new GradleException('Vanilla Minecraft assets are incomplete. Run prepareVanillaAssets online before launching the client.')
+            }
+        }
+        // Mojang updates indexes without changing the Minecraft version. Include
+        // their content hash so NeoGradle cannot restore an older cached index.
+        task.inputs.property('minecraftAssetIndexSha1', task.versionJson.map { it.assetIndex.sha1 })
+        task.outputs.upToDateWhen { completeVanillaAssets(task) }
     }
 }
+
+// IDEA's saved Application runs invoke ideBeforeRun without necessarily running
+// an import first. Prepare and check vanilla assets in that path as well.
+def vanillaAssetDownloads = tasks.matching { it.name.endsWith('DownloadAssets') }
+def prepareVanillaAssets = tasks.register('prepareVanillaAssets') {
+    group = 'minecraft'
+    description = 'Prepare and verify the vanilla assets used by development clients.'
+    dependsOn vanillaAssetDownloads
+    doLast {
+        vanillaAssetDownloads.each { download ->
+            def indexFile = download.assetIndexTargetFile.get().asFile
+            if (!indexFile.isFile()) {
+                throw new GradleException("Missing Minecraft asset index: ${indexFile}")
+            }
+            def actualHash = MessageDigest.getInstance('SHA-1').digest(indexFile.bytes).encodeHex().toString()
+            if (actualHash != download.versionJson.get().assetIndex.sha1) {
+                throw new GradleException("Wrong Minecraft asset index: ${indexFile}. Run prepareVanillaAssets --rerun-tasks online.")
+            }
+            def objectsDirectory = new File(indexFile.parentFile.parentFile, 'objects')
+            def index = new JsonSlurper().parse(indexFile)
+            def missing = index.objects.findAll { name, asset ->
+                def objectFile = new File(objectsDirectory, asset.hash.substring(0, 2) + '/' + asset.hash)
+                !objectFile.isFile() || objectFile.length() != asset.size
+            }
+            if (!missing.isEmpty()) {
+                throw new GradleException("Missing or incomplete Minecraft assets (${missing.size()}): ${missing.keySet().take(5)}. Run prepareVanillaAssets --rerun-tasks online.")
+            }
+            logger.lifecycle("Verified ${index.objects.size()} Minecraft assets for ${project.minecraft_version}")
+        }
+    }
+}
+if (!tasks.names.contains('ideBeforeRun')) {
+    tasks.register('ideBeforeRun')
+}
+tasks.named('ideBeforeRun').configure { dependsOn prepareVanillaAssets }
+tasks.matching { it.name == 'runClient' }.configureEach { dependsOn prepareVanillaAssets }

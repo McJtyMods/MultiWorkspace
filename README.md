@@ -46,6 +46,15 @@ Keep private cache directories separate; do not symlink their mutable contents.
 NeoGradle library-list cache keys include the home and checkout paths so moving
 to a new home regenerates lists containing absolute dependency paths.
 
+The asset files also need their version-specific index in
+`caches/minecraft/assets/indexes`. `prepareVanillaAssets` downloads or restores
+that index and checks every referenced asset. Both `runClient` and IntelliJ's
+`ideBeforeRun` run this check, so a missing index cannot silently remove vanilla
+sounds and menu backgrounds. Download cache keys include Mojang's index hash,
+because an index can change without a new Minecraft version. After creating a
+new home, run
+`./gradlew :workspace:prepareVanillaAssets` online before launching a client.
+
 Install the home guard for standalone builds after checkout or recreating the
 private home:
 
