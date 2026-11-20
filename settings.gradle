@@ -15,7 +15,7 @@ plugins {
 rootProject.name = '26.3_neo'
 
 // Include available checkouts. Both nested and sibling *_neo layouts work.
-def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
+def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostWorlds', 'LostSouls', 'InControl',
             'Nice', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
             'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
             'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',
