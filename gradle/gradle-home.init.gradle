@@ -1,6 +1,6 @@
 // A Gradle user home belongs to one Minecraft version and loader. This also
 // works as an init script for standalone mod builds and IDE tooling clients.
-def minecraftTarget = '1.21.1-neo'
+def minecraftTarget = '1.21.11-neo'
 def gradleHome = gradle.gradleUserHomeDir.canonicalFile
 def sharedHome = new File(System.getProperty('user.home'), '.gradle').canonicalFile
 if (gradleHome == sharedHome) {
