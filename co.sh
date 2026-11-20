@@ -103,10 +103,9 @@ popd
 #git checkout 1.21_neo
 #popd
 
-#git clone https://github.com/McJtyMods/LostWorlds LostWorlds
-#pushd LostWorlds
-#git checkout 1.21_neo
-#popd
+if [[ ! -e ../LostWorlds_neo && ! -e LostWorlds ]]; then
+    git clone --branch 26.1.2_neo --single-branch https://github.com/McJtyMods/LostWorlds ../LostWorlds_neo
+fi
 
 git clone https://github.com/McJtyMods/LostRadar Radar
 pushd LostRadar
