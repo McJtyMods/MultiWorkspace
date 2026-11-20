@@ -6,6 +6,7 @@ repos=(
     "DeepResonance=https://github.com/McJtyMods/DeepResonance"
     "Trinkets=https://github.com/McJtyMods/FancyTrinkets"
     "LostCities=https://github.com/McJtyMods/LostCities"
+    "LostWorlds=https://github.com/McJtyMods/LostWorlds"
     "McJtyLib=https://github.com/McJtyMods/McJtyLib"
     "ModXNet=https://github.com/McJtyMods/XNet"
     "NEW=https://github.com/romelo333/notenoughwands1.8.8"
@@ -29,12 +30,16 @@ repos=(
 for entry in "${repos[@]}"; do
     name=${entry%%=*}
     url=${entry#*=}
-    if [[ -e "$name" ]]; then
+    checkout="$name"
+    if [[ "$name" == LostWorlds ]]; then
+        checkout="../LostWorlds_fabric"
+    fi
+    if [[ -e "$name" || -e "$checkout" ]]; then
         printf 'Keeping existing checkout: %s\n' "$name"
         continue
     fi
     if git ls-remote --exit-code --heads "$url" "$branch" >/dev/null; then
-        git clone --branch "$branch" --single-branch "$url" "$name"
+        git clone --branch "$branch" --single-branch "$url" "$checkout"
     else
         printf 'Skipping %s: %s is unavailable\n' "$name" "$branch"
     fi
