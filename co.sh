@@ -103,10 +103,7 @@ popd
 #git checkout 1.21_neo
 #popd
 
-#git clone https://github.com/McJtyMods/LostWorlds LostWorlds
-#pushd LostWorlds
-#git checkout 1.21_neo
-#popd
+git clone --branch 1.21_neo --single-branch https://github.com/McJtyMods/LostWorlds LostWorlds
 
 git clone https://github.com/McJtyMods/LostRadar Radar
 pushd LostRadar
