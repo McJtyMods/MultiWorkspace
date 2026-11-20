@@ -16,7 +16,7 @@ plugins {
 rootProject.name = '26_2_fabric'
 
 // Include available checkouts. Both nested and sibling *_fabric layouts work.
-def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostSouls', 'InControl',
+def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostWorlds', 'LostSouls', 'InControl',
             'Nice', 'MeeCreeps', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
             'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
             'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',

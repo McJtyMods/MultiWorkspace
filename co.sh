@@ -103,10 +103,9 @@ popd
 #git checkout 26.2_fabric
 #popd
 
-#git clone https://github.com/McJtyMods/LostWorlds LostWorlds
-#pushd LostWorlds
-#git checkout 26.2_fabric
-#popd
+if [[ ! -e ../LostWorlds_fabric && ! -e LostWorlds ]]; then
+    git clone --branch 26.2_fabric --single-branch https://github.com/McJtyMods/LostWorlds ../LostWorlds_fabric
+fi
 
 git clone https://github.com/McJtyMods/LostRadar Radar
 pushd LostRadar
