@@ -139,3 +139,7 @@ It uses the included McJtyLib, RFToolsBase, and The One Probe projects.
 ./gradlew :RFToolsUtility:runDatagen
 ./gradlew -PutilityPortTests :RFToolsUtility:runClientGameTest
 ```
+
+## RFToolsStorage
+
+Put the `RFToolsStorage_fabric` checkout beside this workspace or use `-Pmod.RFToolsStorage=<path>`. Gradle includes it as `:RFToolsStorage` and loads its sources in workspace runs. Run `./gradlew :RFToolsStorage:build` to build it or `./gradlew :RFToolsStorage:runDatagen` to regenerate its resources.
