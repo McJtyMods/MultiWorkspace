@@ -108,3 +108,7 @@ and credentials are not copied; supply any required settings separately.
 When porting the workspace, update `minecraftTarget` in
 `gradle/gradle-home.init.gradle` and use a fresh home for the new target.
 Preserve the wrapper customizations when upgrading Gradle.
+
+## RFToolsStorage
+
+Put the `RFToolsStorage_neo` checkout beside this workspace or use `-Pmod.RFToolsStorage=<path>`. Gradle includes it as `:RFToolsStorage` and loads its sources in workspace runs. Run `./gradlew :RFToolsStorage:build` to build it or `./gradlew :RFToolsStorage:runClientData` to regenerate its resources.
