@@ -68,10 +68,9 @@ pushd RFToolsPower
 git checkout 1.21_neo
 popd
 
-git clone https://github.com/McJtyMods/RFToolsStorage RFToolsStorage
-pushd RFToolsStorage
-git checkout 1.21_neo
-popd
+if [[ ! -e RFToolsStorage && ! -e ../RFToolsStorage_neo ]]; then
+    git clone --branch 26.3_neo --single-branch https://github.com/McJtyMods/RFToolsStorage ../RFToolsStorage_neo
+fi
 
 git clone https://github.com/McJtyMods/RFToolsUtility RFToolsUtility
 pushd RFToolsUtility
