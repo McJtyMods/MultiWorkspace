@@ -40,3 +40,7 @@ include 'workspace'
 include 'ModHoloGui'
 include 'Ariente'
 include 'ArienteWorld'
+
+if (file('modlab/build.gradle').isFile()) {
+    include 'modlab'
+}

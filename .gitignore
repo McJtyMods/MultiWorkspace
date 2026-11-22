@@ -6,6 +6,7 @@
 /logs/
 /workspace/build/
 /workspace/run/
+/modlab/
 /McJtyLib/.gradle/
 /McJtyLib/build/
 /McJtyLib/out/

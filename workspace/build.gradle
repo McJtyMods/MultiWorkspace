@@ -39,6 +39,8 @@ group = 'com.yourname.modid'
 archivesBaseName = 'modid'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+def modLab = findProject(':modlab')
+
 minecraft {
     //mappings channel: 'parchment', version: "2022.11.27-1.19.2"
         mappings channel: 'official', version: "${minecraft_version}"
@@ -51,6 +53,11 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
+                if (modLab != null) {
+                    modlab {
+                        source modLab.sourceSets.main
+                    }
+                }
                 ModHoloGui {
                     source project(':ModHoloGui').sourceSets.main
                 }
@@ -150,6 +157,11 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
+                if (modLab != null) {
+                    modlab {
+                        source modLab.sourceSets.main
+                    }
+                }
                 ModHoloGui {
                     source project(':ModHoloGui').sourceSets.main
                 }
@@ -367,6 +379,9 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725") // 0.3.31
     runtimeOnly fg.deobf("curse.maven:oculus-581495:6020952") // 1.8.0
 
+    if (modLab != null) {
+        workspaceProject(modLab.path)
+    }
     workspaceProject(':ModHoloGui')
     workspaceProject(':Ariente')
     workspaceProject(':ArienteWorld')
