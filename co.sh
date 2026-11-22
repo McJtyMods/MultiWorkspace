@@ -33,6 +33,8 @@ for entry in "${repos[@]}"; do
     checkout="$name"
     if [[ "$name" == LostWorlds ]]; then
         checkout="../LostWorlds_fabric"
+    elif [[ "$name" == RFToolsStorage ]]; then
+        checkout="../RFToolsStorage_fabric"
     fi
     if [[ -e "$name" || -e "$checkout" ]]; then
         printf 'Keeping existing checkout: %s\n' "$name"
