@@ -9,7 +9,7 @@ repos=(
     "LostWorlds=https://github.com/McJtyMods/LostWorlds"
     "McJtyLib=https://github.com/McJtyMods/McJtyLib"
     "ModXNet=https://github.com/McJtyMods/XNet"
-    "NEW=https://github.com/romelo333/notenoughwands1.8.8"
+    "NotEnoughWands=https://github.com/romelo333/notenoughwands1.8.8"
     "Nice=https://github.com/McJtyMods/Nice"
     "Restrictions=https://github.com/McJtyMods/Restrictions"
     "RFToolsBase=https://github.com/McJtyMods/RFToolsBase"
@@ -33,7 +33,7 @@ for entry in "${repos[@]}"; do
     checkout="$name"
     if [[ "$name" == LostWorlds ]]; then
         checkout="../LostWorlds_fabric"
-    elif [[ "$name" == RFToolsStorage || "$name" == RFToolsControl ]]; then
+    elif [[ "$name" == RFToolsStorage || "$name" == RFToolsControl || "$name" == NotEnoughWands ]]; then
         checkout="../${name}_fabric"
     fi
     if [[ -e "$name" || -e "$checkout" ]]; then
