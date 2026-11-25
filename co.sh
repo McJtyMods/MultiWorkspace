@@ -28,10 +28,9 @@ pushd ModXNet
 git checkout 26.2_fabric
 popd
 
-git clone https://github.com/romelo333/notenoughwands1.8.8 NEW
-pushd NEW
-git checkout 26.2_fabric
-popd
+if [[ ! -e NotEnoughWands && ! -e ../NotEnoughWands_fabric ]]; then
+    git clone --branch 26.1.2_fabric --single-branch https://github.com/romelo333/notenoughwands1.8.8 ../NotEnoughWands_fabric
+fi
 
 git clone https://github.com/McJtyMods/Nice Nice
 pushd Nice
