@@ -134,3 +134,7 @@ It uses the included McJtyLib, RFToolsBase, and The One Probe projects.
 ## RFToolsStorage
 
 Put the `RFToolsStorage_fabric` checkout beside this workspace or use `-Pmod.RFToolsStorage=<path>`. Gradle includes it as `:RFToolsStorage` and loads its sources in workspace runs. Run `./gradlew :RFToolsStorage:build` to build it or `./gradlew :RFToolsStorage:runDatagen` to regenerate its resources.
+
+## RFToolsControl
+
+Put the `RFToolsControl_fabric` checkout beside this workspace or use `-Pmod.RFToolsControl=<path>`. Gradle includes it as `:RFToolsControl` and loads its sources in workspace runs. Run `./gradlew :RFToolsControl:build` to build it or `./gradlew :RFToolsControl:runDatagen` to regenerate its resources.
