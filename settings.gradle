@@ -19,7 +19,7 @@ def mods = ['McJtyLib', 'TheOneProbe', 'LostCities', 'LostWorlds', 'LostSouls', 
             'Nice', 'InteractionWheel', 'Restrictions', 'SignTastic', 'Radar',
             'DeepResonance', 'RFToolsBase', 'RFToolsStorage', 'RFToolsControl',
             'RFToolsDimensions', 'RFToolsPower', 'RFToolsUtility', 'RFToolsBuilder',
-            'Trinkets', 'ModXNet', 'ModHoloGui', 'Ariente', 'ArienteWorld', 'NEW']
+            'Trinkets', 'ModXNet', 'ModHoloGui', 'Ariente', 'ArienteWorld', 'NotEnoughWands']
 mods.each { mod ->
     def configured = providers.gradleProperty("mod.${mod}").orNull
     def candidates = configured ? [file(configured)] : [file(mod), file("../${mod}_neo")]
