@@ -138,3 +138,7 @@ Put the `RFToolsStorage_fabric` checkout beside this workspace or use `-Pmod.RFT
 ## RFToolsControl
 
 Put the `RFToolsControl_fabric` checkout beside this workspace or use `-Pmod.RFToolsControl=<path>`. Gradle includes it as `:RFToolsControl` and loads its sources in workspace runs. Run `./gradlew :RFToolsControl:build` to build it or `./gradlew :RFToolsControl:runDatagen` to regenerate its resources.
+
+## Not Enough Wands
+
+Put the `NotEnoughWands_fabric` checkout beside this workspace or use `-Pmod.NotEnoughWands=<path>`. Gradle includes it as `:NotEnoughWands` and loads its sources in workspace runs. Run `./gradlew :NotEnoughWands:build` to build it or `./gradlew :NotEnoughWands:runDatagen` to regenerate its resources.
