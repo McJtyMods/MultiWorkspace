@@ -28,10 +28,9 @@ pushd ModXNet
 git checkout 1.21_neo
 popd
 
-git clone https://github.com/romelo333/notenoughwands1.8.8 NEW
-pushd NEW
-git checkout 1.21_neo
-popd
+if [[ ! -e NotEnoughWands && ! -e ../NotEnoughWands_neo ]]; then
+    git clone --branch 26.2_neo --single-branch https://github.com/romelo333/notenoughwands1.8.8 ../NotEnoughWands_neo
+fi
 
 git clone https://github.com/McJtyMods/Nice Nice
 pushd Nice
