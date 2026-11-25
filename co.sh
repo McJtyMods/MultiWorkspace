@@ -53,10 +53,9 @@ pushd RFToolsBuilder
 git checkout 1.21_neo
 popd
 
-git clone https://github.com/McJtyMods/RFToolsControl RFToolsControl
-pushd RFToolsControl
-git checkout 1.21_neo
-popd
+if [[ ! -e RFToolsControl && ! -e ../RFToolsControl_neo ]]; then
+    git clone --branch 26.2_neo --single-branch https://github.com/McJtyMods/RFToolsControl ../RFToolsControl_neo
+fi
 
 git clone https://github.com/McJtyMods/RFToolsDimensions RFToolsDimensions
 pushd RFToolsDimensions

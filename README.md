@@ -112,3 +112,7 @@ Preserve the wrapper customizations when upgrading Gradle.
 ## RFToolsStorage
 
 Put the `RFToolsStorage_neo` checkout beside this workspace or use `-Pmod.RFToolsStorage=<path>`. Gradle includes it as `:RFToolsStorage` and loads its sources in workspace runs. Run `./gradlew :RFToolsStorage:build` to build it or `./gradlew :RFToolsStorage:runClientData` to regenerate its resources.
+
+## RFToolsControl
+
+Put the `RFToolsControl_neo` checkout beside this workspace or use `-Pmod.RFToolsControl=<path>`. Gradle includes it as `:RFToolsControl` and loads its sources in workspace runs. Run `./gradlew :RFToolsControl:build` to build it or `./gradlew :RFToolsControl:runClientData` to regenerate its resources.
