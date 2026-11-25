@@ -53,10 +53,9 @@ pushd RFToolsBuilder
 git checkout 26.2_fabric
 popd
 
-git clone https://github.com/McJtyMods/RFToolsControl RFToolsControl
-pushd RFToolsControl
-git checkout 26.2_fabric
-popd
+if [[ ! -e RFToolsControl && ! -e ../RFToolsControl_fabric ]]; then
+    git clone --branch 26.1.2_fabric --single-branch https://github.com/McJtyMods/RFToolsControl ../RFToolsControl_fabric
+fi
 
 git clone https://github.com/McJtyMods/RFToolsDimensions RFToolsDimensions
 pushd RFToolsDimensions
