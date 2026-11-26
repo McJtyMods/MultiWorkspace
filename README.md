@@ -148,6 +148,10 @@ Put the `RFToolsStorage_fabric` checkout beside this workspace or use `-Pmod.RFT
 
 Put the `RFToolsControl_fabric` checkout beside this workspace or use `-Pmod.RFToolsControl=<path>`. Gradle includes it as `:RFToolsControl` and loads its sources in workspace runs. Run `./gradlew :RFToolsControl:build` to build it or `./gradlew :RFToolsControl:runDatagen` to regenerate its resources.
 
+## DeepResonance
+
+Put the `DeepResonance_fabric` checkout beside this workspace or use `-Pmod.DeepResonance=<path>`. Gradle includes it as `:DeepResonance` and loads its sources in workspace runs. Run `./gradlew :DeepResonance:build` to build it or `./gradlew :DeepResonance:runDatagen` to regenerate its resources.
+
 ## Not Enough Wands
 
 Put the `NotEnoughWands_fabric` checkout beside this workspace or use `-Pmod.NotEnoughWands=<path>`. Gradle includes it as `:NotEnoughWands` and loads its sources in workspace runs. Run `./gradlew :NotEnoughWands:build` to build it or `./gradlew :NotEnoughWands:runDatagen` to regenerate its resources.

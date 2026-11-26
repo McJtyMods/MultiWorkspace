@@ -1,7 +1,6 @@
-git clone https://github.com/McJtyMods/DeepResonance DeepResonance
-pushd DeepResonance
-git checkout 26.2_fabric
-popd
+if [[ ! -e DeepResonance && ! -e ../DeepResonance_fabric ]]; then
+    git clone --branch 26.1.2_fabric --single-branch https://github.com/McJtyMods/DeepResonance ../DeepResonance_fabric
+fi
 
 git clone https://github.com/McJtyMods/FancyTrinkets Trinkets
 pushd Trinkets
