@@ -1,7 +1,6 @@
-git clone https://github.com/McJtyMods/DeepResonance DeepResonance
-pushd DeepResonance
-git checkout 1.21_neo
-popd
+if [[ ! -e DeepResonance && ! -e ../DeepResonance_neo ]]; then
+    git clone --branch 26.2_neo --single-branch https://github.com/McJtyMods/DeepResonance ../DeepResonance_neo
+fi
 
 git clone https://github.com/McJtyMods/FancyTrinkets Trinkets
 pushd Trinkets
