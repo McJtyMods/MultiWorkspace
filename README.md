@@ -148,6 +148,10 @@ Put the `RFToolsStorage_neo` checkout beside this workspace or use `-Pmod.RFTool
 
 Put the `RFToolsControl_neo` checkout beside this workspace or use `-Pmod.RFToolsControl=<path>`. Gradle includes it as `:RFToolsControl` and loads its sources in workspace runs. Run `./gradlew :RFToolsControl:build` to build it or `./gradlew :RFToolsControl:runClientData` to regenerate its resources.
 
+## DeepResonance
+
+Put the `DeepResonance_neo` checkout beside this workspace or use `-Pmod.DeepResonance=<path>`. Gradle includes it as `:DeepResonance` and loads its sources in workspace runs. Run `./gradlew :DeepResonance:build` to build it or `./gradlew :DeepResonance:runClientData` to regenerate its resources.
+
 ## Not Enough Wands
 
 Put the `NotEnoughWands_neo` checkout beside this workspace or use `-Pmod.NotEnoughWands=<path>`. Gradle includes it as `:NotEnoughWands` and loads its sources in workspace runs. Run `./gradlew :NotEnoughWands:build` to build it or `./gradlew :NotEnoughWands:runClientData` to regenerate its resources.
