@@ -33,7 +33,7 @@ for entry in "${repos[@]}"; do
     checkout="$name"
     if [[ "$name" == LostWorlds ]]; then
         checkout="../LostWorlds_fabric"
-    elif [[ "$name" == RFToolsStorage || "$name" == RFToolsControl || "$name" == NotEnoughWands ]]; then
+    elif [[ "$name" == RFToolsStorage || "$name" == RFToolsControl || "$name" == DeepResonance || "$name" == NotEnoughWands ]]; then
         checkout="../${name}_fabric"
     fi
     if [[ -e "$name" || -e "$checkout" ]]; then
